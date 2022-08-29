@@ -14,7 +14,7 @@ class PetController extends Controller
      */
     public function index()
     {
-        return view('pet.index');
+        return view('pet.petRegister');
     }
 
     /**

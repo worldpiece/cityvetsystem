@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PetController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OwnerRegController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pet.index');
+    return view('pet.ownerRegister');
+  //  return view('pet.petRegister');
 });
 
+Route::post('/saveOwner', [OwnerRegController::class, 'saveOwner'])->name('saveOwner');
 
 Route::resource('pet', PetController::class);
