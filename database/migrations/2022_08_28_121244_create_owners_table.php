@@ -21,6 +21,7 @@ class CreateOwnersTable extends Migration
             $table->integer('contact_number');
             $table->string('email');
             $table->string('address');
+            $table->string('password');
             $table->timestamps();
         });
     }

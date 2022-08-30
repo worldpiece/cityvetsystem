@@ -17,6 +17,16 @@ class PetController extends Controller
         return view('pet.petRegister');
     }
 
+    public function viewPetList()
+    {
+        
+    }
+
+    public function savePet()
+    {
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *

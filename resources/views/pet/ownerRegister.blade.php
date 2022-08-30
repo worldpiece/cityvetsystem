@@ -32,12 +32,18 @@
                 <label for="owner_address">Address</label><br>
                 <input type="text" id="owner_address" name="owner_address" value=""><br>
 
+                <label for="owner_contact_number">Contact Number:</label><br>
+                <input type="text" id="owner_contact_number" name="owner_contact_number" value=""><br>
+
                 <label for="owner_email">Email Address:</label><br>
                 <input type="email" id="owner_email" name="owner_email" value=""><br>
 
-                <label for="owner_contact_number">Contact Number:</label><br>
-                <input type="text" id="owner_contact_number" name="owner_contact_number" value=""><br><br>
+                <label for="owner_password">Password :</label><br>
+                <input type="password" id="owner_password" name="owner_password" value=""><br>
 
+                <label for="owner_confirm_password">Confirm Password :</label><br>
+                <input type="password" id="owner_confirm_password" name="owner_confirm_password" value=""><br> <br>
+                
                 <input type="submit" value="Next">
             <form>
         </div>
