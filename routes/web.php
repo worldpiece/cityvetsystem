@@ -16,13 +16,19 @@ use App\Http\Controllers\OwnerRegController;
 */
 
 Route::get('/', function () {
-  return view('welcome');
-  //  return view('pet.petRegister');
+ // return view('welcome');
+  return view('pet.ownerRegister');
 });
 
 Route::post('/saveOwner', [OwnerRegController::class, 'saveOwner'])->name('saveOwner');
 
+Route::post('/updateOwner/{id}', [OwnerRegController::class, 'updateOwner'])->name('updateOwner');
+
+Route::post('/updateOwnerSaved', [OwnerRegController::class, 'updateOwnerSaved'])->name('updateOwnerSaved');
+
 Route::resource('pet', PetController::class);
+
+Route::get('/viewOwnerList', [OwnerRegController::class, 'viewOwnerList']);
 
 Auth::routes();
 

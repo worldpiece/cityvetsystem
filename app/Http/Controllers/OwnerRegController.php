@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\models\Owner;
+use DB;
 
 class OwnerRegController extends Controller
 {
@@ -20,7 +21,29 @@ class OwnerRegController extends Controller
         $newOwner->password = $request->owner_password;
         $newOwner->save();
 
-        return view('pet.petRegister');
+        return view('pet.ownewList');
+
+    }
+
+    public function viewOwnerList(){
+
+        //$ownerList = DB::table('owners')->get();
+        
+        return view('pet.ownerList',['ownerLists' => Owner::all()]);
+
+       // $ownerList = Owner::all();
+       // return view('pet.ownerList', compact('ownerList'));
+
+    }
+
+    public function updateOwner($id){
+        
+        return view('pet.ownerUpdate',['ownerInfo'=> Owner::find($id)]);
+    }
+
+    public function updateOwnerSaved(Request $request){
+
+        return view('/');
 
     }
     //
