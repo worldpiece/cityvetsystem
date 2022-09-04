@@ -24,7 +24,9 @@ Route::post('/saveOwner', [OwnerRegController::class, 'saveOwner'])->name('saveO
 
 Route::post('/updateOwner/{id}', [OwnerRegController::class, 'updateOwner'])->name('updateOwner');
 
-Route::post('/updateOwnerSaved', [OwnerRegController::class, 'updateOwnerSaved'])->name('updateOwnerSaved');
+Route::post('/deleteOwner/{id}', [OwnerRegController::class, 'deleteOwner'])->name('deleteOwner');
+
+Route::post('/updateOwnerSaved{id}', [OwnerRegController::class, 'updateOwnerSaved'])->name('updateOwnerSaved');
 
 Route::resource('pet', PetController::class);
 

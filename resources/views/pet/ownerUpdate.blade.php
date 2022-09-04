@@ -15,7 +15,7 @@
             <span class="navbar-brand mb-1 h1">City Veterinary System | Pet Page</span>
         </nav>
         <div class="container">
-            <form method="post" action="{{ route('updateOwnerSaved') }}">                
+            <form method="post" action="{{ route('updateOwnerSaved', $ownerInfo->id) }}">                
             {{ csrf_field() }}
 
                 <label> --- Owner Info (Update)--- </label><br><br>

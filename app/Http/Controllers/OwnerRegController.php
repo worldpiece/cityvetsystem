@@ -21,7 +21,7 @@ class OwnerRegController extends Controller
         $newOwner->password = $request->owner_password;
         $newOwner->save();
 
-        return view('pet.ownewList');
+        return redirect('/viewOwnerList');
 
     }
 
@@ -41,9 +41,28 @@ class OwnerRegController extends Controller
         return view('pet.ownerUpdate',['ownerInfo'=> Owner::find($id)]);
     }
 
-    public function updateOwnerSaved(Request $request){
+    public function updateOwnerSaved(Request $request, $id){
+        $newOwner = Owner::find($id);
+        $newOwner->first_name = $request->fname;
+        $newOwner->middle_name = $request->mname;
+        $newOwner->last_name = $request->lname;
+        $newOwner->contact_number = $request->owner_contact_number;        
+        $newOwner->email = $request->owner_email;
+        $newOwner->address = $request->owner_address;
+        $newOwner->password = $request->owner_password;
+        $newOwner->save();
 
-        return view('/');
+
+        return redirect('/viewOwnerList');
+
+    }
+
+    public function deleteOwner($id){
+
+        $newOwner = Owner::find($id);
+        $newOwner->delete();
+       
+        return redirect('/viewOwnerList');
 
     }
     //

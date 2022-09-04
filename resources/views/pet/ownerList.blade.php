@@ -19,7 +19,11 @@
             @foreach($ownerLists as $data)
 
              <tr>
-                <th>{{ $data->id}} || {{$data->first_name}} || {{ $data->middle_name}} || {{ $data->last_name}} <form method="post" action="{{ route('updateOwner', $data->id) }}"><button type="submit" >Button</button></th> <br> {{ csrf_field() }}</form>
+                <th>{{ $data->id}} || {{$data->first_name}} || {{ $data->middle_name}} || {{ $data->last_name}} 
+                    
+                <form method="post" action="{{ route('updateOwner', $data->id) }}"><button type="submit" >Update</button></th> <br> {{ csrf_field() }}</form>
+                <form method="post" action="{{ route('deleteOwner', $data->id) }}"><button type="submit" >Delete</button></th> <br> {{ csrf_field() }}</form>
+
                 <th>{{ $data->contact_number}}</th><br>
                 <th>{{ $data->email}}</th><br>
                 <th>{{ $data->address}}</th><br>
