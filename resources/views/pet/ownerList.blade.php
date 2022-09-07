@@ -23,6 +23,8 @@
                     
                 <form method="post" action="{{ route('updateOwner', $data->id) }}"><button type="submit" >Update</button></th> <br> {{ csrf_field() }}</form>
                 <form method="post" action="{{ route('deleteOwner', $data->id) }}"><button type="submit" >Delete</button></th> <br> {{ csrf_field() }}</form>
+                <form method="post" action="{{ route('petRegister', $data->id) }}"><button type="submit" >Pet Register</button></th> <br> {{ csrf_field() }}</form>
+                <form method="get" action="{{ route('petOwned', $data->id) }}"><button type="submit" >Pet Owned</button></th> <br> {{ csrf_field() }}</form>
 
                 <th>{{ $data->contact_number}}</th><br>
                 <th>{{ $data->email}}</th><br>
@@ -30,6 +32,8 @@
                 <th>{{ $data->password}}</th><br>
             </tr>
             @endforeach
+
+            <form method="post" action="{{ route('deleteAllOwner') }}"><button type="submit" >Delete All</button></th> <br> {{ csrf_field() }}</form>
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>

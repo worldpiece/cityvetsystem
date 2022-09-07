@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pet;
 use Illuminate\Http\Request;
+use App\models\Owner;
 
 class PetController extends Controller
 {
@@ -12,18 +13,37 @@ class PetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function petRegister(Request $request, $id)
+    {
+        //return view('pet.petRegister');
+        return view('pet.petRegister',['ownerInfo'=> Owner::find($id)]);
+    }
+
+    public function petUpdate($id)
     {
         return view('pet.petRegister');
     }
 
-    public function viewPetList()
+
+    public function petOwned($id)
     {
-        
+        return view('pet.petOwned',
+        ['petOwned' => Pet::all()
+        ->where('owner_id', $id)]);
     }
 
-    public function savePet()
+    public function savePet(Request $request, $id)
     {
+
+        $newPet = new Pet;
+        $newPet->pet_name = $request->pname;
+        $newPet->owner_id = $id;
+        $newPet->pet_classification = $request->pclassification;
+        $newPet->age = $request->petAge;        
+        $newPet->date_of_birth = $request->pbirth;
+        $newPet->save();
+
+        return redirect('/viewOwnerList');
         
     }
 

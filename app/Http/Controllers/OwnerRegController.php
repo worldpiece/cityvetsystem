@@ -21,7 +21,11 @@ class OwnerRegController extends Controller
         $newOwner->password = $request->owner_password;
         $newOwner->save();
 
-        return redirect('/viewOwnerList');
+       
+       //return redirect('/ownerDashboard');
+
+       //return view('pet.petRegister', ['ownerInfo' => Owner::find( $newOwner->id)]);
+       return redirect()->route('ownerDashboard', ['id' => $newOwner->id]);
 
     }
 
@@ -36,9 +40,21 @@ class OwnerRegController extends Controller
 
     }
 
+    
+    public function ownerDashboard($id){
+
+        //$ownerList = DB::table('owners')->get();
+        
+        return view('pet.ownerDashboard',['ownerInfo'=> Owner::find($id)]);
+
+       // $ownerList = Owner::all();
+       // return view('pet.ownerList', compact('ownerList'));
+
+    }
+
     public function updateOwner($id){
         
-        return view('pet.ownerUpdate',['ownerInfo'=> Owner::find($id)]);
+        return view('pet.ownerUpdate',['ownerInfo' => Owner::find($id)]);
     }
 
     public function updateOwnerSaved(Request $request, $id){
@@ -65,5 +81,15 @@ class OwnerRegController extends Controller
         return redirect('/viewOwnerList');
 
     }
+
+    public function deleteAllOwner(){
+
+        $newOwner = new Owner;
+        $newOwner->truncate();
+       
+        return redirect('/viewOwnerList');
+
+    }
+   
     //
 }

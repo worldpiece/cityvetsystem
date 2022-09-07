@@ -15,22 +15,24 @@
             <span class="navbar-brand mb-1 h1">City Veterinary System | Pet Page</span>
         </nav>
         <div class="container">
-            <form action="/action_page.php">
-                {{ csrf_field() }}
+        <form method="post" action="{{ route('savePet', $ownerInfo->id) }}">                
+            {{ csrf_field() }}
+
+                <label> --- Owner id : {{$ownerInfo->id}} --- </label><br><br>
                 
                 <label for="lname">--- Pet Info ---</label><br><br>
 
-                <label for="fname">Name:</label><br>
-                <input type="text" id="fname" name="fname" value=""><br>
+                <label for="pname">Name:</label><br>
+                <input type="text" id="pname" name="pname" value=""><br>
                 
-                <label for="fname">Classification:</label><br>
-                <input type="text" id="fname" name="fname" value=""><br>
+                <label for="pclassification">Classification:</label><br>
+                <input type="text" id="pclassification" name="pclassification" value=""><br>
                 
-                <label for="fname">Age:</label><br>
-                <input type="text" id="fname" name="fname" value=""><br>
+                <label for="petAge">Age:</label><br>
+                <input type="number" id="petAge" name="petAge" value=""><br>
                 
-                <label for="fname">Date of Birth:</label><br>
-                <input type="text" id="fname" name="fname" value=""><br><br>
+                <label for="pbirth">Date of Birth:</label><br>
+                <input type="date" id="pbirth" name="pbirth" value=""><br><br>
                 
                 <input type="submit" value="Submit">
                 

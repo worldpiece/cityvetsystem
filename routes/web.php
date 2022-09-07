@@ -26,11 +26,21 @@ Route::post('/updateOwner/{id}', [OwnerRegController::class, 'updateOwner'])->na
 
 Route::post('/deleteOwner/{id}', [OwnerRegController::class, 'deleteOwner'])->name('deleteOwner');
 
+Route::post('/deleteAllOwner', [OwnerRegController::class, 'deleteAllOwner'])->name('deleteAllOwner');
+
 Route::post('/updateOwnerSaved{id}', [OwnerRegController::class, 'updateOwnerSaved'])->name('updateOwnerSaved');
+
+Route::get('/viewOwnerList', [OwnerRegController::class, 'viewOwnerList']);
+
+Route::get('/petOwned/{id}', [PetController::class, 'petOwned'])->name('petOwned');
+
+Route::get('/ownerDashboard/{id}', [OwnerRegController::class, 'ownerDashboard'])->name('ownerDashboard');
 
 Route::resource('pet', PetController::class);
 
-Route::get('/viewOwnerList', [OwnerRegController::class, 'viewOwnerList']);
+Route::post('/petRegister/{id}' , [PetController::class, 'petRegister'])->name('petRegister');
+
+Route::post('/savePet/{id}', [PetController::class, 'savePet'])->name('savePet');
 
 Auth::routes();
 
