@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\PetController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PetController;
 use App\Http\Controllers\OwnerRegController;
+use App\Http\Controllers\AppointmentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +28,10 @@ Route::resource('pet', PetController::class);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']); //->name('home');
+Route::get('/appointment', [App\Http\Controllers\AppointmentController::class, 'index']);
+
+Route::get('/appointment', [AppointmentController::class, 'index']);
+Route::post('create-appointment', [AppointmentController::class, 'create']);
+// Route::post('appointment-update', [AppointmentController::class, 'update']);
+// Route::post('appointment-delete', [AppointmentController::class, 'delete']);
