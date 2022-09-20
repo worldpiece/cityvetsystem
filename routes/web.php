@@ -22,7 +22,7 @@ Route::get('/', function () {
   return view('pet.ownerRegister');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
 Route::post('/saveOwner', [OwnerRegController::class, 'saveOwner'])->name('saveOwner');
 Route::post('/updateOwner/{id}', [OwnerRegController::class, 'updateOwner'])->name('updateOwner');
 Route::post('/deleteOwner/{id}', [OwnerRegController::class, 'deleteOwner'])->name('deleteOwner');
@@ -35,7 +35,9 @@ Route::resource('pet', PetController::class);
 Route::post('/petRegister/{id}' , [PetController::class, 'petRegister'])->name('petRegister');
 Route::post('/savePet/{id}', [PetController::class, 'savePet'])->name('savePet');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']); //->name('home');
-});
+Route::post('/updatePet/{id}', [PetController::class, 'updatePet'])->name('updatePet');
+Route::post('/updatePetSaved{id}', [PetController::class, 'updatePetSaved'])->name('updatePetSaved');
+// });
 
 
 Auth::routes();

@@ -19,9 +19,21 @@ class PetController extends Controller
         return view('pet.petRegister',['ownerInfo'=> Owner::find($id)]);
     }
 
-    public function petUpdate($id)
+    public function updatePet($id)
     {
-        return view('pet.petRegister');
+        return view('pet.petUpdate',['petInfo' => Pet::find($id)]);
+    }
+
+    public function updatePetSaved(Request $request, $id){
+
+        $newPet = Pet::find($id);
+        $newPet->pet_name = $request->pname;
+        $newPet->pet_classification = $request->pclassification;
+        $newPet->age = $request->petAge;        
+        $newPet->date_of_birth = $request->pbirth;
+        $newPet->save();
+
+        return redirect('/viewOwnerList');
     }
 
 

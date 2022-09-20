@@ -20,6 +20,7 @@
                 <th>{{ $data->age}}</th><br>
                 <th>{{ $data->pet_classification}}</th><br>
                 <th>{{ $data->date_of_birth}}</th><br>
+                <form method="post" action="{{ route('updatePet', $data->id) }}"><button type="submit" >Update</button></th> <br> {{ csrf_field() }}</form>
             @endforeach
 
 
