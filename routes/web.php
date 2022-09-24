@@ -36,6 +36,7 @@ Route::post('/petRegister/{id}' , [PetController::class, 'petRegister'])->name('
 Route::post('/savePet/{id}', [PetController::class, 'savePet'])->name('savePet');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']); //->name('home');
 Route::post('/updatePet/{id}', [PetController::class, 'updatePet'])->name('updatePet');
+Route::post('/deletePet/{id}', [PetController::class, 'deletePet'])->name('deletePet');
 Route::post('/updatePetSaved{id}', [PetController::class, 'updatePetSaved'])->name('updatePetSaved');
 // });
 

@@ -59,6 +59,15 @@ class PetController extends Controller
         
     }
 
+    public function deletePet($id){
+
+        $newPet = Pet::find($id);
+        $newPet->delete();
+       
+        return redirect('/viewOwnerList');
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
