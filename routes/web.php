@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\OwnerRegController;
 use App\Http\Controllers\AppointmentController;
-
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,19 +19,45 @@ use App\Http\Controllers\AppointmentController;
 
 Route::get('/', function () {
   return view('welcome');
-  //  return view('pet.petRegister');
 });
 
-Route::post('/saveOwner', [OwnerRegController::class, 'saveOwner'])->name('saveOwner');
-
-Route::resource('pet', PetController::class);
+// Route::post('/saveOwner', [OwnerRegController::class, 'saveOwner'])->name('saveOwner');
+// Route::resource('pet', PetController::class);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']); //->name('home');
-Route::get('/appointment', [App\Http\Controllers\AppointmentController::class, 'index']);
 
-Route::get('/appointment', [AppointmentController::class, 'index']);
-Route::post('create-appointment', [AppointmentController::class, 'create']);
-// Route::post('appointment-update', [AppointmentController::class, 'update']);
-// Route::post('appointment-delete', [AppointmentController::class, 'delete']);
+Route::group(['middleware' => 'auth'], function () {
+
+  // Route::group(['middleware' => 'RoleClient'], function () {
+
+  // });
+  // Route::get('register-client', [App\Http\Controllers\ClientController::class, 'index'])->name('register-client');
+  Route::get('appointment', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment.index');
+  Route::post('appointment', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
+
+  Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+
+  //Gallery Routes
+  Route::get('gallery', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
+  Route::post('gallery', [App\Http\Controllers\GalleryController::class, 'store'])->name('gallery.store');
+  Route::delete('gallery/{id}', [App\Http\Controllers\GalleryController::class, 'destroy'])->name('gallery.destroy');
+});
+
+
+
+
+
+
+
+
+
+
+  // Route::get('/appointment', [App\Http\Controllers\AppointmentController::class, 'index']);
+  // Route::put('appointment-update', [AppointmentController::class, 'update']);
+  // Route::delete('appointment-delete', [AppointmentController::class, 'delete']);
+
+  // Route::get('/records', 'RecordController@index')->name('records')->middleware('auth');
+  // Route::get('/addrecord', 'AddRecordController@index')->name('addrecord')->middleware('auth');
+  // Route::post('/addrecord', 'AddRecordController@store')->name('addrecord')->middleware('auth');
+  // Route::get('/action', 'RecordController@action')->name('record.action');
