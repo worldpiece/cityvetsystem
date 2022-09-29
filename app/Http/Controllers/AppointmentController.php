@@ -9,126 +9,65 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AppointmentController extends Controller
 {
+    public function sesh(Request $request)
+    {
+        $data = $request->session()->all();
+    }
+
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            $data = Appointment::whereDate('appointment_start', '>=', $request->start)
-                ->whereDate('appointment_end',   '<=', $request->end)
-                ->get(['id', 'appointment_name', 'appointment_start', 'appointment_end']);
-            return response()->json($data);
+        $appointments = array();
+        $all_appointments = Appointment::all();
+        foreach ($all_appointments as $appointment) {
+            $appointments[] = [
+                'id' => $appointment->id,
+                'title' => $appointment->symptoms,
+                'start' => $appointment->appointment_start,
+                'end' => $appointment->appointment_end,
+                'color' => 'black',
+                'text-color' => 'red'
+            ];
         }
-        return view('appointment');
+        return view('appointment.index', ['appointments' => $appointments]);
     }
 
-    public static function loadAppointments()
+    public function store(Request $request)
     {
-        // get unit of the poster
-        $unit = self::select('user_profiles.unit_id')
-            ->join('user_profiles', 'events.user_id', 'user_profiles.user_id')
-            ->where('audience', self::MY_UNIT)
-            ->first();
-    }
+        $request->validate(
+            [
+                //'appointment_type' => 'required|string',
+                'symptoms' => 'required|string',
+            ]
+        );
 
-    public function calendarEvents(Request $request)
-    {
+        $start_date = $_POST['start'];
+        $end_date = $_POST['end'];
+        $start = substr($start_date, 0, 10);
+        $end = substr($end_date, 0, 10);
+        $start = $start . $_POST['am'];
+        $end = $start . $_POST['pm'];
 
-        switch ($request->type) {
-            case 'create':
-                $event = CrudEvents::create([
-                    'event_name' => $request->event_name,
-                    'event_start' => $request->event_start,
-                    'event_end' => $request->event_end,
-                ]);
-
-                return response()->json($event);
-                break;
-
-            case 'edit':
-                $event = CrudEvents::find($request->id)->update([
-                    'event_name' => $request->event_name,
-                    'event_start' => $request->event_start,
-                    'event_end' => $request->event_end,
-                ]);
-
-                return response()->json($event);
-                break;
-
-            case 'delete':
-                $event = CrudEvents::find($request->id)->delete();
-
-                return response()->json($event);
-                break;
-
-            default:
-                # ...
-                break;
+        if (isset($_POST['update'])) {
+            $appointment = Appointment::find($_POST['client_id']);
+            $appointment->pet_id = $_POST['pet_id'];
+            $appointment->client_appointment_code = $_POST['appointment_code'];
+            // $appointment->client_name = $_POST['client_name'];
+            $appointment->symptoms = $_POST['symptoms'];
+            $appointment->appointment_start =  date('Y-m-d H:i:s', strtotime($start_date));
+            $appointment->appointment_end =  date('Y-m-d H:i:s', strtotime($start_date));
+            $appointment->save();
+            return $_POST;
+        } else {
+            Appointment::create([
+                'client_id' => $request->client_id,
+                'pet_id' => $request->pet_id,
+                //'client_name' => $request->client_name,
+                //'appointment_type' => $request->appointment_type,
+                'appointment_code' => $request->appointment_code,
+                'symptoms' => $request->symptoms,
+                'appointment_start' => $request->start,
+                'appointment_end' => $request->end
+            ]);
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     public function index()
-//     {
-//         if (request()->ajax()) {
-
-//             $start = (!empty($_GET["appointment_start"])) ? ($_GET["appointment_start"]) : ('');
-//             $end = (!empty($_GET["appointment_end"])) ? ($_GET["appointment_end"]) : ('');
-
-//             $data = Appointment::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id', 'title', 'start', 'end']);
-//             return Response::json($data);
-//         }
-//         return view('appointment');
-//     }
-
-//     public function create(Request $request)
-//     {
-//         $insertArr = [
-//             'title' => $request->title,
-//             'appointment_start' => $request->start,
-//             'appointment_end' => $request->end
-//         ];
-//         $appointment = Appointment::insert($insertArr);
-//         return Response::json($appointment);
-//     }
-
-
-//     public function update(Request $request)
-//     {
-//         $where = array('id' => $request->id);
-//         $updateArr = ['title' => $request->title, 'start' => $request->start, 'end' => $request->end];
-//         $appointment  = Appointment::where($where)->update($updateArr);
-
-//         return Response::json($appointment);
-//     }
-
-
-//     public function destroy(Request $request)
-//     {
-//         $appointment = Appointment::where('id', $request->id)->delete();
-
-//         return Response::json($appointment);
-//     }
-// }

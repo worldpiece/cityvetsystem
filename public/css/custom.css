@@ -1,0 +1,39 @@
+body
+{
+    background: url('/img/bg.jpg');
+}
+
+/* Styles for Home Page */
+.logo-image{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -6px;
+}
+
+.logo-container
+{
+    display: flex;
+    justify-content: center
+}
+
+.home-title
+{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+#home-logo
+{
+    width: 400px;
+    height: 400px;
+}
+
+/* Styles for Gallery */
+
+
+/* .navbarhome {
+    background-color: #299c8f;
+} */

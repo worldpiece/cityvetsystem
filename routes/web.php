@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\OwnerRegController;
 use App\Http\Controllers\AppointmentController;
-
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,7 @@ use App\Http\Controllers\AppointmentController;
 
 Route::get('/', function () {
  // return view('welcome');
-  return view('pet.ownerRegister');
+  return view('pet.owner-register');
 });
 
 // Route::group(['middleware' => 'auth'], function () {
@@ -28,7 +28,7 @@ Route::post('/updateOwner/{id}', [OwnerRegController::class, 'updateOwner'])->na
 Route::post('/deleteOwner/{id}', [OwnerRegController::class, 'deleteOwner'])->name('deleteOwner');
 Route::post('/deleteAllOwner', [OwnerRegController::class, 'deleteAllOwner'])->name('deleteAllOwner');
 Route::post('/updateOwnerSaved{id}', [OwnerRegController::class, 'updateOwnerSaved'])->name('updateOwnerSaved');
-Route::get('/viewOwnerList', [OwnerRegController::class, 'viewOwnerList']);
+Route::get('/viewClientList', [OwnerRegController::class, 'viewOwnerList']);
 Route::get('/petOwned/{id}', [PetController::class, 'petOwned'])->name('petOwned');
 Route::get('/ownerDashboard/{id}', [OwnerRegController::class, 'ownerDashboard'])->name('ownerDashboard');
 Route::resource('pet', PetController::class);
@@ -41,12 +41,11 @@ Route::post('/updatePetSaved{id}', [PetController::class, 'updatePetSaved'])->na
 // });
 
 
-Auth::routes();
 
 
 Route::get('/appointment', [App\Http\Controllers\AppointmentController::class, 'index']);
 
-Route::get('/appointment', [AppointmentController::class, 'index']);
-Route::post('create-appointment', [AppointmentController::class, 'create']);
-// Route::post('appointment-update', [AppointmentController::class, 'update']);
-// Route::post('appointment-delete', [AppointmentController::class, 'delete']);
+  // Route::get('/records', 'RecordController@index')->name('records')->middleware('auth');
+  // Route::get('/addrecord', 'AddRecordController@index')->name('addrecord')->middleware('auth');
+  // Route::post('/addrecord', 'AddRecordController@store')->name('addrecord')->middleware('auth');
+  // Route::get('/action', 'RecordController@action')->name('record.action');

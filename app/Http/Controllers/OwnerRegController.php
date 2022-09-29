@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\Owner;
+use App\models\Client;
 use DB;
 
 class OwnerRegController extends Controller
@@ -11,7 +11,7 @@ class OwnerRegController extends Controller
 
     public function saveOwner(Request $request){
         //\Log::info(json_encode($request->all()));
-        $newOwner = new Owner;
+        $newOwner = new Client;
         $newOwner->first_name = $request->fname;
         $newOwner->middle_name = $request->mname;
         $newOwner->last_name = $request->lname;
@@ -33,7 +33,7 @@ class OwnerRegController extends Controller
 
         //$ownerList = DB::table('owners')->get();
         
-        return view('pet.ownerList',['ownerLists' => Owner::all()]);
+        return view('pet.owner-list',['ownerLists' => Client::all()]);
 
        // $ownerList = Owner::all();
        // return view('pet.ownerList', compact('ownerList'));
@@ -45,7 +45,7 @@ class OwnerRegController extends Controller
 
         //$ownerList = DB::table('owners')->get();
         
-        return view('pet.ownerDashboard',['ownerInfo'=> Owner::find($id)]);
+        return view('pet.ownerDashboard',['ownerInfo'=> Client::find($id)]);
 
        // $ownerList = Owner::all();
        // return view('pet.ownerList', compact('ownerList'));
@@ -54,11 +54,11 @@ class OwnerRegController extends Controller
 
     public function updateOwner($id){
         
-        return view('pet.ownerUpdate',['ownerInfo' => Owner::find($id)]);
+        return view('pet.ownerUpdate',['ownerInfo' => Client::find($id)]);
     }
 
     public function updateOwnerSaved(Request $request, $id){
-        $newOwner = Owner::find($id);
+        $newOwner = Client::find($id);
         $newOwner->first_name = $request->fname;
         $newOwner->middle_name = $request->mname;
         $newOwner->last_name = $request->lname;
@@ -69,25 +69,25 @@ class OwnerRegController extends Controller
         $newOwner->save();
 
 
-        return redirect('/viewOwnerList');
+        return redirect('/viewClientList');
 
     }
 
     public function deleteOwner($id){
 
-        $newOwner = Owner::find($id);
+        $newOwner = Client::find($id);
         $newOwner->delete();
        
-        return redirect('/viewOwnerList');
+        return redirect('/viewClientList');
 
     }
 
     public function deleteAllOwner(){
 
-        $newOwner = new Owner;
+        $newOwner = new Client;
         $newOwner->truncate();
        
-        return redirect('/viewOwnerList');
+        return redirect('/viewClientList');
 
     }
    

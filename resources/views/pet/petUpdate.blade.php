@@ -23,16 +23,16 @@
                 <label for="lname">--- Pet Info ---</label><br><br>
 
                 <label for="pname">Name:</label><br>
-                <input type="text" id="pname" name="pname" value="{{$petInfo->owner_id}}"><br>
+                <input type="text" id="pname" name="pname" value="{{$petInfo->pet_name}}"><br>
                 
                 <label for="pclassification">Classification:</label><br>
-                <input type="text" id="pclassification" name="pclassification" value="{{$petInfo->owner_id}}"><br>
+                <input type="text" id="pclassification" name="pclassification" value="{{$petInfo->pet_classification}}"><br>
                 
                 <label for="petAge">Age:</label><br>
-                <input type="number" id="petAge" name="petAge" value="{{$petInfo->owner_id}}"><br>
+                <input type="number" id="petAge" name="petAge" value="{{$petInfo->age}}"><br>
                 
                 <label for="pbirth">Date of Birth:</label><br>
-                <input type="date" id="pbirth" name="pbirth" value="{{$petInfo->owner_id}}"><br><br>
+                <input type="date" id="pbirth" name="pbirth" value="{{$petInfo->date_of_birth}}"><br><br>
                 
                 <input type="submit" value="Submit">
                 

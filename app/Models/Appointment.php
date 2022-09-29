@@ -12,19 +12,12 @@ class Appointment extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'client_id',
+        // 'client_name',
         'pet_id',
-        'title',
-        'description',
+        'appointment_code',
+        // 'appointment_type',
+        'symptoms',
         'appointment_start',
         'appointment_end'
     ];
-
-    // public static function loadEvents()
-    // {
-    //     // get unit of the poster
-    //     $unit = self::select('user_profiles.unit_id')
-    //         ->join('user_profiles', 'events.user_id', 'user_profiles.user_id')
-    //         ->where('audience', self::MY_UNIT)
-    //         ->first();
-    // }
 }
