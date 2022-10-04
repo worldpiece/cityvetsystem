@@ -21,7 +21,7 @@ class AppointmentController extends Controller
         foreach ($all_appointments as $appointment) {
             $appointments[] = [
                 'id' => $appointment->id,
-                'title' => $appointment->symptoms,
+                'symptoms' => $appointment->symptoms,
                 'start' => $appointment->appointment_start,
                 'end' => $appointment->appointment_end,
                 'color' => 'black',
@@ -29,6 +29,11 @@ class AppointmentController extends Controller
             ];
         }
         return view('appointment.index', ['appointments' => $appointments, 'pets' => $pets]);
+    }
+
+    public function getAppointment()
+    {
+        
     }
 
     public function store(Request $request)

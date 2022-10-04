@@ -5,7 +5,7 @@
         <div class="home-title">
             <br>
             <br>
-            <h1 class="fw-bold" style="color: rgb(0, 112, 211)">BSDC</h1>
+            <h1 class="fw-bold" style="color: rgb(0, 112, 211)">City Veterinary System</h1>
             <br>
         </div>
         <div class="logo-container">

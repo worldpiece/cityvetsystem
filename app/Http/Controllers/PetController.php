@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Pet;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,11 @@ class PetController extends Controller
     public function index()
     {
         return view('pet.index');
+    }
+
+    public function registerPet()
+    {
+        return view('pet.pet-register');
     }
 
     /**

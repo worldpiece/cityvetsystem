@@ -19,8 +19,8 @@ class CreateAppointmentsTable extends Migration
             $table->integer('pet_id');
             $table->integer('appointment_code');
             $table->string('symptoms');
-            $table->dateTime('appointment_start');
-            $table->dateTime('appointment_end');
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->timestamps();
         });
     }

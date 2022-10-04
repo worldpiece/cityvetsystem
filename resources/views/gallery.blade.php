@@ -1,5 +1,7 @@
 @extends('layouts.gallery')
-
+@section('title')
+    CVS | Gallery
+@endsection
 @section('content')
     <div class="gallery-container">
         <h3 style="color: rgb(31, 29, 27)">&nbsp;&nbsp;Image Gallery</h3>

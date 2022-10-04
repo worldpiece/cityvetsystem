@@ -39,6 +39,7 @@
             padding: 15px;
         }
     </style>
+    @livewireStyles
 </head>
 
 <body style="background: url('/img/bg.jpg')">
@@ -57,6 +58,7 @@
             });
         });
     </script>
+    @livewireScripts
 </body>
 
 </html>
