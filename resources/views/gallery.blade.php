@@ -71,7 +71,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to delete {{ $image->title }}.</p>
+                        <!-- <p>Are you sure you want to delete?.</p> -->
                     </div>
                     <div class="modal-footer">
                         {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button> --}}
@@ -83,7 +83,7 @@
     </div>
 @endsection
 
-@section('scripts')
+<!-- @section('scripts')
     <script>
         $(document).ready(function() {
             $(.deleteImgBtn).click(function(e) {
@@ -94,4 +94,4 @@
             });
         });
     </script>
-@endsection
+@endsection -->

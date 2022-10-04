@@ -17,24 +17,24 @@
         <div class="container">
             <form action="/action_page.php">
                 {{ csrf_field() }}
-                
+
                 <label for="lname">--- Pet Info ---</label><br><br>
 
                 <label for="fname">Name:</label><br>
                 <input type="text" id="fname" name="fname" value=""><br>
-                
+
                 <label for="fname">Classification:</label><br>
                 <input type="text" id="fname" name="fname" value=""><br>
-                
+
                 <label for="fname">Age:</label><br>
                 <input type="text" id="fname" name="fname" value=""><br>
-                
+
                 <label for="fname">Date of Birth:</label><br>
                 <input type="text" id="fname" name="fname" value=""><br><br>
-                
+
                 <input type="submit" value="Submit">
-                
-            </form> 
+
+            </form>
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>

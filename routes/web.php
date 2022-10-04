@@ -29,19 +29,31 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 
-  // Route::group(['middleware' => 'RoleClient'], function () {
 
-  // });
   // Route::get('register-client', [App\Http\Controllers\ClientController::class, 'index'])->name('register-client');
-  Route::get('appointment', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment.index');
-  Route::post('appointment', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
+  Route::get('/appointment', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment.index');
+  Route::post('/appointment', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
 
   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
+  // Route::group(['middleware' => 'RoleAdmin'], function () {
+
+  // });
   //Gallery Routes
-  Route::get('gallery', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
-  Route::post('gallery', [App\Http\Controllers\GalleryController::class, 'store'])->name('gallery.store');
-  Route::delete('gallery/{id}', [App\Http\Controllers\GalleryController::class, 'destroy'])->name('gallery.destroy');
+  Route::get('/gallery', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
+  Route::post('/gallery', [App\Http\Controllers\GalleryController::class, 'store'])->name('gallery.store');
+  Route::delete('/gallery/{id}', [App\Http\Controllers\GalleryController::class, 'destroy'])->name('gallery.destroy');
+
+  // Route::group(['middleware' => 'RoleClient'], function (){
+  //Pet Routes
+  Route::get('/pet', [App\Http\Controllers\PetController::class, 'index'])->name('pet.index');
+  // Route::get('/pet', [App\Http\Controllers\PetController::class, 'index'])->name('pet.register');
+  Route::post('/pet', [App\Http\Controllers\PetController::class, 'store'])->name('pet.store');
+  // Route::get('client-register', [App\Http\Controllers\PetController::class, 'register'])->name('pet.);
+  // Route::get('pet', [App\Http\Controllers\PetController::class, 'index'])->name('pet.index');
+  // });
+
+
 });
 
 

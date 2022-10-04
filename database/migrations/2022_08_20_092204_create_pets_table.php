@@ -20,7 +20,6 @@ class CreatePetsTable extends Migration
             $table->integer('owner_id');
             $table->string('pet_classification');
             $table->integer('age');
-            $table->date('date_of_birth');
             $table->timestamps();
         });
     }

@@ -68,11 +68,21 @@
                         @else
                             <!-- added list -->
                             <li class="nav-item ml-auto">
+                                <a class="nav-link" href="/pet">{{ __('View Pets') }}</a>
+                            </li>
+                            <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/gallery">{{ __('View Gallery') }}</a>
                             </li>
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/appointment">{{ __('View Appointments') }}</a>
                             </li>
+                            {{-- @if (Auth::user()->id === 1)
+                                <li class="nav-item ml-auto">
+                                    <a class="nav-link" href="{{ route('users') }}">{{ __('View Users') }}</a>
+                                </li>
+                            @endif 
+                            --}}
+                            <!-- end of added list -->
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

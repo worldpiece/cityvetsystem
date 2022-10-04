@@ -14,17 +14,7 @@ class PetController extends Controller
      */
     public function index()
     {
-        return view('pet.petRegister');
-    }
-
-    public function viewPetList()
-    {
-        
-    }
-
-    public function savePet()
-    {
-        
+        return view('pet.index');
     }
 
     /**
@@ -45,7 +35,26 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $birthDate = $request->birth_date;
+        $currentDate = $request->current_date;
+        $age = date_diff(date_create($birthDate), date_create($currentDate));
+        $age = $age->format("%y");
+
+        $validated = $request->validate(
+            [
+                'pet_name' => 'required|max:255',
+                'pet_dob' => 'required',
+                'pet_classification' => 'required'
+            ]
+        );
+
+        Pet::create([
+            'pet_name' => $request->pet_name,
+            'birth_date' => $request->pet_dob,
+            'age' => $age,
+            'owner_id' => $request->owner_id,
+            'pet_classification' => $request->pet_classification
+        ]);
     }
 
     /**
@@ -88,7 +97,7 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pet $pet)
+    public function destroy($id)
     {
         //
     }

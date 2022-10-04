@@ -1,16 +1,16 @@
 <!-- Script for Calendar -->
 <script>
-    function formatAMPM(date) {
-        let hours = new Date(date);
-        hours = hours.getHours();
-        let minutes = new Date(date);
-        minutes = minutes.getMinutes();
-        var ampm = hours >= 12 ? 'pm' : 'am'; // check if am or pm
-        hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
-        minutes = minutes < 10 ? '0' + minutes : minutes; //check if minute is less than 10 or more than 10.
-        return timeDate = hours + ':' + minutes + ' ' + ampm;
-    }
+    // function formatAMPM(date) {
+    //     let hours = new Date(date);
+    //     hours = hours.getHours();
+    //     let minutes = new Date(date);
+    //     minutes = minutes.getMinutes();
+    //     var ampm = hours >= 12 ? 'pm' : 'am'; // check if am or pm
+    //     hours = hours % 12;
+    //     hours = hours ? hours : 12; // the hour '0' should be '12'
+    //     minutes = minutes < 10 ? '0' + minutes : minutes; //check if minute is less than 10 or more than 10.
+    //     return timeDate = hours + ':' + minutes + ' ' + ampm;
+    // }
 
     document.addEventListener('DOMContentLoaded', function() {
         $.ajaxSetup({
@@ -116,5 +116,18 @@
             }
         });
         calendar.render();
+
+        // $('.timepicker').timepicker({
+        //     timeFormat: 'h:mm p',
+        //     interval: 60,
+        //     minTime: '08',
+        //     maxTime: '6:00pm',
+        //     defaultTime: '11',
+        //     startTime: '10:00',
+        //     dynamic: false,
+        //     dropdown: true,
+        //     scrollbar: true
+        // });
+
     });
 </script>

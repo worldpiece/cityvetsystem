@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="container mt-5" style="max-width: 1000px">
-        <h2 class="h2 text-left mb-5 border-bottom pb-3">...</h2>
+        <h2 class="h2 text-left mb-5 border-bottom pb-3">Set an Appointment</h2>
         <div id='calendar' style="border: 2px solid #eee"></div>
     </div>
 
@@ -13,7 +13,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">.....</h5>
+                    <h5 class="modal-title">Set an appointment</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -52,7 +52,8 @@
                             <div class="form-group">
                                 <label for="timeStarts">Time Starts</label>
                                 <div class='input-group' id='date-time-starts'>
-                                    <input type='time' id="startTime" class="form-control" />
+                                    <input type="text" class="timepicker form-control" id="startTime" name="startTime" />
+                                    {{-- <input type='time' id="startTime" class="form-control" /> --}}
                                 </div>
                             </div>
                         </div>
@@ -60,7 +61,8 @@
                             <div class="form-group">
                                 <label for="timeEnds">Time Ends</label>
                                 <div class='input-group' id='date-time-ends'>
-                                    <input type='time' id="endTime" class="form-control" />
+                                    <input type="text" class="timepicker form-control" id="endTime" name="endTime" />
+                                    {{-- <input type='time' id="endTime" class="form-control" /> --}}
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-time"></span>
                                     </span>
