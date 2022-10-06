@@ -8,7 +8,7 @@
         <div class="mb-2 float-right">
             <button type="button" class="btn btn-success">
                 {{-- <a href="{{ route('pet.register') }}">Add New</a> --}}
-                <a class="nav-link" href="{{ route('pet.register') }}">{{ __('Register') }}</a>
+  <a class="nav-link" href="{{ route('pet.register') }}">{{ __('Register') }}</a>
             </button>
         </div>
         <div id='pet-table' style="border: 2px solid #eee">
