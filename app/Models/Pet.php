@@ -15,4 +15,9 @@ class Pet extends Model
         'age',
         'pet_classification'
     ];
+
+    public function pet()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

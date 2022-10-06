@@ -15,17 +15,17 @@
         <tbody>
             @foreach ($pets as $pet)
                 <tr>
-                    <td>{{$pet->id}}</td>
-                    <td>{{$pet->pet_name}}</td>
-                    <td>{{$pet->gender}}</td>
-                    <td>{{$pet->birth_date}}</td>
-                    <td>{{$pet->age}}</td>
-                    <td>{{$pet->owner_id}}</td>
-                    <td>{{$pet->pet_classification}}</td>
+                    <td>{{ $pet->id }}</td>
+                    <td>{{ $pet->pet_name }}</td>
+                    <td>{{ $pet->gender }}</td>
+                    <td>{{ $pet->birth_date }}</td>
+                    <td>{{ $pet->age }}</td>
+                    <td>{{ $client->first_name }}</td>
+                    <td>{{ $pet->pet_classification }}</td>
                     <td class="text-center">
                         <div class="btn-group" role="group" aria-label="Action Buttons">
-                            <a class="btn btn-primary" onclick="buttonOnClick({{ $pet->pet_id }}, 'view')">View</a>
-                            <a class="btn btn-danger" onclick="buttonOnDelete({{ $pet->pet_id }}, 'delete')">Delete</a>
+                            <a class="btn btn-primary" onclick="buttonOnClick({{ $pet->id }}, 'view')">View</a>
+                            <a class="btn btn-danger" onclick="buttonOnDelete({{ $pet->id }}, 'delete')">Delete</a>
                         </div>
                     </td>
                 </tr>

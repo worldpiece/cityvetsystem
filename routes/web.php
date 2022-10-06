@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('/pet', [App\Http\Controllers\PetController::class, 'index'])->name('pet.index');
   Route::post('/pet', [App\Http\Controllers\PetController::class, 'registerPet'])->name('pet.register');
 
+  //Client Routes
+  Route::get('/client', [App\Http\Controllers\ClientController::class, 'index'])->name('client.index');
 });
 
 

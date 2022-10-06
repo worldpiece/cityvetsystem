@@ -19,7 +19,7 @@ class CreatePetsTable extends Migration
             $table->string('gender');
             $table->date('birth_date');
             $table->integer('age');
-            $table->foreignId('owner_id')->references('id')->on('users');
+            $table->foreignId('owner_id')->references('id')->on('clients');
             $table->string('pet_classification');
             $table->timestamps();
         });

@@ -33,14 +33,13 @@ class AppointmentController extends Controller
 
     public function getAppointment()
     {
-        
     }
 
     public function store(Request $request)
     {
         $request->validate(
             [
-                //'appointment_type' => 'required|string',
+                'appointment_type' => 'required|string',
                 'symptoms' => 'required|string',
             ]
         );
