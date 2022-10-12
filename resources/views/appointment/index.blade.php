@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@extends('layouts.appointment')
 @section('title')
     CVS | Appointment
 @endsection
@@ -30,46 +31,22 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <label for="appointment-code" class="col-form-label">Appointment Code</label>
-                        <input type="text" class="form-control" id="appointment-code">
                         <div class="mb-2">
-                            <label for="pet-id" class="col-form-label">Pet ID</label>
-                            <select class="form-select" aria-label="Default select example" id="pet-id">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                            <label for="pet-name" class="col-form-label">Pet Name</label>
+                            <select class="form-select" aria-label="Default select example" id="pet-name">
+                                @foreach ($pets as $pet)
+                                <option>{{$pet->pet_name}}</option>
+                                @endforeach
                             </select>
-                        </div> -->
+                        </div>
                         <div class="mb-2">
                             <label for="appointment-type" class="col-form-label">Appointment Type</label>
                             <select class="form-select" aria-label="Default select example" id="appointment-type">
-                                <option value="tagging">Tagging</option>
-                                <option value="confine">Confine</option>
-                                <option value="anti-rabies">Anti rabies</option>
-                                <option value="give-birth">Give Birth</option>
+                                @foreach ($appointment_types as $type)
+                                <option>{{ $type->appointment_type }}</option>
+                                @endforeach
                             </select>
                         </div>
-                        <!-- <div class="mb-2">
-                            <div class="form-group">
-                                <label for="timeStarts">Time Starts</label>
-                                <div class='input-group' id='date-time-starts'>
-                                    <input type="text" class="timepicker form-control" id="startTime" name="startTime" />
-                                    {{-- <input type='time' id="startTime" class="form-control" /> --}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-2">
-                            <div class="form-group">
-                                <label for="timeEnds">Time Ends</label>
-                                <div class='input-group' id='date-time-ends'>
-                                    <input type="text" class="timepicker form-control" id="endTime" name="endTime" />
-                                    {{-- <input type='time' id="endTime" class="form-control" /> --}}
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-time"></span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="mb-2">
                             <label for="symptoms" class="col-form-label">Symptoms:</label>
                             <textarea class="form-control" id="symptoms"></textarea>
@@ -85,5 +62,4 @@
             </div>
         </div>
     </div>
-    @extends('layouts.appointment')
 @endsection
