@@ -10,7 +10,8 @@
     <title>Image Gallery</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
     <!-- References: https://github.com/fancyapps/fancyBox -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
@@ -57,6 +58,8 @@
                 closeEffect: "none"
             });
         });
+
+        $('.alert').delay(500).fadeOut(500);
     </script>
     @livewireScripts
 </body>
