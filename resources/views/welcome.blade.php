@@ -11,5 +11,11 @@
         <div class="logo-container">
             <img src="{{ asset('img/background-logo.png') }}" id="home-logo" alt="Logo of Alaminos City">
         </div>
+        <br>
+        <div class="appointment text-center">
+            <button type="button" class="btn btn-primary ">
+                <a class="nav-link" href="/appointment">{{ __('Set an Appointment') }}</a>
+            </button>            
+        </div>
     </div>
 @endsection

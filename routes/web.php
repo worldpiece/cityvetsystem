@@ -32,6 +32,10 @@ Route::get('/services', function () {
   return view('services');
 });
 
+Route::get('/aboutus', function () {
+  return view('aboutus');
+});
+
 // Route::post('/saveOwner', [OwnerRegController::class, 'saveOwner'])->name('saveOwner');
 // Route::resource('pet', PetController::class);
 
@@ -62,8 +66,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   //Client Routes
   Route::get('/client', [App\Http\Controllers\ClientController::class, 'index'])->name('client.index');
 });
-Route::get('services', [App\Http\Controllers\HomeController::class, 'services'])->name('services');
-Route::get('aboutus', [App\Http\Controllers\HomeController::class, 'aboutus'])->name('aboutus');
+
+// Route::get('services', [App\Http\Controllers\HomeController::class, 'services'])->name('services');
+// Route::get('aboutus', [App\Http\Controllers\HomeController::class, 'aboutus'])->name('aboutus');
 
 
 
