@@ -24,6 +24,10 @@ Route::get('/', function () {
   return view('welcome');
 });
 
+Route::get('/welcome', function () {
+  return view('welcome');
+});
+
 Route::get('/services', function () {
   return view('services');
 });
@@ -50,6 +54,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('/pet', [App\Http\Controllers\PetController::class, 'index'])->name('pet.index');
   Route::get('/pet/create', [App\Http\Controllers\PetController::class, 'create'])->name('pet.create');
   Route::post('/pet/create', [App\Http\Controllers\PetController::class, 'store'])->name('pet.store');
+  Route::post('/pet/edit/{id}', [App\Http\Controllers\PetController::class, 'edit'])->name('pet.edit'); 
+  Route::post('/pet/edited/{id}', [App\Http\Controllers\PetController::class, 'edited'])->name('pet.edited'); 
+  Route::post('/pet/delete/{id}', [App\Http\Controllers\PetController::class, 'delete'])->name('pet.delete');
   Route::delete('pet/{id}', [App\Http\Controllers\PetController::class, 'destroy'])->name('pet.destroy');
 
   //Client Routes

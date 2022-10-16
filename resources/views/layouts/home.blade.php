@@ -73,7 +73,7 @@
                                 </li>
                             @endif
                         @else
-                            <!-- added list -->php 
+                            <!-- added list -->
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/pet">{{ __('View Pets') }}</a>
                             </li>
