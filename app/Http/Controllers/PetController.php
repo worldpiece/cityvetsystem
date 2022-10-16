@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Pet;
+use DateTime;
 use Illuminate\Http\Request;
+
+use function GuzzleHttp\Promise\all;
 
 class PetController extends Controller
 {
@@ -30,7 +33,7 @@ class PetController extends Controller
      */
     public function create()
     {
-        //
+        return view('pet.create');
     }
 
     /**
@@ -41,26 +44,48 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
+
+        
+        // dd($pet);
+
         $birthDate = $request->birth_date;
-        $currentDate = $request->current_date;
+        $date = new DateTime();
+        $currentDate = $date->format('Y-m-d H:i:s');
         $age = date_diff(date_create($birthDate), date_create($currentDate));
         $age = $age->format("%y");
 
-        $validated = $request->validate(
-            [
-                'pet_name' => 'required|max:255',
-                'pet_dob' => 'required',
-                'pet_classification' => 'required'
-            ]
-        );
+        // // dd($pet);
+        // $validated = $request->validate(
+        //     [
+        //         'pet_name' => 'required|max:255',
+        //         'gender' => 'required',
+        //         'pet_dob' => 'required',
+        //         'pet_classification' => 'required',
+        //     ]
+        // );
 
-        Pet::create([
-            'pet_name' => $request->pet_name,
-            'birth_date' => $request->pet_dob,
-            'age' => $age,
-            'owner_id' => $request->owner_id,
-            'pet_classification' => $request->pet_classification
-        ]);
+        // Pet::create([
+        //     'pet_name' => $request->pet_name,
+        //     'gender' => $request->pet_gender,
+        //     'birth_date' => $request->pet_dob,
+        //     'age' => $age,
+        //     'owner_id' => $request->owner_id,
+        //     'pet_classification' => $request->pet_classification,
+        // ]);
+
+         $pet = new Pet();
+         $pet->pet_name = $request->pet_name;
+         $pet->gender = $request->pet_gender;
+         $pet->birth_date = $request->pet_dob;
+         $pet->age = $age;
+         $pet->owner_id = $request->owner_id;
+         $pet->pet_classification = $request->pet_classification;
+         $pet->save();
+        //  return back()->withSuccess('success', 'Image Uploaded successfully.');
+         return redirect()->route('pet.index')->withSuccess('success', 'Image Uploaded successfully.');
+        
+         //return redirect(route('pet.index'))->with('flash_message', 'Pet added!');  
+        
     }
 
     /**

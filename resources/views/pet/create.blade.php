@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="container mt-5" style="max-width: 1000px">
-        <h2 class="h2 text-left mb-5 border-bottom pb-3">Register a P</h2>
+        <h2 class="h2 text-left mb-5 border-bottom pb-3">Register a Pet</h2>
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('pet.store') }}">
                             @csrf
-                            {{-- pet name --}}
+                            {{-- Name --}}
                             <div class="row mb-3">
                                 <label for="pet_name"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Pet Name') }}</label>
@@ -31,7 +31,24 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- pet date of birth --}}
+                            {{-- Gender --}}
+                            <div class="row mb-3">
+                                <label for="pet_gender"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Gender') }}</label>
+                                <div class="col-md-6">
+                                    <select class="form-control @error('pet_gender') is-invalid @enderror" id="pet_gender" name="pet_gender" value="{{ old('pet_gender') }}" required autocomplete="pet_gender" autofocus>
+                                        <option value="" disabled selected>Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                    @error('pet_gender')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            {{-- DOB --}}
                             <div class="row mb-3">
                                 <label for="pet_dob"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Date of Birth') }}</label>
@@ -47,7 +64,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- pet classification --}}
+                            {{-- Classification --}}
                             <div class="row mb-3">
                                 <label for="pet_classification"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Pet Classification') }}</label>
@@ -56,7 +73,6 @@
                                         class="form-control @error('pet_classification') is-invalid @enderror"
                                         name="pet_classification" value="{{ old('pet_classification') }}" required
                                         autocomplete="pet_classification" autofocus>
-
                                     @error('pet_classification')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -64,6 +80,7 @@
                                     @enderror
                                 </div>
                             </div>
+                            <input type="hidden" id="current_date" value=" <?php $current_date = new DateTime(); ?>">
                             {{-- <div class="row mb-3">
                                 <label for="pet_age"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Age') }}</label>

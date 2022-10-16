@@ -24,6 +24,10 @@ Route::get('/', function () {
   return view('welcome');
 });
 
+Route::get('/services', function () {
+  return view('services');
+});
+
 // Route::post('/saveOwner', [OwnerRegController::class, 'saveOwner'])->name('saveOwner');
 // Route::resource('pet', PetController::class);
 
@@ -44,7 +48,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::delete('gallery/{id}', [App\Http\Controllers\GalleryController::class, 'destroy'])->name('gallery.destroy');
 
   Route::get('/pet', [App\Http\Controllers\PetController::class, 'index'])->name('pet.index');
-  Route::post('/pet', [App\Http\Controllers\PetController::class, 'registerPet'])->name('pet.register');
+  Route::get('/pet/create', [App\Http\Controllers\PetController::class, 'create'])->name('pet.create');
+  Route::post('/pet/create', [App\Http\Controllers\PetController::class, 'store'])->name('pet.store');
+  Route::delete('pet/{id}', [App\Http\Controllers\PetController::class, 'destroy'])->name('pet.destroy');
 
   //Client Routes
   Route::get('/client', [App\Http\Controllers\ClientController::class, 'index'])->name('client.index');

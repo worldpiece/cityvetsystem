@@ -16,13 +16,14 @@ class PetDatatables extends Component
 
     public function render()
     {
-        $client = Client::find(1);
+        $client = Client::find(auth()->id());
         $pets = DB::table('pets')
-            ->leftJoin('clients', 'pets.owner_id', '=', 'clients.id')
-            ->where('pets.owner_id', auth()->id())
-            ->get();
-
-        // dd($client);
+        ->where('owner_id' , auth()->id())
+        ->get();
+        //dd($pets);
+        // var_dump($pets);
+        // echo '<pre>';
+        // exit;
         return view('livewire.pet-datatables', ['pets' => $pets, 'client' => $client]);
     }
 }

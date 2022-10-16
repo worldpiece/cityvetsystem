@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Client;
 
 class Pet extends Model
 {
@@ -11,13 +12,15 @@ class Pet extends Model
 
     protected $fillable = [
         'pet_name',
+        'gender',
         'birth_date',
         'age',
-        'pet_classification'
+        'pet_classification',
+        'owner_id'
     ];
 
-    public function pet()
+    public function pets()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, 'owner_id', 'id');
     }
 }

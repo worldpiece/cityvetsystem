@@ -84,8 +84,9 @@
     </div>
 @endsection
 
-<!-- @section('scripts')
-    <script>
+@section('scripts')
+@endsection
+ <!--   <script>
         $(document).ready(function() {
             $(.deleteImgBtn).click(function(e) {
                 e.preventDefault();
@@ -95,4 +96,4 @@
             });
         });
     </script>
-@endsection -->
+ -->

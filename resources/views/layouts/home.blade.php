@@ -54,6 +54,12 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link" href="/welcome">{{ __('Home') }}</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link" href="/appointment">{{ __('Appointment') }}</a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -67,16 +73,14 @@
                                 </li>
                             @endif
                         @else
-                            <!-- added list -->
+                            <!-- added list -->php 
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/pet">{{ __('View Pets') }}</a>
                             </li>
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/gallery">{{ __('View Gallery') }}</a>
                             </li>
-                            <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/appointment">{{ __('View Appointments') }}</a>
-                            </li>
+
                             {{-- @if (Auth::user()->id === 1)
                                 <li class="nav-item ml-auto">
                                     <a class="nav-link" href="{{ route('users') }}">{{ __('View Users') }}</a>
