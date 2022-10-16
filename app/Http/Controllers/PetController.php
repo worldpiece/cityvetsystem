@@ -66,15 +66,6 @@ class PetController extends Controller
         //     ]
         // );
 
-        // Pet::create([
-        //     'pet_name' => $request->pet_name,
-        //     'gender' => $request->pet_gender,
-        //     'birth_date' => $request->pet_dob,
-        //     'age' => $age,
-        //     'owner_id' => $request->owner_id,
-        //     'pet_classification' => $request->pet_classification,
-        // ]);
-
          $pet = new Pet();
          $pet->pet_name = $request->pet_name;
          $pet->gender = $request->pet_gender;

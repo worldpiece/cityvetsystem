@@ -58,7 +58,13 @@
                             <a class="nav-link" href="/welcome">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item ml-auto">
-                            <a class="nav-link" href="/appointment">{{ __('Appointment') }}</a>
+                            <a class="nav-link" href="/services">{{ __('Services') }}</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
                         </li>
                         <!-- Authentication Links -->
                         @guest
@@ -74,12 +80,12 @@
                             @endif
                         @else
                             <!-- added list -->
-                            <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/pet">{{ __('View Pets') }}</a>
+                            {{-- <li class="nav-item ml-auto">
+                                <a class="nav-link" href="/pet">{{ __('Pets') }}</a>
                             </li>
                             <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/gallery">{{ __('View Gallery') }}</a>
-                            </li>
+                                <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
+                            </li> --}}
 
                             {{-- @if (Auth::user()->id === 1)
                                 <li class="nav-item ml-auto">
