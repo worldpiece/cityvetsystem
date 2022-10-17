@@ -8,7 +8,6 @@
         <h2 class="h2 text-left mb-5 border-bottom pb-3">Set an appointment</h2>
         <div id='calendar' style="border: 2px solid #eee"></div>
     </div>
-
     <!-- Modal -->
     <div class="modal" id="appointment-modal" tabindex="-1">
         <div class="modal-dialog">
@@ -23,11 +22,13 @@
                             <div class="row">
                                 <div class="form-group col-md-4" style="overflow: auto;">
                                     <label for="client-id" class="col-form-label">ID</label>
-                                    <input type="text" class="form-control" id="client-id" value="{{ ucfirst(Auth::user()->id) }}" disabled>
+                                    <input type="text" class="form-control" id="client-id" value="{{ Auth::user()->id }}"
+                                        disabled>
                                 </div>
                                 <div class="form-group col-md-8" style="overflow: auto;">
                                     <label for="client-name" class="col-form-label">Client Name</label>
-                                    <input type="text" class="form-control" id="client-name" value="{{ ucfirst(Auth::user()->first_name) }}" disabled>
+                                    <input type="text" class="form-control" id="client-name"
+                                        value="{{ ucfirst(Auth::user()->first_name) }}" disabled>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +36,7 @@
                             <label for="pet-name" class="col-form-label">Pet Name</label>
                             <select class="form-select" aria-label="Default select example" id="pet-name">
                                 @foreach ($pets as $pet)
-                                <option>{{$pet->pet_name}}</option>
+                                    <option>{{ $pet->pet_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -43,7 +44,7 @@
                             <label for="appointment-type" class="col-form-label">Appointment Type</label>
                             <select class="form-select" aria-label="Default select example" id="appointment-type">
                                 @foreach ($appointment_types as $type)
-                                <option>{{ $type->appointment_type }}</option>
+                                    <option>{{ $type->appointment_type }}</option>
                                 @endforeach
                             </select>
                         </div>

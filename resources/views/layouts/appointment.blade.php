@@ -9,12 +9,13 @@
         });
 
         var appointments = @json($appointments);
-        //console.log(appointments)
+        console.log(appointments)
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
+            themeSystem: 'bootstrap5',
             editable: true,
             selectable: true,
-            displayEventEnd: true,
+            draggable: false,
             dayMaxEventRows: true,
             headerToolbar: {
                 left: 'dayGridMonth,timeGridWeek,timeGridDay',
@@ -31,7 +32,7 @@
                 hour: 'numeric',
                 meridiem: 'short'
             },
-            select: function(start, end, allDay) {
+            select: function(allDay) {
                 $('#appointment-modal').modal('show');
                 $('#appointment-modal-label').html('Set an appointment');
 
@@ -40,25 +41,24 @@
                 var pet_name = $('pet-name').val();
                 var appointment_type = $('#appointment-type').val();
                 var symptoms = $('#symptoms').val();
+                var allDay = moment(allDay);
+                // var start = moment(start, "DD MM YYYY hh:mm:ss");
+                // var end = moment(end, "DD MM YYYY hh:mm:ss");
 
-                var start = moment(start, "DD MM YYYY hh:mm:ss");
-                var end = moment(end, "DD MM YYYY hh:mm:ss");
+                //console.log(appointments);
 
-                
                 $("#btnSave").click(function() {
                     const client_id = $('#client-id').val();
                     const client_name = $('#client-name').val();
+                    const pet_id = $('#pet-id').val();
                     const pet_name = $('#pet-name').val();
                     const appointment_type = $('#appointment-type').val();
                     const symptoms = $('#symptoms').val();
-                    
-                    //const appointment_code = $('#appointment-code').val();
-                    
-                    // console.log(end);
+
+
                     $.ajax({
                         processData: false,
-contentType: false,
-
+                        contentType: false,
                         // url: SITEURL + "/store",
                         url: "{{ route('appointment.store') }}",
                         type: "POST",
@@ -66,6 +66,7 @@ contentType: false,
                             // "_token": "{{ csrf_token() }}",
                             start: start,
                             end: end,
+                            // allDay: allDay,
                             client_id: client_id,
                             client_name: client_name,
                             pet_name: pet_name,
@@ -82,11 +83,14 @@ contentType: false,
                             console.log(err)
                         }
                     })
+                    calendar.fullCalendar('unselect');
                 });
 
                 $("#btnDelete").click(function() {
 
+                    calendar.fullCalendar('unselect');
                 });
+                calendar.fullCalendar('unselect');
             }
         });
         calendar.render();
