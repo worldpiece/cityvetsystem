@@ -41,7 +41,6 @@ Route::get('/aboutus', function () {
 
 Auth::routes(['verify' => true]);
 
-
 Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('appointment', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment.index');
   Route::post('appointment', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
@@ -51,9 +50,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
   // });
   //Gallery Routes
-  Route::get('gallery', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
-  Route::post('gallery', [App\Http\Controllers\GalleryController::class, 'store'])->name('gallery.store');
-  Route::delete('gallery/{id}', [App\Http\Controllers\GalleryController::class, 'destroy'])->name('gallery.destroy');
+
 
   Route::get('/pet', [App\Http\Controllers\PetController::class, 'index'])->name('pet.index');
   Route::get('/pet/create', [App\Http\Controllers\PetController::class, 'create'])->name('pet.create');
@@ -67,6 +64,17 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('/client', [App\Http\Controllers\ClientController::class, 'index'])->name('client.index');
 });
 
+
+Route::middleware('auth', 'isAdmin')->group(function () {
+  Route::get('admin/gallery', [App\Http\Controllers\GalleryController::class, 'index'])->name('admin.gallery.index');
+  Route::post('admin/gallery', [App\Http\Controllers\GalleryController::class, 'store'])->name('admin.gallery.store');
+  Route::delete('admin/gallery/{id}', [App\Http\Controllers\GalleryController::class, 'destroy'])->name('admin.gallery.destroy');
+});
+
+// Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function()
+// {
+  
+// });
 // Route::get('services', [App\Http\Controllers\HomeController::class, 'services'])->name('services');
 // Route::get('aboutus', [App\Http\Controllers\HomeController::class, 'aboutus'])->name('aboutus');
 

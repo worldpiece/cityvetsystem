@@ -6,7 +6,7 @@
     <div class="gallery-container">
         <h3 style="color: rgb(31, 29, 27)">&nbsp;&nbsp;Image Gallery</h3>
 
-        <form action="{{ url('gallery') }}" class="form-image-upload" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('admin.gallery') }}" class="form-image-upload" method="POST" enctype="multipart/form-data">
             {!! csrf_field() !!}
             @if (count($errors) > 0)
                 <div class="alert alert-danger">

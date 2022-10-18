@@ -110,6 +110,11 @@
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
                             </li>
+                            @if (Auth::user()->role() == '1')
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" href="/admin/gallery">{{ __('Gallery') }}</a>
+                            </li>
+                            @endif
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
                             </li>
