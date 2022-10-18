@@ -23,6 +23,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/custom.js') }}" defer></script>
     <script src="https://www.google.com/recaptcha/api.js?" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -81,12 +82,14 @@
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
                             </li>
-                            {{-- <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/pet">{{ __('Pets') }}</a>
-                            </li> --}}
-                            {{-- <li class="nav-item ml-auto">
+                            @if (Auth::user())
+                                <li class="nav-item ml-auto">
+                                    <a class="nav-link" href="/pet">{{ __('Pet') }}</a>
+                                </li>
+                            @endif
+                            <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/appointment">{{ __('Appointments') }}</a>
-                            </li> --}}
+                            </li>
                             <!-- end of added list -->
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

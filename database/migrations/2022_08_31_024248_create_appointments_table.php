@@ -21,7 +21,6 @@ class CreateAppointmentsTable extends Migration
             $table->integer('appointment_code');
             $table->string('symptoms');
             $table->dateTime('start');
-            $table->dateTime('end');
             $table->timestamps();
         });
     }

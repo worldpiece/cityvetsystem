@@ -36,16 +36,14 @@
                 $('#appointment-modal').modal('show');
                 $('#appointment-modal-label').html('Set an appointment');
 
-                var client_id = $('#client-id').val();
-                var client_name = $('#client-name').val();
-                var pet_name = $('pet-name').val();
-                var appointment_type = $('#appointment-type').val();
-                var symptoms = $('#symptoms').val();
-                var allDay = moment(allDay);
+                // var client_id = $('#client-id').val();
+                // var client_name = $('#client-name').val();
+                // var pet_name = $('pet-name').val();
+                // var appointment_type = $('#appointment-type').val();
+                // var symptoms = $('#symptoms').val();
+                // // var allDay = moment();
                 // var start = moment(start, "DD MM YYYY hh:mm:ss");
-                // var end = moment(end, "DD MM YYYY hh:mm:ss");
-
-                //console.log(appointments);
+                // // var end = moment(end, "DD MM YYYY hh:mm:ss");
 
                 $("#btnSave").click(function() {
                     const client_id = $('#client-id').val();
@@ -65,7 +63,7 @@
                         data: {
                             // "_token": "{{ csrf_token() }}",
                             start: start,
-                            end: end,
+                            // end: end,
                             // allDay: allDay,
                             client_id: client_id,
                             client_name: client_name,
@@ -81,16 +79,19 @@
                         },
                         error: function(err) {
                             console.log(err)
+                            $('#nameError').text(response.responseJSON.errors
+                                .appointment - type);
                         }
                     })
-                    calendar.fullCalendar('unselect');
+                    // calendar.refetchEvents();
                 });
 
                 $("#btnDelete").click(function() {
 
-                    calendar.fullCalendar('unselect');
+                    // calendar.refetchEvents();
                 });
-                calendar.fullCalendar('unselect');
+                // calendar.fullCalendar('unselect');
+                // calendar.refetchEvents();
             }
         });
         calendar.render();

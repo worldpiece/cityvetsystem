@@ -39,6 +39,8 @@
                                     <option>{{ $pet->pet_name }}</option>
                                 @endforeach
                             </select>
+                            <span class="text-danger" id="petNameError"></span>
+                            <input type="hidden" name="pet-id" value="">
                         </div>
                         <div class="mb-2">
                             <label for="appointment-type" class="col-form-label">Appointment Type</label>
@@ -47,10 +49,12 @@
                                     <option>{{ $type->appointment_type }}</option>
                                 @endforeach
                             </select>
+                            <span class="text-danger" id="appmntTypeError"></span>
                         </div>
                         <div class="mb-2">
                             <label for="symptoms" class="col-form-label">Symptoms:</label>
                             <textarea class="form-control" id="symptoms"></textarea>
+                            <span class="text-danger" id="symptomsError"></span>
                         </div>
                     </form>
                 </div>

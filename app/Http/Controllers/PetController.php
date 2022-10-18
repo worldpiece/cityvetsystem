@@ -18,9 +18,11 @@ class PetController extends Controller
      */
     public function index()
     {
-        return view('pet.index',
-        ['petOwned' => Pet::all()
-        ->where('owner_id', auth()->id())]);
+        return view(
+            'pet.index',
+            ['petOwned' => Pet::all()
+                ->where('owner_id', auth()->id())]
+        );
     }
 
     public function registerPet()
@@ -47,7 +49,7 @@ class PetController extends Controller
     public function store(Request $request)
     {
 
-        
+
         // dd($pet);
 
         $birthDate = $request->birth_date;
@@ -66,19 +68,19 @@ class PetController extends Controller
         //     ]
         // );
 
-         $pet = new Pet();
-         $pet->pet_name = $request->pet_name;
-         $pet->gender = $request->pet_gender;
-         $pet->birth_date = $request->pet_dob;
-         $pet->age = $age;
-         $pet->owner_id = $request->owner_id;
-         $pet->pet_classification = $request->pet_classification;
-         $pet->save();
+        $pet = new Pet();
+        $pet->pet_name = $request->pet_name;
+        $pet->gender = $request->pet_gender;
+        $pet->birth_date = $request->pet_dob;
+        $pet->age = $age;
+        $pet->owner_id = $request->owner_id;
+        $pet->pet_classification = $request->pet_classification;
+        $pet->save();
         //  return back()->withSuccess('success', 'Image Uploaded successfully.');
-         return redirect()->route('pet.index')->withSuccess('success', 'Pet Register Successfully.');
-        
-         //return redirect(route('pet.index'))->with('flash_message', 'Pet added!');  
-        
+        return redirect()->route('pet.index')->withSuccess('success', 'Pet added successfully!');
+
+        //return redirect(route('pet.index'))->with('flash_message', 'Pet added!');  
+
     }
 
     /**
@@ -100,14 +102,14 @@ class PetController extends Controller
      */
     public function edit($id)
     {
-        return view('pet.edit',['petInfo' => Pet::find($id)]);
+        return view('pet.edit', ['petInfo' => Pet::find($id)]);
     }
 
     public function delete($id)
     {
         $pet = Pet::find($id);
         $pet->delete();
-       
+
         return redirect()->route('pet.index')->withSuccess('success', 'Pet Deleted Successfully.');
     }
 
@@ -128,7 +130,7 @@ class PetController extends Controller
         $pet->pet_classification = $request->pet_classification;
         $pet->save();
 
-    return redirect()->route('pet.index')->withSuccess('success', 'Pet Updated Successfully.');
+        return redirect()->route('pet.index')->withSuccess('success', 'Pet Updated Successfully.');
     }
 
     /**

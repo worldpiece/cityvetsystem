@@ -35,15 +35,15 @@ class AppointmentController extends Controller
 
     public function store(Request $request)
     {
-        Appointment::create([
-            'client_id' => $request->client_id,
-            'client_name' => $request->client_name,
-            'pet_name' => $request->pet_name,
-            'appointment_type' => $request->appointment_type,
-            'symptoms' => $request->symptoms,
-            'start' => $request->start,
-            'end' => $request->end
-        ]);
+        // Appointment::create([
+        //     'client_id' => $request->client_id,
+        //     'client_name' => $request->client_name,
+        //     'pet_name' => $request->pet_name,
+        //     'appointment_type' => $request->appointment_type,
+        //     'symptoms' => $request->symptoms,
+        //     'start' => $request->start,
+        //     'end' => $request->end
+        // ]);
 
         $apmnt = new Appointment();
         $apmnt->client_id = $request->client_id;
