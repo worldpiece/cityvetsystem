@@ -26,9 +26,9 @@
                                         disabled>
                                 </div>
                                 <div class="form-group col-md-8" style="overflow: auto;">
-                                    <label for="client-name" class="col-form-label">Client Name</label>
+                                    <label for="client-name" class="col-form-label">Client Username</label>
                                     <input type="text" class="form-control" id="client-name"
-                                        value="{{ ucfirst(Auth::user()->first_name) }}" disabled>
+                                        value="{{ ucfirst(Auth::user()->user_name) }}" disabled>
                                 </div>
                             </div>
                         </div>

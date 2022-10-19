@@ -32,6 +32,10 @@ Route::get('/aboutus', function () {
   return view('aboutus');
 });
 
+Route::get('/gallery', function () {
+  return view('gallery');
+});
+
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
@@ -53,7 +57,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
 
 Route::group(['middleware' => ['auth', 'verified', 'isAdmin']], function () {
-  Route::get('admin/gallery', [App\Http\Controllers\GalleryController::class, 'index'])->name('admin.gallery.index');
-  Route::post('admin/gallery', [App\Http\Controllers\GalleryController::class, 'store'])->name('admin.gallery.store');
-  Route::delete('admin/gallery/{id}', [App\Http\Controllers\GalleryController::class, 'destroy'])->name('admin.gallery.destroy');
+  Route::get('admin/gallery', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
+  Route::post('admin/gallery', [App\Http\Controllers\GalleryController::class, 'store'])->name('gallery.store');
+  Route::delete('admin/gallery/{id}', [App\Http\Controllers\GalleryController::class, 'destroy'])->name('gallery.destroy');
 });

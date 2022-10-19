@@ -76,20 +76,29 @@
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/services">{{ __('Services') }}</a>
                             </li>
+                            @if (Auth::user()->role == 1)
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" href="/admin/gallery">{{ __('Admin Gallery') }}</a>
+                            </li>
+                            @endif
+                            @if (!Auth::user()->role == 1)
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
                             </li>
+                            @endif
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
                             </li>
-                            @if (Auth::user())
+                            @if (Auth::user() && Auth::user()->role == 0)
                                 <li class="nav-item ml-auto">
-                                    <a class="nav-link" href="/pet">{{ __('Pet') }}</a>
+                                    <a class="nav-link" href="/pet">{{ __('My Pets') }}</a>
                                 </li>
                             @endif
+                            @if (Auth::user() && Auth::user()->role == 1)
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/appointment">{{ __('Appointments') }}</a>
                             </li>
+                            @endif
                             <!-- end of added list -->
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

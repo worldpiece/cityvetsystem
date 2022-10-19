@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Authenticatable;
 use App\Models\User;
+use App\Models\Gallery;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

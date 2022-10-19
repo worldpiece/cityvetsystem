@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Gallery;
+use Image;
 
 class GalleryController extends Controller
 {
@@ -15,7 +16,9 @@ class GalleryController extends Controller
     public function index()
     {
         $images = Gallery::get();
-        return view('admin.gallery', compact('images'));
+        // dd($images);
+        return view('admin/gallery', compact('images'));
+        // return view('admin.gallery', ['images' => $images]);
     }
 
     /**
