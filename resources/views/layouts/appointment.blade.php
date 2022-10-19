@@ -80,7 +80,7 @@
                         error: function(err) {
                             console.log(err)
                             $('#nameError').text(response.responseJSON.errors
-                                .appointment - type);
+                                .appointment - type22);
                         }
                     })
                     // calendar.refetchEvents();

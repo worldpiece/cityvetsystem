@@ -19,18 +19,25 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check()) {
+        // if (Auth::check()) {
 
-            if(Auth::user()->role == '1')
-            {
+        //     if (Auth::user()->role == '1') {
+        //         return $next($request);
+        //     } else {
+        //         return redirect('/home')->with('message', 'Access Denied!');
+        //     }
+        // } else {
+        //     return redirect('/login')->with('message', 'Login to access account');
+        // }
+        // //return $next($request);
+
+        if (Auth::check()) {
+            if (auth()->user()->role == 1) {
                 return $next($request);
             } else {
-                return redirect('/home')->with('message', 'Access Denied!');
+                return redirect('/login')->with('message', 'Login to access account.');
             }
-        } else  {
-            return redirect('/login')->with('message', 'Login to access account');
+            return $next($request);
         }
-
-        return $next($request);
     }
 }
