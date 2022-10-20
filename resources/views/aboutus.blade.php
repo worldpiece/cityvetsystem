@@ -1,7 +1,12 @@
 @extends('layouts.home')
 
 @section('content')
-    <div class="home-container text-center">
+    <br>
+    <div class="row text-center">
+        <h1 class="fw-bold" style="color: rgb(0, 112, 211)">ABOUT US</h1>
+    </div>
+    <br>
+    <div class="text-center">
         <div class="px-5">
             <p class="font-monospace fs-5">
                 In Alaminos City, there is a vet's office called Alaminos Veterinary Office. It is located nearby to Don
@@ -11,4 +16,26 @@
             </p>
         </div>
     </div>
+    <div class="office-img px-5" style="display: flex; justify-content: center">
+        <img src="{{ asset('system-img/vet.jpg') }}" class="img-fluid rounded" alt="... ">
+    </div>
+    <br>
+    <br>
+    <div class="row text-center">
+        <strong><p class="h3">CONTACT US</p></strong>
+        <a href="https://web.facebook.com/profile.php?id=100075572903721">
+                <i class="fa-brands fa-facebook"></i> City Veterinary FB Account
+        </a>
+        <span>
+            <i class="fa fa-envelope"></i> cityveterinary@gmail.com
+        </span>
+        <span>
+            <i class="fa fa-address-book"></i> 09985465754
+        </span>
+        <span>
+            <i class="fa fa-location-dot"></i> Sabaro, Poblacion, Alaminos City, Pangasinan
+        </span>
+    </div>
+    <br>
+    <br>
 @endsection

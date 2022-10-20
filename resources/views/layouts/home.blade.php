@@ -29,6 +29,9 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    {{-- Font Awesome --}}
+    <script src="https://kit.fontawesome.com/24bf8aae18.js" crossorigin="anonymous"></script>
+
     @livewireStyles
 </head>
 
@@ -64,12 +67,12 @@
                             <a class="nav-link" href="/services">{{ __('Services') }}</a>
                         </li>
                         <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
-                            </li>
-                        @if (Auth::user() && Auth::user()->role == 1)
-                        <li class="nav-item ml-auto">
-                            <a class="nav-link" href="/admin/gallery">{{ __('Admin Gallery') }}</a>
+                            <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
                         </li>
+                        @if (Auth::user() && Auth::user()->role == 1)
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" href="/admin/gallery">{{ __('Admin Gallery') }}</a>
+                            </li>
                         @endif
                         <li class="nav-item ml-auto">
                             <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
@@ -80,9 +83,9 @@
                             </li>
                         @endif
                         @if (Auth::user() && Auth::user()->role == 1)
-                        <li class="nav-item ml-auto">
-                            <a class="nav-link" href="/appointment">{{ __('Appointments') }}</a>
-                        </li>
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" href="/appointment">{{ __('Appointments') }}</a>
+                            </li>
                         @endif
                         <!-- Authentication Links -->
                         @guest
