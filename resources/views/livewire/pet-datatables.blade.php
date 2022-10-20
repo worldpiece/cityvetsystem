@@ -27,7 +27,7 @@
                             <form method="post" action="{{ route('pet.edit', $pet->id) }}"><button
                                     class="btn btn-primary" type="submit">Edit</button> {{ csrf_field() }}</form>
                             <form method="post" action="{{ route('pet.delete', $pet->id) }}"><button
-                                    class="btn btn-danger" type="submit">Delete</button> {{ csrf_field() }}</form>
+                                    class="btn btn-danger" onclick="return confirm('Are you sure you want to Delete {{ $pet->pet_name }}?')" type="submit">Delete</button> {{ csrf_field() }}</form>
                             <!-- <a class="btn btn-primary" onclick="buttonOnClick({{ $pet->id }}, 'view')">View</a>
                             <a class="btn btn-danger" onclick="buttonOnDelete({{ $pet->id }}, 'delete')">Delete</a> -->
                         </div>

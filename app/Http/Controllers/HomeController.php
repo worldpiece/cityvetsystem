@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Gallery;
 
 use Illuminate\Http\Request;
 
@@ -24,20 +25,5 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
-    }
-
-    public function services()
-    {
-        return view('services');
-    }
-
-    public function aboutus()
-    {
-        return view('aboutus');
-    }
-
-    public function gallery()
-    {
-        return view('gallery');
     }
 }

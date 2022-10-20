@@ -77,7 +77,7 @@ class PetController extends Controller
         $pet->pet_classification = $request->pet_classification;
         $pet->save();
         //  return back()->withSuccess('success', 'Image Uploaded successfully.');
-        return redirect()->route('pet.index')->withSuccess('success', 'Pet added successfully!');
+        return redirect()->route('pet.index')->with('success', 'Pet added successfully!');
 
         //return redirect(route('pet.index'))->with('flash_message', 'Pet added!');  
 
@@ -110,7 +110,7 @@ class PetController extends Controller
         $pet = Pet::find($id);
         $pet->delete();
 
-        return redirect()->route('pet.index')->withSuccess('success', 'Pet Deleted Successfully.');
+        return redirect()->route('pet.index')->with('success', 'Pet Deleted Successfully.');
     }
 
     public function edited(Request $request, $id)
@@ -130,7 +130,7 @@ class PetController extends Controller
         $pet->pet_classification = $request->pet_classification;
         $pet->save();
 
-        return redirect()->route('pet.index')->withSuccess('success', 'Pet Updated Successfully.');
+        return redirect()->route('pet.index')->with('success', 'Pet Updated Successfully.');
     }
 
     /**

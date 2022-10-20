@@ -55,7 +55,7 @@
                                     <form action="{{ url('admin/gallery', $image->id) }}" method="POST">
                                         <input type="hidden" name="_method" value="delete">
                                         {!! csrf_field() !!}
-                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this image?')" class="close-icon btn btn-danger">
+                                        <button type="submit" onclick="return confirm('Are you sure you want to delete {{ $image->title }}?')" class="close-icon btn btn-danger">
                                             Delete
                                         </button>
                                     </form>

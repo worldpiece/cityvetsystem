@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Gallery;
-use Image;
 
 class GalleryController extends Controller
 {
@@ -52,7 +51,7 @@ class GalleryController extends Controller
         $input['title'] = $request->title;
         Gallery::create($input);
 
-        return back()->withSuccess('success', 'Image Uploaded successfully.');
+        return back()->with('success', 'Image Uploaded successfully.');
     }
 
     /**

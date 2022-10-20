@@ -4,6 +4,7 @@
 
 use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Middleware;
+use App\Models\Gallery;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,10 @@ Route::get('/aboutus', function () {
 });
 
 Route::get('/gallery', function () {
-  return view('gallery');
+  $images = Gallery::get();
+  return view('gallery', compact('images'));
 });
+
 
 Auth::routes(['verify' => true]);
 
