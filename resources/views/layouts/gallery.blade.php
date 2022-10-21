@@ -7,14 +7,16 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Image Gallery</title>
 
-    <!-- Latest compiled and minified CSS -->
+    <title>@yield('title', 'City Veterinary System')</title>
+    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
-    <!-- References: https://github.com/fancyapps/fancyBox -->
-
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    {{-- data tables --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -22,9 +24,11 @@
     <script src="https://www.google.com/recaptcha/api.js?" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 
-    {{-- light gallery js library --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/lightgallery.min.js"></script>
+    {{-- Font Awesome --}}
+    <script src="https://kit.fontawesome.com/24bf8aae18.js" crossorigin="anonymous"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -73,7 +77,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-<li>....</li>
+                        <li>....</li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -95,11 +99,9 @@
                                     <a class="nav-link" href="/admin/gallery">{{ __('Admin Gallery') }}</a>
                                 </li>
                             @endif
-                            @if (!Auth::user()->role == 1)
-                                <li class="nav-item ml-auto">
-                                    <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
-                                </li>
-                            @endif
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
+                            </li>
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
                             </li>
@@ -109,9 +111,9 @@
                                 </li>
                             @endif
                             @if (Auth::user() && Auth::user()->role == 1)
-                            <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/appointment">{{ __('Appointments') }}</a>
-                            </li>
+                                <li class="nav-item ml-auto">
+                                    <a class="nav-link" href="/appointment">{{ __('Appointments') }}</a>
+                                </li>
                             @endif
                             {{-- create another link here for the admin view of appointment --}}
                             <!-- end of added list -->

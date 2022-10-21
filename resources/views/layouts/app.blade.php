@@ -70,16 +70,9 @@
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/services">{{ __('Services') }}</a>
                             </li>
-                            @if (Auth::user()->role == 1)
-                            <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/admin/gallery">{{ __('Admin Gallery') }}</a>
-                            </li>
-                            @endif
-                            @if (!Auth::user()->role == 1)
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
                             </li>
-                            @endif
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
                             </li>
@@ -87,6 +80,11 @@
                                 <li class="nav-item ml-auto">
                                     <a class="nav-link" href="/pet">{{ __('My Pets') }}</a>
                                 </li>
+                            @endif
+                            @if (Auth::user()->role == 1)
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" href="/admin/gallery">{{ __('Admin Gallery') }}</a>
+                            </li>
                             @endif
                             @if (Auth::user() && Auth::user()->role == 1)
                             <li class="nav-item ml-auto">

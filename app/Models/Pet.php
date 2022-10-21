@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Client;
+use App\Models\User;
 
 class Pet extends Model
 {
@@ -21,6 +21,6 @@ class Pet extends Model
 
     public function pets()
     {
-        return $this->belongsTo(Client::class, 'owner_id', 'id');
+        return $this->belongsTo(User::class, 'owner_id', 'id');
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Models\Pet;
-use App\Models\Client;
+use App\Models\User;
 
 class PetDatatables extends Component
 {
@@ -16,10 +16,10 @@ class PetDatatables extends Component
 
     public function render()
     {
-        $client = Client::find(auth()->id());
+        $client = User::find(auth()->id());
         $pets = DB::table('pets')
-        ->where('owner_id' , auth()->id())
-        ->get();
+            ->where('owner_id', auth()->id())
+            ->get();
         //dd($pets);
         // var_dump($pets);
         // echo '<pre>';
