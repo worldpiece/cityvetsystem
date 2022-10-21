@@ -64,7 +64,7 @@
                             // "_token": "{{ csrf_token() }}",
                             start: start,
                             // end: end,
-                            // allDay: allDay,
+                            allDay: true,
                             client_id: client_id,
                             client_name: client_name,
                             pet_name: pet_name,
@@ -85,9 +85,7 @@
                     })
                     // calendar.refetchEvents();
                 });
-
                 $("#btnDelete").click(function() {
-
                     // calendar.refetchEvents();
                 });
                 // calendar.fullCalendar('unselect');

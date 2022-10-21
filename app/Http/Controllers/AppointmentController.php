@@ -48,9 +48,10 @@ class AppointmentController extends Controller
         $apmnt = new Appointment();
         $apmnt->client_id = $request->client_id;
         $apmnt->client_name = $request->client_name;
+        $apmnt->pet_name = $request->pet_name;
         $apmnt->pet_classification = $request->pet_classification;
         $apmnt->save();
-        //  return back()->withSuccess('success', 'Image Uploaded successfully.');
-        return redirect()->route('pet.index')->withSuccess('success', 'Pet Register Successfully.');
+        return back()->with('success', 'Appointment added successfully.');
+        //return redirect()->route('home')->with('success', 'Appointment added successfully.');
     }
 }

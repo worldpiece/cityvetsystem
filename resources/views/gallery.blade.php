@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.gallery')
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -20,4 +20,4 @@
                 @endforeach
             @endif
         </div>
- @endsection
+    @endsection
