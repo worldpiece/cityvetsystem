@@ -20,4 +20,4 @@
                 @endforeach
             @endif
         </div>
- @endsection
+    @endsection

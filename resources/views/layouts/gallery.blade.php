@@ -85,27 +85,24 @@
                         <li class="nav-item ml-auto">
                             <a class="nav-link" href="/welcome">{{ __('Home') }}</a>
                         </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link" href="/services">{{ __('Services') }}</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
+                        </li>
                         @guest
                         @else
                             <!-- added list -->
-                            <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/welcome">{{ __('Home') }}</a>
-                            </li>
-                            <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/services">{{ __('Services') }}</a>
-                            </li>
                             @if (Auth::user()->role == 1)
                                 <li class="nav-item ml-auto">
                                     <a class="nav-link" href="/admin/gallery">{{ __('Admin Gallery') }}</a>
                                 </li>
                             @endif
-                            <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
-                            </li>
-                            <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
-                            </li>
-                            @if (Auth::user())
+                            @if (Auth::user() && Auth::user()->role == 0)
                                 <li class="nav-item ml-auto">
                                     <a class="nav-link" href="/pet">{{ __('My Pets') }}</a>
                                 </li>
@@ -136,7 +133,6 @@
                                 </div>
                             </li>
                         @endguest
-
                     </ul>
                 </div>
             </div>

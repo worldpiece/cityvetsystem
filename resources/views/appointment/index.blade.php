@@ -6,6 +6,11 @@
 @section('content')
     <div class="container mt-5" style="max-width: 1600px">
         <h2 class="h2 text-left mb-5 border-bottom pb-3">Set an appointment</h2>
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-block">
+                <strong>{{ $message }}</strong>
+            </div>
+        @endif
         <div id='calendar' style="border: 2px solid #eee"></div>
     </div>
     <!-- Modal -->
