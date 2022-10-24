@@ -8,6 +8,7 @@
             }
         });
 
+        var currentDate = new Date().toISOString();
         var appointments = @json($appointments);
         console.log(appointments)
         var calendarEl = document.getElementById('calendar');
@@ -17,6 +18,11 @@
             selectable: true,
             draggable: false,
             dayMaxEventRows: true,
+            validRange: function(nowDate) {
+                return {
+                    start: currentDate
+                };
+            },
             headerToolbar: {
                 left: 'dayGridMonth,timeGridWeek,timeGridDay',
                 center: 'title',

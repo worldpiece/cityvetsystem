@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="container mt-5" style="max-width: 1000px">
-        <h2 class="h2 text-left mb-5 border-bottom pb-3">Register a Pet</h2>
+        <h2 class="h2 text-left mb-5 border-bottom pb-3">Edit Pet</h2>
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -105,7 +105,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                        {{ __('Update') }}
                                     </button>
                                 </div>
                             </div>

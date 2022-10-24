@@ -26,7 +26,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
-    
+
     {{-- Font Awesome --}}
     <script src="https://kit.fontawesome.com/24bf8aae18.js" crossorigin="anonymous"></script>
 
@@ -55,7 +55,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li>Veterinary System in Alaminos City</li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -72,7 +72,7 @@
                             </li>
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
-                            </li>
+                            </li>                            
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
                             </li>
@@ -82,14 +82,14 @@
                                 </li>
                             @endif
                             @if (Auth::user()->role == 1)
-                            <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/admin/gallery">{{ __('Admin Gallery') }}</a>
-                            </li>
+                                <li class="nav-item ml-auto">
+                                    <a class="nav-link" href="/admin/gallery">{{ __('Admin Gallery') }}</a>
+                                </li>
                             @endif
                             @if (Auth::user() && Auth::user()->role == 1)
-                            <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/appointment">{{ __('Appointments') }}</a>
-                            </li>
+                                <li class="nav-item ml-auto">
+                                    <a class="nav-link" href="/appointment">{{ __('Appointments') }}</a>
+                                </li>
                             @endif
                             <!-- end of added list -->
                             <li class="nav-item dropdown">

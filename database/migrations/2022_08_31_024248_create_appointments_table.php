@@ -15,10 +15,10 @@ class CreateAppointmentsTable extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('client_id');
-            $table->string('client_name');
-            $table->integer('pet_id');
-            $table->integer('appointment_code');
+            $table->foreignId('client_id')->references('id')->on('users');
+            $table->foreignId('pet_id')->references('id')->on('pets');
+            $table->foreignId('appointment_code')->references('id')->on('users');
+            $table->integer('appointment_code')->references('id')->on('appointment_type');
             $table->string('symptoms');
             $table->dateTime('start');
             $table->timestamps();

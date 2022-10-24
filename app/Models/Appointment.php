@@ -20,4 +20,9 @@ class Appointment extends Model
         'appointment_start',
         'appointment_end'
     ];
+
+    public function user() 
+    {
+        return $this->belongsTo(User::class);
+    }
 }

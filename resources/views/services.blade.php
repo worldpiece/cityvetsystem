@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="{{ asset('system-img/tagging.jpg') }}" class="card-img-top" alt="...">
+                <img src="{{ asset('system-img/tagging.png') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Tagging</h5>
                     <p class="card-text">Tagging is an important part of animal identification as it helps a producer or
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="{{ asset('system-img/deworming.jpg') }}" class="card-img-top" alt="...">
+                <img src="{{ asset('system-img/deworming.png') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Deworming</h5>
                     <p class="card-text">Deworming is an important preventative care regime for reducing parasites

@@ -53,7 +53,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li>Veterinary System in Alaminos City</li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -73,7 +73,7 @@
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/admin/gallery">{{ __('Admin Gallery') }}</a>
                             </li>
-                        @endif
+                        @endif                        
                         <li class="nav-item ml-auto">
                             <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
                         </li>
