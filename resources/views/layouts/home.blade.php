@@ -87,6 +87,11 @@
                                 <a class="nav-link" href="/appointment">{{ __('Appointments') }}</a>
                             </li>
                         @endif
+                        @if (Auth::user() && Auth::user()->role == 1)
+                                <li class="nav-item ml-auto">
+                                    <a class="nav-link" href="/staff">{{ __('Staff Management') }}</a>
+                                </li>
+                        @endif
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

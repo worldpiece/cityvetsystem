@@ -54,6 +54,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::post('/pet/delete/{id}', [App\Http\Controllers\PetController::class, 'delete'])->name('pet.delete');
   Route::delete('pet/{id}', [App\Http\Controllers\PetController::class, 'destroy'])->name('pet.destroy');
 
+  Route::get('/staff', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
+  Route::get('/staff/create', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
+  Route::post('/staff/create', [App\Http\Controllers\StaffController::class, 'store'])->name('staff.store');
+
   //Client Routes
   Route::get('/client', [App\Http\Controllers\ClientController::class, 'index'])->name('client.index');
 });
