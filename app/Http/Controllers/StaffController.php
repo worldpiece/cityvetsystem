@@ -27,5 +27,4 @@ class StaffController extends Controller
     {
         return view('staff.index');
     }
-
 }

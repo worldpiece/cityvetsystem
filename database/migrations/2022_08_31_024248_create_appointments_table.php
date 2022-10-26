@@ -18,7 +18,7 @@ class CreateAppointmentsTable extends Migration
             $table->foreignId('client_id')->references('id')->on('users');
             $table->foreignId('pet_id')->references('id')->on('pets');
             $table->foreignId('appointment_code')->references('id')->on('users');
-            $table->integer('appointment_code')->references('id')->on('appointment_type');
+            $table->foreignId('appointment_type_code')->references('id')->on('appointment_type');
             $table->string('symptoms');
             $table->dateTime('start');
             $table->timestamps();

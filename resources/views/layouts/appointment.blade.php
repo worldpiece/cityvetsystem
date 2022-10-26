@@ -16,7 +16,6 @@
             themeSystem: 'bootstrap5',
             editable: true,
             selectable: true,
-            draggable: false,
             dayMaxEventRows: true,
             validRange: function(nowDate) {
                 return {

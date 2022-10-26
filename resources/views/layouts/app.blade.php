@@ -26,6 +26,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+    <script src="https://moment.github.io/luxon/es6/luxon.min.js"></script>
 
     {{-- Font Awesome --}}
     <script src="https://kit.fontawesome.com/24bf8aae18.js" crossorigin="anonymous"></script>
