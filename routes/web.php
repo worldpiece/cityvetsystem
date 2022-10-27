@@ -58,6 +58,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
   Route::get('/staff/create', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
   Route::post('/staff/create', [App\Http\Controllers\StaffController::class, 'store'])->name('staff.store');
+  Route::post('/staff/edit/{id}', [App\Http\Controllers\StaffController::class, 'edit'])->name('staff.edit');
+  Route::post('/staff/edited/{id}', [App\Http\Controllers\StaffController::class, 'edited'])->name('staff.edited');
+  Route::post('/staff/delete/{id}', [App\Http\Controllers\StaffController::class, 'delete'])->name('staff.delete');
 
 });
 
