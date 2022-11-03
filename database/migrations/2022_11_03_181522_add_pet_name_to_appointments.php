@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAppointmentTypeTable extends Migration
+class AddPetNameToAppointments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateAppointmentTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('appointment_type', function (Blueprint $table) {
-            $table->id();
-            $table->string('appointment_type');
-            $table->timestamps();
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->string('pet_name');
         });
     }
 
@@ -27,6 +25,8 @@ class CreateAppointmentTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointment_type');
+        Schema::table('appointments', function (Blueprint $table) {
+            //
+        });
     }
 }

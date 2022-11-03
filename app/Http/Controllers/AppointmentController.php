@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
-use App\Models\Pet;
+
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 
@@ -19,6 +18,7 @@ class AppointmentController extends Controller
             ->get();
 
         $appointment_types = DB::table('appointment_type')
+            // ->select('type_of_appointment')
             ->get();
 
         $appointments = array();
@@ -35,21 +35,24 @@ class AppointmentController extends Controller
 
     public function store(Request $request)
     {
-        // Appointment::create([
-        //     'client_id' => $request->client_id,
-        //     'client_name' => $request->client_name,
-        //     'pet_name' => $request->pet_name,
-        //     'appointment_type' => $request->appointment_type,
-        //     'symptoms' => $request->symptoms,
-        //     'start' => $request->start,
-        //     'end' => $request->end
-        // ]);
+        $pet_id = DB::table('pets')
+            ->select('id')
+            ->where('pet_name', $request->pet_name)
+            ->get();
+
+        $appointment_code = DB::table('appointment_type')
+            ->select('id')
+            ->where('type_of_appointment', $request->appointment_type)
+            ->get();
 
         $apmnt = new Appointment();
+        $apmnt->start = $request->start;
         $apmnt->client_id = $request->client_id;
-        $apmnt->client_name = $request->client_name;
         $apmnt->pet_name = $request->pet_name;
-        $apmnt->pet_classification = $request->pet_classification;
+        $apmnt->pet_id = $pet_id;
+        $apmnt->type_of_appointment = $request->appointment_type;
+        $apmnt->appointment_type_code = $appointment_code;
+        $apmnt->symptoms = $request->symptoms;
         $apmnt->save();
         return back()->with('success', 'Appointment added successfully.');
         //return redirect()->route('home')->with('success', 'Appointment added successfully.');

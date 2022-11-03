@@ -10,7 +10,7 @@
 
         var currentDate = new Date().toISOString();
         var appointments = @json($appointments);
-        console.log(appointments)
+        // console.log(appointments)
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             themeSystem: 'bootstrap5',
@@ -40,38 +40,35 @@
             select: function(allDay) {
                 $('#appointment-modal').modal('show');
                 $('#appointment-modal-label').html('Set an appointment');
+                
+                var start = allDay.startStr;
+                var client_id = $('#client-id').val();
+                var pet_name = $('#pet-name').val();
+                var appointment_type = $('#appointment-type').val();
+                var symptoms = $('#symptoms').val();
 
-                // var client_id = $('#client-id').val();
-                // var client_name = $('#client-name').val();
-                // var pet_name = $('pet-name').val();
-                // var appointment_type = $('#appointment-type').val();
-                // var symptoms = $('#symptoms').val();
+
+                // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
                 // // var allDay = moment();
                 // var start = moment(start, "DD MM YYYY hh:mm:ss");
                 // // var end = moment(end, "DD MM YYYY hh:mm:ss");
 
                 $("#btnSave").click(function() {
+                    const simula = start;
                     const client_id = $('#client-id').val();
-                    const client_name = $('#client-name').val();
-                    const pet_id = $('#pet-id').val();
                     const pet_name = $('#pet-name').val();
                     const appointment_type = $('#appointment-type').val();
                     const symptoms = $('#symptoms').val();
-
+                    // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
 
                     $.ajax({
                         processData: false,
                         contentType: false,
-                        // url: SITEURL + "/store",
                         url: "{{ route('appointment.store') }}",
                         type: "POST",
                         data: {
-                            // "_token": "{{ csrf_token() }}",
-                            start: start,
-                            // end: end,
-                            allDay: true,
+                            start: simula,
                             client_id: client_id,
-                            client_name: client_name,
                             pet_name: pet_name,
                             appointment_type: appointment_type,
                             symptoms: symptoms
@@ -84,8 +81,7 @@
                         },
                         error: function(err) {
                             console.log(err)
-                            $('#nameError').text(response.responseJSON.errors
-                                .appointment - type22);
+                            $('#nameError').text(err.responseJSON.errors);
                         }
                     })
                     // calendar.refetchEvents();

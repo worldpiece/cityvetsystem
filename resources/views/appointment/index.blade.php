@@ -25,35 +25,36 @@
                     <form>
                         <div class="mb-2">
                             <div class="row">
-                                {{-- 
+
                                 <div class="form-group col-md-4" style="overflow: auto;">
-                                    <label for="client-id" class="col-form-label">ID</label>
-                                    <input type="text" class="form-control" id="client-id" value="{{ Auth::user()->id }}"
-                                        disabled>
+                                    {{-- <label for="client-id" class="col-form-label">ID</label> --}}
+                                    <input type="hidden" class="form-control" id="client-id"
+                                        value="{{ Auth::user()->id }}">
                                 </div>
-                                 --}}
-                                <div class="form-group col-md-6" style="overflow: auto;">
+                                {{-- <div class="form-group col-md-6" style="overflow: auto;">
                                     <label for="client-name" class="col-form-label">Username</label>
                                     <input type="text" class="form-control text-center" id="client-name"
                                         value="{{ ucfirst(Auth::user()->user_name) }}" disabled>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="mb-2">
                             <label for="pet-name" class="col-form-label">Pet Name</label>
                             <select class="form-select" aria-label="Default select example" id="pet-name">
                                 @foreach ($pets as $pet)
-                                    <option>{{ $pet->pet_name }}</option>
+                                    @if ($pet)
+                                        <option>{{ $pet->pet_name }} </option>
+                                    @endif
                                 @endforeach
                             </select>
                             <span class="text-danger" id="petNameError"></span>
-                            <input type="hidden" name="pet-id" value="">
+                            <input type="hidden" name="pet-id" value=" ">
                         </div>
                         <div class="mb-2">
                             <label for="appointment-type" class="col-form-label">Appointment Type</label>
                             <select class="form-select" aria-label="Default select example" id="appointment-type">
                                 @foreach ($appointment_types as $type)
-                                    <option>{{ $type->appointment_type }}</option>
+                                    <option>{{ $type->type_of_appointment }}</option>
                                 @endforeach
                             </select>
                             <span class="text-danger" id="appmntTypeError"></span>
