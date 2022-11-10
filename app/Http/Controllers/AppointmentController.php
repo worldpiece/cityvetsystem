@@ -25,8 +25,8 @@ class AppointmentController extends Controller
         $all_appointments = Appointment::all();
         foreach ($all_appointments as $appointment) {
             $appointments[] = [
-                'title' => $appointment->symptoms,
-                'start' => $appointment->appointment_start
+                'title' => $appointment->pet_name,
+                'start' => $appointment->start
             ];
         }
 
@@ -38,23 +38,25 @@ class AppointmentController extends Controller
         $pet_id = DB::table('pets')
             ->select('id')
             ->where('pet_name', $request->pet_name)
-            ->get();
+            ->first();
 
         $appointment_code = DB::table('appointment_type')
             ->select('id')
             ->where('type_of_appointment', $request->appointment_type)
-            ->get();
+            ->first();
 
         $apmnt = new Appointment();
         $apmnt->start = $request->start;
         $apmnt->client_id = $request->client_id;
         $apmnt->pet_name = $request->pet_name;
-        $apmnt->pet_id = $pet_id;
+        $apmnt->pet_id = $pet_id->id;
         $apmnt->type_of_appointment = $request->appointment_type;
-        $apmnt->appointment_type_code = $appointment_code;
+        $apmnt->appointment_type_code = $appointment_code->id;
         $apmnt->symptoms = $request->symptoms;
         $apmnt->save();
         return back()->with('success', 'Appointment added successfully.');
-        //return redirect()->route('home')->with('success', 'Appointment added successfully.');
+        // return redirect()->route('home')->with('success', 'Appointment added successfully.');
+        // return redirect()->route('appointment.index')->with('success', 'Appointment added successfully!');
+
     }
 }

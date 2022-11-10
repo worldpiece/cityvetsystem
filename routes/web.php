@@ -42,8 +42,8 @@ Route::get('/gallery', function () {
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-  Route::get('appointment', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment.index');
-  Route::post('appointment', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
+  Route::get('/appointment', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment.index');
+  Route::post('/appointment', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
   Route::get('/pet', [App\Http\Controllers\PetController::class, 'index'])->name('pet.index');
@@ -57,7 +57,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('/staff', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
 
   Route::get('/staff/create', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
-  Route::post('/staff/create', [App\Http\Controllers\StaffController::class, 'store'])->name('staff.store');
+  Route::post('/staff/store', [App\Http\Controllers\StaffController::class, 'store'])->name('staff.store');
   Route::post('/staff/edit/{id}', [App\Http\Controllers\StaffController::class, 'edit'])->name('staff.edit');
   Route::post('/staff/edited/{id}', [App\Http\Controllers\StaffController::class, 'edited'])->name('staff.edited');
   Route::post('/staff/delete/{id}', [App\Http\Controllers\StaffController::class, 'delete'])->name('staff.delete');

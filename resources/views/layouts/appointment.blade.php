@@ -38,20 +38,18 @@
                 meridiem: 'short'
             },
             select: function(allDay) {
+                // var start = allDay.startStr;
+                // alert('selected ' + start);
+
                 $('#appointment-modal').modal('show');
                 $('#appointment-modal-label').html('Set an appointment');
                 
                 var start = allDay.startStr;
+                
                 var client_id = $('#client-id').val();
                 var pet_name = $('#pet-name').val();
                 var appointment_type = $('#appointment-type').val();
                 var symptoms = $('#symptoms').val();
-
-
-                // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
-                // // var allDay = moment();
-                // var start = moment(start, "DD MM YYYY hh:mm:ss");
-                // // var end = moment(end, "DD MM YYYY hh:mm:ss");
 
                 $("#btnSave").click(function() {
                     const simula = start;
@@ -62,8 +60,6 @@
                     // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
 
                     $.ajax({
-                        processData: false,
-                        contentType: false,
                         url: "{{ route('appointment.store') }}",
                         type: "POST",
                         data: {
