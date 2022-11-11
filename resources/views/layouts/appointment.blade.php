@@ -13,20 +13,20 @@
         // console.log(appointments)
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            themeSystem: 'bootstrap5',
-            editable: true,
-            selectable: true,
-            dayMaxEventRows: true,
-            validRange: function(nowDate) {
-                return {
-                    start: currentDate
-                };
-            },
-            headerToolbar: {
-                left: 'dayGridMonth,timeGridWeek,timeGridDay',
-                center: 'title',
-                right: 'today prev,next'
-            },
+                themeSystem: 'bootstrap5',
+                editable: true,
+                selectable: true,
+                dayMaxEventRows: true,
+                validRange: function(nowDate) {
+                    return {
+                        start: currentDate
+                    };
+                },
+                headerToolbar: {
+                    left: 'dayGridMonth,timeGridWeek,timeGridDay',
+                    center: 'title',
+                    right: 'today prev,next'
+                },
             views: {
                 timeGrid: {
                     dayMaxEventRows: 6
@@ -43,9 +43,9 @@
 
                 $('#appointment-modal').modal('show');
                 $('#appointment-modal-label').html('Set an appointment');
-                
+
                 var start = allDay.startStr;
-                
+
                 var client_id = $('#client-id').val();
                 var pet_name = $('#pet-name').val();
                 var appointment_type = $('#appointment-type').val();
@@ -80,15 +80,15 @@
                             $('#nameError').text(err.responseJSON.errors);
                         }
                     })
-                    // calendar.refetchEvents();
+                    calendar.refetchEvents();
                 });
                 $("#btnDelete").click(function() {
                     // calendar.refetchEvents();
                 });
                 // calendar.fullCalendar('unselect');
-                // calendar.refetchEvents();
+                calendar.refetchEvents();
             }
-        });
+        }); 
         calendar.render();
     });
 </script>

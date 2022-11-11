@@ -26,6 +26,8 @@
                     <td>{{ ucfirst($staff->address) }}</td>
                     <td class="text-center">
                         <div class="btn-group" role="group" aria-label="Action Buttons">
+                            <form method="get" action="{{ route('staff.show', $staff->id) }}"><button
+                                class="btn btn-success" type="submit">Show</button> {{ csrf_field() }}</form>
                             <form method="post" action="{{ route('staff.edit', $staff->id) }}"><button
                                     class="btn btn-primary" type="submit">Edit</button> {{ csrf_field() }}</form>
                             <form method="post" action="{{ route('staff.delete', $staff->id) }}"><button

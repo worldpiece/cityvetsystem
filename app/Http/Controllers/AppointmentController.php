@@ -25,6 +25,7 @@ class AppointmentController extends Controller
         $all_appointments = Appointment::all();
         foreach ($all_appointments as $appointment) {
             $appointments[] = [
+                'allDay' => true,
                 'title' => $appointment->pet_name,
                 'start' => $appointment->start
             ];
@@ -55,8 +56,5 @@ class AppointmentController extends Controller
         $apmnt->symptoms = $request->symptoms;
         $apmnt->save();
         return back()->with('success', 'Appointment added successfully.');
-        // return redirect()->route('home')->with('success', 'Appointment added successfully.');
-        // return redirect()->route('appointment.index')->with('success', 'Appointment added successfully!');
-
     }
 }

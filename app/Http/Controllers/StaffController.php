@@ -19,7 +19,16 @@ class StaffController extends Controller
         return view('staff.create');
     }
 
-    public function store(Request $request){
+    public function show(Request $request)
+    {
+        $staffs = DB::table('staff')
+            ->where('id', $request->id)
+            ->get();
+        return view('staff.show', ['staffs' => $staffs]);
+    }
+
+    public function store(Request $request)
+    {
 
 
         $staff = new Staff();
@@ -33,7 +42,6 @@ class StaffController extends Controller
         $staff->save();
 
         return redirect()->route('staff.index')->with('success', 'Staff added successfully!');
-            
     }
     public function edited(Request $request, $id)
     {

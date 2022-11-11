@@ -17,10 +17,10 @@ class CreateStaffTable extends Migration
             $table->id();
             $table->integer('employee_no');
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('designation');
-            $table->string('contact_no');
+            $table->string('contact_no')->nullable();
             $table->string('address');
             $table->timestamps();
         });

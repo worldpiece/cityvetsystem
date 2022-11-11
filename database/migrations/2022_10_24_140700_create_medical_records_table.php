@@ -15,6 +15,9 @@ class CreateMedicalRecordsTable extends Migration
     {
         Schema::create('medical_records', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pet_id')->references('id')->on('pets');
+            $table->string('findings');
+            $table->dateTime('appointment_date');            
             $table->timestamps();
         });
     }
