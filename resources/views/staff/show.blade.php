@@ -5,6 +5,7 @@
 @section('content')
     <div class="container mt-5" style="max-width: 1000px">
         <h2 class="h2 text-left mb-5 border-bottom pb-3">Staff</h2>
+        {!! QrCode::size(200)->generate('https://techvblogs.com/blog/generate-qr-code-laravel-8') !!}
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -13,6 +14,7 @@
                     <div class="card-header">{{ __('Staff Details') }}</div>
                     @foreach ($staffs as $staff)
                     <div class="card-body">
+                        
                         {{-- Employee Number --}}
                         <div class="row mb-3">
                             <label for="employee_no"
