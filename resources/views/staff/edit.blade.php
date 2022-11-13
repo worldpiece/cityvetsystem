@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Staff Details') }}</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('staff.edited', $staffInfo->id) }}">
+                        <form method="POST" action="{{ route('staff.edited', $staffInfo->employee_no) }}">
                             @csrf
                             {{-- Employee Number --}}
                             <div class="row mb-3">

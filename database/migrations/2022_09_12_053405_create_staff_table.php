@@ -14,11 +14,11 @@ class CreateStaffTable extends Migration
     public function up()
     {
         Schema::create('staff', function (Blueprint $table) {
-            $table->id();
-            $table->integer('employee_no');
+            $table->bigIncrements('employee_no');
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
+            $table->string('qr_id');
             $table->string('designation');
             $table->string('contact_no')->nullable();
             $table->string('address');
