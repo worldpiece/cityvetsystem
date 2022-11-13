@@ -38,6 +38,8 @@ Route::get('/gallery', function () {
   return view('gallery', compact('images'));
 });
 
+Route::get('/staffview', [App\Http\Controllers\StaffController::class, 'signin'])->name('staff.signin');
+Route::post('/staffview', [App\Http\Controllers\StaffController::class, 'dashboard'])->name('staff.dashboard');
 
 Auth::routes(['verify' => true]);
 

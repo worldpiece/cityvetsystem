@@ -13,6 +13,16 @@ class StaffController extends Controller
         return view('staff.index');
     }
 
+    public function signin()
+    {
+        return view('staff.signin');
+    }
+
+    public function dashboard(Request $request)
+    {
+        return view('staff.dashboard', ['staffInfo' => Staff::find($request->employee_number)]);
+    }
+
     public function create()
     {
         return view('staff.create');
