@@ -52,11 +52,13 @@ class PetController extends Controller
 
         // dd($pet);
 
-        $birthDate = $request->birth_date;
+        $birthDate = $request->pet_dob;
         $date = new DateTime();
         $currentDate = $date->format('Y-m-d H:i:s');
         $age = date_diff(date_create($birthDate), date_create($currentDate));
         $age = $age->format("%y");
+
+        //$age = Carbon::parse($request->pet_dob)->diff(Carbon::now())->y;
 
         // // dd($pet);
         // $validated = $request->validate(
@@ -115,7 +117,7 @@ class PetController extends Controller
 
     public function edited(Request $request, $id)
     {
-        $birthDate = $request->birth_date;
+        $birthDate = $request->pet_dob;
         $date = new DateTime();
         $currentDate = $date->format('Y-m-d H:i:s');
         $age = date_diff(date_create($birthDate), date_create($currentDate));

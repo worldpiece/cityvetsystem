@@ -36,7 +36,7 @@ class StaffController extends Controller
         $staff->employee_no = $request->employee_no;
         $staff->first_name = $request->first_name;
         $staff->middle_name = $request->middle_name;
-        $staff->last_name = $request->middle_name;
+        $staff->last_name = $request->last_name;
         $staff->qr_id = $qr_id;
         $staff->designation = $request->designation;
         $staff->contact_no = $request->contact_number;
@@ -47,11 +47,14 @@ class StaffController extends Controller
     }
     public function edited(Request $request, $employee_no)
     {
+        $qr_id = $request->employee_no . '' . $request->first_name . '' . $request->last_name;
+        
         $staff = Staff::find($employee_no);
         $staff->employee_no = $request->employee_no;
         $staff->first_name = $request->first_name;
         $staff->middle_name = $request->middle_name;
-        $staff->last_name = $request->middle_name;
+        $staff->last_name = $request->last_name;
+        $staff->qr_id = $qr_id;
         $staff->designation = $request->designation;
         $staff->contact_no = $request->contact_number;
         $staff->address = $request->address;

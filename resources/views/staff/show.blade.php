@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                             <div class="btn-group text-center"> 
-                                <button type="button" class="btn btn-info">Back</button>
+                                <a class="btn btn-info" href="/staff">{{ __('Back') }}</a>
                             </div>
                         </div>
                     @endforeach

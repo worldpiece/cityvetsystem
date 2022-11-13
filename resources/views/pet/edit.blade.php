@@ -37,9 +37,18 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Gender') }}</label>
                                 <div class="col-md-6">
                                     <select class="form-control @error('pet_gender') is-invalid @enderror" id="pet_gender" name="pet_gender" value="{{ $petInfo->gender }}" required autocomplete="pet_gender" autofocus>
-                                        <option value="" disabled selected>Select Gender</option>
+                                        <option value="" disabled>Select Gender</option>
+                                        @if ($petInfo->gender == "male")
+                                        <option value="male" selected>Male</option>
+                                        @else
                                         <option value="male">Male</option>
+                                        @endif
+                                        
+                                        @if ($petInfo->gender == "female")
+                                        <option value="female" selected>Female</option>
+                                        @else
                                         <option value="female">Female</option>
+                                        @endif
                                     </select>
                                     @error('pet_gender')
                                         <span class="invalid-feedback" role="alert">
