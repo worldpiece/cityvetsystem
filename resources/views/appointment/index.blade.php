@@ -60,7 +60,7 @@
                             <span class="text-danger" id="appmntTypeError"></span>
                         </div>
                         <div class="mb-2">
-                            <label for="symptoms" class="col-form-label">Symptoms:</label>
+                            <label for="symptoms" class="col-form-label">Symptoms</label>
                             <textarea class="form-control" id="symptoms"></textarea>
                             <span class="text-danger" id="symptomsError"></span>
                         </div>

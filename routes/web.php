@@ -38,8 +38,12 @@ Route::get('/gallery', function () {
   return view('gallery', compact('images'));
 });
 
-Route::get('/staffview', [App\Http\Controllers\StaffController::class, 'signin'])->name('staff.signin');
-Route::post('/staffview', [App\Http\Controllers\StaffController::class, 'dashboard'])->name('staff.dashboard');
+Route::get('/attendance', function () {
+  return view('attendance');
+});
+
+// Route::get('/staffview', [App\Http\Controllers\StaffController::class, 'signin'])->name('staff.signin');
+// Route::post('/staffview', [App\Http\Controllers\StaffController::class, 'dashboard'])->name('staff.dashboard');
 
 Auth::routes(['verify' => true]);
 
@@ -64,7 +68,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::post('/staff/edit/{employee_no}', [App\Http\Controllers\StaffController::class, 'edit'])->name('staff.edit');
   Route::post('/staff/edited/{employee_no}', [App\Http\Controllers\StaffController::class, 'edited'])->name('staff.edited');
   Route::post('/staff/delete/{employee_no}', [App\Http\Controllers\StaffController::class, 'delete'])->name('staff.delete');
-
 });
 
 

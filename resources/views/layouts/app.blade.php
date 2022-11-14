@@ -28,6 +28,11 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
     {{-- <script src="https://moment.github.io/luxon/es6/luxon.min.js"></script> --}}
 
+    {{-- QR Scanner --}}
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/instascan.min.js') }}"></script>
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+
     {{-- Font Awesome --}}
     <script src="https://kit.fontawesome.com/24bf8aae18.js" crossorigin="anonymous"></script>
 
@@ -73,7 +78,7 @@
                             </li>
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
-                            </li>                            
+                            </li>
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
                             </li>
