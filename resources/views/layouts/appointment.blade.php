@@ -13,20 +13,20 @@
         // console.log(appointments)
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-                themeSystem: 'bootstrap5',
-                editable: true,
-                selectable: true,
-                dayMaxEventRows: true,
-                validRange: function(nowDate) {
-                    return {
-                        start: currentDate
-                    };
-                },
-                headerToolbar: {
-                    left: 'dayGridMonth,timeGridWeek,timeGridDay',
-                    center: 'title',
-                    right: 'today prev,next'
-                },
+            themeSystem: 'bootstrap5',
+            editable: true,
+            selectable: true,
+            dayMaxEventRows: true,
+            validRange: function(nowDate) {
+                return {
+                    start: currentDate
+                };
+            },
+            headerToolbar: {
+                left: 'dayGridMonth,timeGridWeek,timeGridDay',
+                center: 'title',
+                right: 'today prev,next'
+            },
             views: {
                 timeGrid: {
                     dayMaxEventRows: 6
@@ -75,7 +75,6 @@
                             $('#pet-name').val('');
                             $('#appointment-modal').modal('hide');
                             $('#btnSave').unbind('click');
-                            eventSource.refetch();
                             calendar.render();
                         },
                         error: function(err) {
@@ -83,15 +82,30 @@
                             $('#nameError').text(err.responseJSON.errors);
                         }
                     })
-                    eventSource.refetch();
+
                 });
+                calendar.refetchEvents();
                 $("#btnDelete").click(function() {
-                    // calendar.refetchEvents();
+
                 });
                 // calendar.fullCalendar('unselect');
                 calendar.refetchEvents();
+            },
+            eventClick: function(event) {
+                $('#appointment-modal').modal('show');
+                $('#appointment-modal-label').html('Set an appointment');
+
+                $('#client-id').val(event.client_id);
+                $('#appointment-type').val(event.appointment_type);
+                $('#symptoms').val(appointment.symptoms);
+                $('#pet-name').val(appointments.pet_name);
+                $('#appointment-modal').modal('hide');
+                $('#btnSave').unbind('click');
+                // var pet_name = $('#pet-name').val();
+                // var appointment_type = $('#appointment-type').val();
+                // var symptoms = $('#symptoms').val();
             }
-        }); 
+        });
         calendar.render();
     });
 </script>

@@ -69,10 +69,10 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" style="position: absolute; left: 15px;"
-                        id="btnDelete">Delete</button>
+                    {{-- <button type="button" class="btn btn-danger" style="position: absolute; left: 15px;"
+                        id="btnDelete">Delete</button> --}}
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="btnSave">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="btnSave">Set Appointment</button>
                 </div>
             </div>
         </div>
