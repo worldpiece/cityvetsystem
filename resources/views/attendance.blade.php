@@ -5,7 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Attendance</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -17,29 +20,70 @@
 </head>
 
 <body class="antialiased">
-    <div
-        class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-
-            <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                <div>
-                    <div class="col-md-6 text-center">
-                        <video id="preview" width="500px"></video>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Attendance') }}</div>
+                <div class="card-body">
+                    <div class="justify-content-center">
+                        <div class="form-group mb-2 p-0">
+                            <video id="preview" class="form-control p-0"></video>
+                        </div>
+                        <div class="form-row">
+                            <form class="form-inline">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label for="employee_no">Employee No.</label>
+                                        <input type="text" class="form-control mb-2 mr-sm-2" id="employee_no" disabled>
+                                    </div>
+                                    <div class="col-9">
+                                        <label for="designation">Designation</label>
+                                        <input type="text" class="form-control mb-2 mr-sm-2" id="designation" disabled>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="first_name">First Name</label>
+                                        <input type="text" class="form-control mb-2 mr-sm-2" name="first_name"
+                                            id="first_name" disabled>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="last_name">Last Name</label>
+                                        <input type="text" class="form-control mb-2 mr-sm-2" id="last_name" disabled>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label for="am_in">AM In</label>
+                                        <input type="text" class="form-control mb-2 mr-sm-2" id="am_in" disabled>
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="am_out">AM Out</label>
+                                        <input type="text" class="form-control mb-2 mr-sm-2" id="am_out" disabled>
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="pm_in">PM In</label>
+                                        <input type="text" class="form-control mb-2 mr-sm-2" id="pm_in" disabled>
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="pm_out">PM Out</label>
+                                        <input type="text" class="form-control mb-2 mr-sm-2" id="pm_out" disabled>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <input type="text" name="name" id="name">
-                </div>
-                <form>
-                    <br>
                     <div class="form-row d-flex justify-content-center">
                         <div class="col-auto my-1">
                             <button type="submit" class="btn btn-primary" id="time-in">Time-In</button>
                             &nbsp;
                             &nbsp;
                             &nbsp;
+                            &nbsp;
                             <button type="submit" class="btn btn-primary" id="time-out">Time-Out</button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
