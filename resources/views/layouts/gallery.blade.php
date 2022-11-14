@@ -83,7 +83,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item ml-auto">
-                            <a class="nav-link" href="/welcome">{{ __('Home') }}</a>
+                            <a class="nav-link" href="/home">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item ml-auto">
                             <a class="nav-link" href="/services">{{ __('Services') }}</a>

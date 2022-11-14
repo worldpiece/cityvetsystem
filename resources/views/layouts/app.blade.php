@@ -71,7 +71,7 @@
                         @else
                             <!-- added list -->
                             <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/welcome">{{ __('Home') }}</a>
+                                <a class="nav-link" href="/home">{{ __('Home') }}</a>
                             </li>
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/services">{{ __('Services') }}</a>
@@ -143,6 +143,7 @@
         $('.alert').delay(500).fadeOut(500);
     </script>
     @livewireScripts
+    @include('layouts/footer')
 </body>
 
 </html>

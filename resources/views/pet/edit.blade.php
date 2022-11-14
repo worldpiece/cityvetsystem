@@ -78,10 +78,59 @@
                                 <label for="pet_classification"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Pet Classification') }}</label>
                                 <div class="col-md-6">
-                                    <input id="pet_classification" type="text"
-                                        class="form-control @error('pet_classification') is-invalid @enderror"
-                                        name="pet_classification" value="{{ $petInfo->pet_classification }}" required
-                                        autocomplete="pet_classification" autofocus>
+                                    <select class="form-control @error('pet_classification') is-invalid @enderror" id="pet_classification" name="pet_classification" value="{{ old('pet_classification') }}" required autocomplete="pet_classification" autofocus>
+                                        <option value="" disabled>Select Pet Classification</option>
+
+                                        @if ($petInfo->pet_classification == "dog")
+                                        <option value="dog" selected>Dog</option>
+                                        @else
+                                        <option value="dog">Dog</option>
+                                        @endif
+                                        
+                                        @if ($petInfo->pet_classification == "cat")
+                                        <option value="cat" selected>Cat</option>
+                                        @else
+                                        <option value="cat">Cat</option>
+                                        @endif
+
+                                        @if ($petInfo->pet_classification == "pig")
+                                        <option value="pig" selected>Pig</option>
+                                        @else
+                                        <option value="pig">Pig</option>
+                                        @endif
+
+                                        @if ($petInfo->pet_classification == "goat")
+                                        <option value="goat" selected>Goat</option>
+                                        @else
+                                        <option value="goat">Goat</option>
+                                        @endif
+
+                                        @if ($petInfo->pet_classification == "cow")
+                                        <option value="cow" selected>Cow</option>
+                                        @else
+                                        <option value="cow">Cow</option>
+                                        @endif
+
+                                        @if ($petInfo->pet_classification == "carabao")
+                                        <option value="carabao" selected>Carabao</option>
+                                        @else
+                                        <option value="carabao">Carabao</option>
+                                        @endif
+
+                                        @if ($petInfo->pet_classification == "chicken")
+                                        <option value="chicken" selected>Chicken</option>
+                                        @else
+                                        <option value="chicken">Chicken</option>
+                                        @endif
+
+                                        @if ($petInfo->pet_classification == "duck")
+                                        <option value="duck" selected>Duck</option>
+                                        @else
+                                        <option value="duck">Duck</option>
+                                        @endif
+
+
+                                    </select>
                                     @error('pet_classification')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

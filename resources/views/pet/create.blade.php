@@ -69,10 +69,17 @@
                                 <label for="pet_classification"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Pet Classification') }}</label>
                                 <div class="col-md-6">
-                                    <input id="pet_classification" type="text"
-                                        class="form-control @error('pet_classification') is-invalid @enderror"
-                                        name="pet_classification" value="{{ old('pet_classification') }}" required
-                                        autocomplete="pet_classification" autofocus>
+                                    <select class="form-control @error('pet_classification') is-invalid @enderror" id="pet_classification" name="pet_classification" value="{{ old('pet_classification') }}" required autocomplete="pet_classification" autofocus>
+                                        <option value="" disabled selected>Select Pet Classification</option>
+                                        <option value="dog">Dog</option>
+                                        <option value="cat">Cat</option>
+                                        <option value="pig">Pig</option>
+                                        <option value="goat">Goat</option>
+                                        <option value="cow">Cow</option>
+                                        <option value="carabao">Carabao</option>
+                                        <option value="chicken">Chicken</option>
+                                        <option value="duck">Duck</option>
+                                    </select>
                                     @error('pet_classification')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

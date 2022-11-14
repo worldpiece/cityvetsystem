@@ -60,7 +60,7 @@
                     <ul class="navbar-nav ms-auto">
                         @if (Auth::user())
                             <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/welcome">{{ __('Home') }}</a>
+                                <a class="nav-link" href="/home">{{ __('Home') }}</a>
                             </li>
                         @endif
                         <li class="nav-item ml-auto">
