@@ -21,7 +21,7 @@
               <i class="fa-brands fa-facebook-square"></i> cityveterinary@gmail.com
             </li>
             <li class="social">
-            <a href="#faq"><i class="fa-brands fa-facebook-square"></i> Fblink</a>
+            <a href="https://web.facebook.com/profile.php?id=100075572903721" target="_blank"><i class="fa-brands fa-facebook-square"></i> Fblink</a>
             </li>
             <li class="social">
               <i class="fa-brands fa-facebook-square"></i> Sabaro, Poblacion, Alaminos City

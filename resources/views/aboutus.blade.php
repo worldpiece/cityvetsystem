@@ -21,21 +21,4 @@
     </div>
     <br>
     <br>
-    <div class="row text-center">
-        <strong><p class="h3">CONTACT US</p></strong>
-        <a href="https://web.facebook.com/profile.php?id=100075572903721">
-                <i class="fa-brands fa-facebook"></i> City Veterinary FB Account
-        </a>
-        <span>
-            <i class="fa fa-envelope"></i> cityveterinary@gmail.com
-        </span>
-        <span>
-            <i class="fa fa-address-book"></i> 09985465754
-        </span>
-        <span>
-            <i class="fa fa-location-dot"></i> Sabaro, Poblacion, Alaminos City, Pangasinan
-        </span>
-    </div>
-    <br>
-    <br>
 @endsection
