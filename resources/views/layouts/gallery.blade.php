@@ -94,6 +94,9 @@
                         <li class="nav-item ml-auto">
                             <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
                         </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link" href="/attendance">{{ __('Staff Attendance') }}</a>
+                        </li>
                         @guest
                         @else
                             <!-- added list -->

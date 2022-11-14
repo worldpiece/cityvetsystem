@@ -82,6 +82,9 @@
                             <li class="nav-item ml-auto">
                                 <a class="nav-link" href="/aboutus">{{ __('About Us') }}</a>
                             </li>
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" href="/attendance">{{ __('Staff Attendance') }}</a>
+                            </li>
                             @if (Auth::user() && Auth::user()->role == 0)
                                 <li class="nav-item ml-auto">
                                     <a class="nav-link" href="/pet">{{ __('My Pets') }}</a>
