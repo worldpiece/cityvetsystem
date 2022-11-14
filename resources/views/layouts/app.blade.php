@@ -32,6 +32,8 @@
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <script src="{{ asset('assets/js/instascan.min.js') }}"></script>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
 
     {{-- Font Awesome --}}
     <script src="https://kit.fontawesome.com/24bf8aae18.js" crossorigin="anonymous"></script>
