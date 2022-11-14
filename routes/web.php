@@ -46,8 +46,8 @@ Route::get('/attendance', function () {
 Route::get('/attendance/show', [App\Http\Controllers\AttendanceController::class, 'show'])->name('attendance.show');
 Route::get('/attendance/store', [App\Http\Controllers\AttendanceController::class, 'store'])->name('attendance.store');
 
-// Route::get('/staffview', [App\Http\Controllers\StaffController::class, 'signin'])->name('staff.signin');
-// Route::post('/staffview', [App\Http\Controllers\StaffController::class, 'dashboard'])->name('staff.dashboard');
+ Route::get('/staffview', [App\Http\Controllers\StaffController::class, 'signin'])->name('staff.signin');
+ Route::post('/staffview', [App\Http\Controllers\StaffController::class, 'dashboard'])->name('staff.dashboard');
 
 Auth::routes(['verify' => true]);
 
