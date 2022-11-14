@@ -14,7 +14,7 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        //
+        return view('attendance');
     }
 
     /**
@@ -35,7 +35,17 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->employee_no566666)
+        {
+            $employee_no = $request->employee_no;
+
+            $attendance = new Attendance();
+            $attendance->employee_id = $employee_no;
+            // $attendance->am_in = $employee_no;
+            // $attendance->employee_id = $employee_no;
+            $attendance->save();
+            return redirect()->route('attendance.index')->with('success', 'Successfully Logged In!');
+        }
     }
 
     /**
