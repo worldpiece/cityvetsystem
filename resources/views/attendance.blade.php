@@ -27,24 +27,24 @@
                 <div class="card-body">
                     <div class="justify-content-center">
                         <div class="form-group mb-2 p-0">
-                            <video id="preview" class="form-control p-0"></video>
+                            <video width="480" height="480" id="preview" class="form-control p-0"></video>
                         </div>
                         <div class="form-row">
-                            <form class="form-inline">
+                            <form class="form-inline" method="POST" action="{{ route('attendance.store') }}">
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <label for="employee_no">Employee No.</label>
-                                        <input type="text" class="form-control mb-2 mr-sm-2" id="employee_no" disabled>
+                                        <input type="text" class="form-control mb-2 mr-sm-2" id="employee_no" readonly disabled>
                                     </div>
-                                    <div class="col-9">
+                                    <div class="col-10">
                                         <label for="designation">Designation</label>
-                                        <input type="text" class="form-control mb-2 mr-sm-2" id="designation" disabled>
+                                        <input type="text" class="form-control mb-2 mr-sm-2" id="designation" readonly disabled>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="first_name">First Name</label>
-                                        <input type="text" class="form-control mb-2 mr-sm-2" name="first_name"
+                                        <input type="text" class="form-control mb-2 mr-sm-2" readonly name="first_name"
                                             id="first_name" disabled>
                                     </div>
                                     <div class="col-6">
@@ -73,7 +73,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="form-row d-flex justify-content-center">
+                    {{-- <div class="form-row d-flex justify-content-center">
                         <div class="col-auto my-1">
                             <button type="submit" class="btn btn-primary" id="time-in">Time-In</button>
                             &nbsp;
@@ -82,7 +82,7 @@
                             &nbsp;
                             <button type="submit" class="btn btn-primary" id="time-out">Time-Out</button>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -103,6 +103,14 @@
         }
     }).catch(function(e) {
         console.error(e);
+    });
+
+    scanner.addListener('scan', function(c){
+        document.getElementById('employee_no').value=c;
+        // document.getElementById('designation').value=d;
+        // document.getElementById('first_name').value=f;
+        // document.getElementById('last_name').value=g;
+        document.forms[0].submit();
     });
 </script>
 
