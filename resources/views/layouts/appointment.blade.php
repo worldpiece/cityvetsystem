@@ -71,8 +71,11 @@
                         },
                         success: function() {
                             $('#symptoms').val('');
+                            $('#appointment-type').val('');
+                            $('#pet-name').val('');
                             $('#appointment-modal').modal('hide');
                             $('#btnSave').unbind('click');
+                            eventSource.refetch();
                             calendar.render();
                         },
                         error: function(err) {
@@ -80,7 +83,7 @@
                             $('#nameError').text(err.responseJSON.errors);
                         }
                     })
-                    calendar.refetchEvents();
+                    eventSource.refetch();
                 });
                 $("#btnDelete").click(function() {
                     // calendar.refetchEvents();

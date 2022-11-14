@@ -41,6 +41,7 @@
                         <div class="mb-2">
                             <label for="pet-name" class="col-form-label">Pet Name</label>
                             <select class="form-select" aria-label="Default select example" id="pet-name">
+                                <option value="" disabled selected>Select a pet</option>
                                 @foreach ($pets as $pet)
                                     @if ($pet)
                                         <option>{{ $pet->pet_name }} </option>
@@ -53,6 +54,7 @@
                         <div class="mb-2">
                             <label for="appointment-type" class="col-form-label">Appointment Type</label>
                             <select class="form-select" aria-label="Default select example" id="appointment-type">
+                                <option value="" disabled selected>Choose an appointment type</option>
                                 @foreach ($appointment_types as $type)
                                     <option>{{ $type->type_of_appointment }}</option>
                                 @endforeach
