@@ -33,6 +33,7 @@
     <script src="https://kit.fontawesome.com/24bf8aae18.js" crossorigin="anonymous"></script>
 
     @livewireStyles
+    @include('/layouts/footerstyle')
 </head>
 
 <body>
@@ -149,6 +150,7 @@
         </main>
     </div>
     @livewireScripts
+    @include('/layouts/footer')
 </body>
 
 </html>

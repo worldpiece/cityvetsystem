@@ -1,19 +1,47 @@
 
-    <div class="footer-basic">
-        <footer>
-            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Home</a></li>
-                <li class="list-inline-item"><a href="#">Services</a></li>
-                <li class="list-inline-item"><a href="#">About</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+<footer>
+      <div class="row primary">
+        <div class="column about">
+          <h3>Veterinary System
+            of Alaminos city
+            </h3>
+          <p>
+            Alaminos Veterinary Office offers comprehensive veterinary medical services. Additionally,
+             it is focused on the prevention and care of illnesses in household pets and also farmed animals. 
+          </p>
+
+        </div>
+        <div class="column links">
+          <h3>Contact  Us</h3>
+          <ul>
+            <li class="social">
+              <i class="fa-brands fa-facebook-square"></i> 0998546 5754
+            </li>
+            <li class="social">
+              <i class="fa-brands fa-facebook-square"></i> cityveterinary@gmail.com
+            </li>
+            <li class="social">
+              <i class="fa-brands fa-facebook-square"></i> Fblink
+            </li>
+            <li class="social">
+              <i class="fa-brands fa-facebook-square"></i> Sabaro, Poblacion, Alaminos City
+            </li>
+
+          </ul>
+        </div>
+          <div class="column links">
+            <h3>Working Hours</h3>
+            <ul>
+              <li>
+                <a href="#faq">Monday-Friday (8am-5pm)</a>
+              </li>
+              <li>
+                <a href="#cookies-policy">Saturday-Sunday (Appointment)</a>
+              </li>
+
             </ul>
-            <p class="copyright">Company Name © 2018</p>
-        </footer>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+          </div>
+      </div>
 
+    </footer>
 
-<!-- credit to https://epicbootstrap.com/snippets/footer-basic -->

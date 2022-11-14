@@ -57,6 +57,7 @@
         }
     </style>
     @livewireStyles
+    @include('/layouts/footerstyle')
 </head>
 
 <body style="background: url('/img/bg.jpg')">
@@ -159,6 +160,7 @@
         $('.alert').delay(500).fadeOut(500);
     </script>
     @livewireScripts
+    @include('/layouts/footer')
 </body>
 
 </html>
