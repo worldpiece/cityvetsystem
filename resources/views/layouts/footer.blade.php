@@ -2,12 +2,14 @@
 <footer>
       <div class="row primary">
         <div class="column about">
-          <h3>  Veterinary System
+          <h3>  Veterinary System <br>
             of Alaminos city
             </h3>
           <p>
-            Alaminos Veterinary Office offers comprehensive veterinary medical services. Additionally,
-             it is focused on the prevention and care of illnesses in household pets and also farmed animals. 
+            Alaminos Veterinary Office offers comprehensive <br> 
+            veterinary medical services. Additionally,it is <br>
+            focused on the prevention and care of illnesses <br> 
+            in household pets and also farmed animals. 
           </p>
 
         </div>
@@ -15,16 +17,16 @@
           <h3>Contact  Us</h3>
           <ul>
             <li class="social">
-              <i class="fa-brands fa-facebook-square"></i> 0998546 5754
+              <i class="fa-solid fa-address-book"></i> 0998546 5754
             </li>
             <li class="social">
-              <i class="fa-brands fa-facebook-square"></i> cityveterinary@gmail.com
+              <i class="fa-solid fa-envelope"></i> cityveterinary@gmail.com
             </li>
             <li class="social">
-            <a href="https://web.facebook.com/profile.php?id=100075572903721" target="_blank"><i class="fa-brands fa-facebook-square"></i> Fblink</a>
+            <a href="https://web.facebook.com/profile.php?id=100075572903721" target="_blank"><i class="fa-brands fa-facebook"></i> City Veterenarian FB Account</a>
             </li>
             <li class="social">
-              <i class="fa-brands fa-facebook-square"></i> Sabaro, Poblacion, Alaminos City
+              <i class="fa-solid fa-location-dot"></i> Sabaro, Poblacion, Alaminos City
             </li>
 
           </ul>

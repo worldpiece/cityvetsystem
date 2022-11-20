@@ -10,11 +10,35 @@
  
     <style media="screen">
 
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  padding-bottom: 13rem;
+  min-height: 100%;
+}
+
 footer {
-  margin-top:40px;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /** margin-top:40px; **/
   background-color: #FFFFFF;
   color: #121315;
-  font-size: 16px;
+  font-size: 12px;
+  /** font-size: 16px; **/
+
 }
 footer * {
   font-family: "Poppins", sans-serif;
