@@ -70,9 +70,9 @@
                                         </a>
                                     @endif
 
-                                    <a class="btn btn-link" href="{{ route('staff.signin') }}">
-                                            {{ __('Sign-in as a Staff') }}
-                                    </a> 
+                                    {{-- <a class="btn btn-link" href="{{ route('staff.signin') }}">
+                                            {{ __('Sign-in as a Staff') }} 
+                                    </a> --}}
                                 </div>
                             </div>
                         </form>

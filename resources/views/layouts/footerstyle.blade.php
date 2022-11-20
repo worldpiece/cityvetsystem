@@ -51,7 +51,7 @@ footer * {
   font-size: 1.7em;
   margin-top: 0.5em;
 }
-.row {
+footer .row {
   padding: 1em 1em;
 }
 .row.primary {

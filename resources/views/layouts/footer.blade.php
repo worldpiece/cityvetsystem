@@ -2,9 +2,14 @@
 <footer>
       <div class="row primary">
         <div class="column about">
-          <h3>  Veterinary System <br>
-            of Alaminos city
-            </h3>
+              <ul>
+                <li class="social">
+                  
+                  <h3>  <img style="height:70px;width:70px;" src="{{ asset('img/background-logo.png') }}" id="home-logo" alt="Logo of Alaminos City"> <span style="position: absolute;padding-top: 15px;padding-left: 5px;text-align: justify;">Veterinary System<br>
+                  of Alaminos city</span>
+                  </h3>
+                </li>
+            </ul>
           <p>
             Alaminos Veterinary Office offers comprehensive <br> 
             veterinary medical services. Additionally,it is <br>

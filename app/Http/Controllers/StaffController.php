@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Staff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StaffController extends Controller
 {
@@ -20,7 +21,18 @@ class StaffController extends Controller
 
     public function dashboard(Request $request)
     {
-        return view('staff.dashboard', ['staffInfo' => Staff::find($request->employee_number)]);
+
+        if (is_null( Staff::find($request->employee_number)))
+            {
+                $message = 'Invalid Number!';
+               // return Redirect::to('staff.signin')->withErrors($validator);
+                return redirect()->back()->with('message', $message);
+            }
+        else{
+
+            return view('staff.dashboard', ['staffInfo' => Staff::find($request->employee_number)]);
+        }
+            
     }
 
     public function create()
