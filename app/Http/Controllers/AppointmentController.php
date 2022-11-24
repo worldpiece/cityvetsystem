@@ -57,4 +57,19 @@ class AppointmentController extends Controller
         $apmnt->save();
         return back()->with('success', 'Appointment added successfully.');
     }
+
+    public function list_of_appointment(Request $request)
+    {
+        return view('admin/appointment');
+    }
+
+    public function edit()
+    {
+        //
+    }
+
+    public function destroy()
+    {
+        //
+    }
 }

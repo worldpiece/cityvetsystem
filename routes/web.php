@@ -46,16 +46,20 @@ Route::get('/attendance', function () {
 Route::get('/attendance/show', [App\Http\Controllers\AttendanceController::class, 'show'])->name('attendance.show');
 Route::get('/attendance/store', [App\Http\Controllers\AttendanceController::class, 'store'])->name('attendance.store');
 
- Route::get('/staffview', [App\Http\Controllers\StaffController::class, 'signin'])->name('staff.signin');
- Route::post('/staffview', [App\Http\Controllers\StaffController::class, 'dashboard'])->name('staff.dashboard');
+Route::get('/staffview', [App\Http\Controllers\StaffController::class, 'signin'])->name('staff.signin');
+Route::post('/staffview', [App\Http\Controllers\StaffController::class, 'dashboard'])->name('staff.dashboard');
 
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-  Route::get('/appointment', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment.index');
-  Route::post('/appointment', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
-  Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+  Route::group(['middleware' => ['isClient']], function () {
+    Route::get('/appointment', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment.index');
+    Route::post('/appointment', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
+    Route::post('/appointment/edit{id}', [App\Http\Controllers\AppointmentController::class, 'edit'])->name('appointment.edit');
+    Route::post('appointment/{id}', [App\Http\Controllers\AppointmentController::class, 'destroy'])->name('appointment.destroy');
+  });
 
+  Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
   Route::get('/pet', [App\Http\Controllers\PetController::class, 'index'])->name('pet.index');
   Route::get('/pet/create', [App\Http\Controllers\PetController::class, 'create'])->name('pet.create');
   Route::post('/pet/create', [App\Http\Controllers\PetController::class, 'store'])->name('pet.store');
@@ -79,4 +83,6 @@ Route::group(['middleware' => ['auth', 'verified', 'isAdmin']], function () {
   Route::get('admin/gallery', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
   Route::post('admin/gallery', [App\Http\Controllers\GalleryController::class, 'store'])->name('gallery.store');
   Route::delete('admin/gallery/{id}', [App\Http\Controllers\GalleryController::class, 'destroy'])->name('gallery.destroy');
+
+  Route::get('admin/list_of_appointment', [App\Http\Controllers\AppointmentController::class, 'list_of_appointment'])->name('admin.list_of_appointment');
 });

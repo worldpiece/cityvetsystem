@@ -8,6 +8,13 @@
             }
         });
 
+
+        // const disableDate = document.querySelectorAll('.fc-day-top');
+
+        // bookedDates.forEach(function(bookedDate) {
+        //     bookedDate.classList.add('bookedDate');
+        // });
+
         var currentDate = new Date().toISOString();
         var appointments = @json($appointments);
         // console.log(appointments)

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    CityVet System | Appointment
+    CVS | Staff
 @endsection
 @section('content')
     <div class="container mt-5" style="max-width: 1000px">

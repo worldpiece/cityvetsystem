@@ -88,7 +88,7 @@
                         @endif
                         @if (Auth::user() && Auth::user()->role == 1)
                             <li class="nav-item ml-auto">
-                                <a class="nav-link" href="/appointment">{{ __('Appointments') }}</a>
+                                <a class="nav-link" href="/admin/list_of_appointment">{{ __('Appointments') }}</a>
                             </li>
                         @endif
                         @if (Auth::user() && Auth::user()->role == 1)

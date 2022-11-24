@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    CVS | Pet
+    CVS | Staff
 @endsection
 @section('content')
 
