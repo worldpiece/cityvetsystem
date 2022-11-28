@@ -35,8 +35,9 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->employee_no566666)
+        if($request->employee_no)
         {
+            dd($request->employee_no);
             $employee_no = $request->employee_no;
 
             $attendance = new Attendance();

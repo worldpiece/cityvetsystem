@@ -1,25 +1,29 @@
 <!-- Script for Calendar -->
 <script>
+    var calendar
     document.addEventListener('DOMContentLoaded', function() {
-        var SITEURL = "{{ url('/') }}";
+        // var SITEURL = "{{ url('/') }}";
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
 
+        const article = document.querySelector("#calendar-date");
 
         // const disableDate = document.querySelectorAll('.fc-day-top');
 
-        // bookedDates.forEach(function(bookedDate) {
-        //     bookedDate.classList.add('bookedDate');
+        // disabledDates.forEach(function(disabledDate) {
+        //     disabledDate.classList.add('disableddDate');
         // });
 
         var currentDate = new Date().toISOString();
         var appointments = @json($appointments);
+        var blocked_out_dates = @json($blocked_out_dates);
+        
         // console.log(appointments)
         var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
+        calendar = new FullCalendar.Calendar(calendarEl, {
             themeSystem: 'bootstrap5',
             editable: true,
             selectable: true,
@@ -47,8 +51,15 @@
             select: function(allDay) {
                 // var start = allDay.startStr;
                 // alert('selected ' + start);
-
-                $('#appointment-modal').modal('show');
+                blocked_out_dates && blocked_out_dates.forEach(el => {
+                    if (allDay.startStr == el.blocked_date) {
+                        alert('You cannot book on this day!')
+                        return;
+                    } else {
+                        $('#appointment-modal').modal('show');
+                    }
+                })
+                
                 $('#appointment-modal-label').html('Set an appointment');
 
                 var start = allDay.startStr;
@@ -82,37 +93,21 @@
                             $('#pet-name').val('');
                             $('#appointment-modal').modal('hide');
                             $('#btnSave').unbind('click');
-                            calendar.render();
+                            // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
+                            /* This will make it show up */
+                            location.reload();
+                            
                         },
                         error: function(err) {
-                            console.log(err)
                             $('#nameError').text(err.responseJSON.errors);
                         }
                     })
-
+                    // calendar.refetchEvents();
                 });
-                calendar.refetchEvents();
-                $("#btnDelete").click(function() {
-
-                });
-                // calendar.fullCalendar('unselect');
-                calendar.refetchEvents();
             },
-            eventClick: function(event) {
-                $('#appointment-modal').modal('show');
-                $('#appointment-modal-label').html('Set an appointment');
-
-                $('#client-id').val(event.client_id);
-                $('#appointment-type').val(event.appointment_type);
-                $('#symptoms').val(appointment.symptoms);
-                $('#pet-name').val(appointments.pet_name);
-                $('#appointment-modal').modal('hide');
-                $('#btnSave').unbind('click');
-                // var pet_name = $('#pet-name').val();
-                // var appointment_type = $('#appointment-type').val();
-                // var symptoms = $('#symptoms').val();
-            }
         });
         calendar.render();
+        calendar.refetchEvents();
     });
+
 </script>
