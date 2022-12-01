@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Appointment;
+use App\Models\BlockedOutDates;
 use Illuminate\Http\Request;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,14 @@ class AppointmentController extends Controller
             ];
         }
 
-        return view('appointment.index', ['pets' => $pets, 'appointments' => $appointments, 'appointment_types' => $appointment_types]);
+        $blocked_out_dates = BlockedOutDates::all();
+
+        return view('appointment.index', [
+            'pets' => $pets,
+            'appointments' => $appointments,
+            'appointment_types' => $appointment_types,
+            'blocked_out_dates' => $blocked_out_dates
+        ]);
     }
 
     public function store(Request $request)
@@ -55,7 +63,8 @@ class AppointmentController extends Controller
         $apmnt->appointment_type_code = $appointment_code->id;
         $apmnt->symptoms = $request->symptoms;
         $apmnt->save();
-        return back()->with('success', 'Appointment added successfully.');
+        return redirect()->route('appointment.index')->with('success', 'Appointment added successfully.');
+        // return back()->with('success', 'Appointment added successfully.');
     }
 
     public function list_of_appointment(Request $request)
@@ -65,7 +74,7 @@ class AppointmentController extends Controller
 
     public function edit()
     {
-        //
+
     }
 
     public function destroy()
