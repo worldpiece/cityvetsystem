@@ -108,6 +108,11 @@
                                     <a class="nav-link" href="/staff">{{ __('Staff Management') }}</a>
                                 </li>
                             @endif
+                            @if (Auth::user() && Auth::user()->role == 1)
+                                <li class="nav-item ml-auto">
+                                    <a class="nav-link" href="/medicine">{{ __('Inventory') }}</a>
+                                </li>
+                            @endif
                             <!-- end of added list -->
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

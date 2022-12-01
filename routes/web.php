@@ -68,6 +68,15 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::post('/pet/delete/{id}', [App\Http\Controllers\PetController::class, 'delete'])->name('pet.delete');
   Route::delete('pet/{id}', [App\Http\Controllers\PetController::class, 'destroy'])->name('pet.destroy');
 
+  Route::get('/medicine', [App\Http\Controllers\MedicineInventoryController::class, 'index'])->name('medicine.index');
+  Route::get('/medicine/create', [App\Http\Controllers\MedicineInventoryController::class, 'create'])->name('medicine.create');
+  Route::post('/medicine/create', [App\Http\Controllers\MedicineInventoryController::class, 'store'])->name('medicine.store');
+  Route::post('/medicine/edit/{id}', [App\Http\Controllers\MedicineInventoryController::class, 'edit'])->name('medicine.edit');
+  Route::post('/medicine/stockIn/{id}', [App\Http\Controllers\MedicineInventoryController::class, 'stockIn'])->name('medicine.stockIn');
+  Route::post('/medicine/stockOut/{id}', [App\Http\Controllers\MedicineInventoryController::class, 'stockOut'])->name('medicine.stockOut');
+  Route::post('/medicine/edited/{id}', [App\Http\Controllers\MedicineInventoryController::class, 'edited'])->name('medicine.edited');
+  Route::post('/medicine/delete/{id}', [App\Http\Controllers\MedicineInventoryController::class, 'delete'])->name('medicine.delete');
+
   Route::get('/staff', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
 
   Route::get('/staff/show', [App\Http\Controllers\StaffController::class, 'show'])->name('staff.show');
