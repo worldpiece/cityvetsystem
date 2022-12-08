@@ -2,25 +2,23 @@
 <script>
     var calendar
     document.addEventListener('DOMContentLoaded', function() {
-        // var SITEURL = "{{ url('/') }}";
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
 
-        const article = document.querySelector("#calendar-date");
 
-        // const disableDate = document.querySelectorAll('.fc-day-top');
-
-        // disabledDates.forEach(function(disabledDate) {
-        //     disabledDate.classList.add('disableddDate');
-        // });
-
+        // if () {
+        //     const cal = $(".fc-daygrid-day");
+        //     cal.dataset.data - date;
+        //     $(".fc-daygrid-day").removeData('data-date').addClass('fc-day-disabled');
+        //     $(".fc-daygrid-day-top").remove();
+        // }
         var currentDate = new Date().toISOString();
         var appointments = @json($appointments);
         var blocked_out_dates = @json($blocked_out_dates);
-        
+
         // console.log(appointments)
         var calendarEl = document.getElementById('calendar');
         calendar = new FullCalendar.Calendar(calendarEl, {
@@ -28,6 +26,7 @@
             editable: true,
             selectable: true,
             dayMaxEventRows: true,
+            weekends: false,
             validRange: function(nowDate) {
                 return {
                     start: currentDate
@@ -51,23 +50,29 @@
             select: function(allDay) {
                 // var start = allDay.startStr;
                 // alert('selected ' + start);
+                let isDisabledDate = false;
                 blocked_out_dates && blocked_out_dates.forEach(el => {
                     if (allDay.startStr == el.blocked_date) {
-                        alert('You cannot book on this day!')
-                        return;
-                    } else {
-                        $('#appointment-modal').modal('show');
+                        isDisabledDate = true;
                     }
                 })
-                
-                $('#appointment-modal-label').html('Set an appointment');
+                if (isDisabledDate) {
+                    alert('You cannot book on this day!')
+                    return
+                } else {
+                    $('#appointment-modal').modal('show');
+                }
 
+                $('#appointment-modal-label').html('Set an appointment');
                 var start = allDay.startStr;
 
                 var client_id = $('#client-id').val();
                 var pet_name = $('#pet-name').val();
                 var appointment_type = $('#appointment-type').val();
                 var symptoms = $('#symptoms').val();
+
+                console.log("blocked_out_dates", blocked_out_dates)
+                console.log("allDay.startStr", allDay.startStr);
 
                 $("#btnSave").click(function() {
                     const simula = start;
@@ -96,18 +101,16 @@
                             // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
                             /* This will make it show up */
                             location.reload();
-                            
+
                         },
                         error: function(err) {
                             $('#nameError').text(err.responseJSON.errors);
                         }
                     })
-                    // calendar.refetchEvents();
                 });
             },
         });
         calendar.render();
         calendar.refetchEvents();
     });
-
 </script>

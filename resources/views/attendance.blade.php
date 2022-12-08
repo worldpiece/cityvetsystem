@@ -30,13 +30,12 @@
                             <video width="480" height="480" id="preview" class="form-control p-0"></video>
                         </div>
                         <div class="form-row">
-                            <form class="form-inline" method="post" action="{{ route('attendance.store') }}">
-                                @csrf
+                            <form class="form-inline" method="POST" action="{{ route('attendance.store') }}">
                                 <div class="row">
                                     <div class="col-2">
                                         <label for="employee_no">Employee No.</label>
                                         <input type="text" class="form-control mb-2 mr-sm-2" id="employee_no"
-                                            readonly value="">
+                                            readonly disabled>
                                     </div>
                                     <div class="col-10">
                                         <label for="designation">Designation</label>
@@ -95,7 +94,9 @@
     let scanner = new Instascan.Scanner({
         video: document.getElementById('preview')
     });
-    
+    scanner.addListener('scan', function(content) {
+        console.log(content);
+    });
     Instascan.Camera.getCameras().then(function(cameras) {
         if (cameras.length > 0) {
             scanner.start(cameras[0]);
@@ -106,12 +107,12 @@
         console.error(e);
     });
 
-    scanner.addListener('scan', function(c) {
+    scanner.addEventListener('scan', function(c) {
         document.getElementById('employee_no').value = c;
         // document.getElementById('designation').value=d;
         // document.getElementById('first_name').value=f;
         // document.getElementById('last_name').value=g;
-        document.forms[0].submit();
+        document.submit();
     });
 </script>
 
