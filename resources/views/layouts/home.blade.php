@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Test</title>
+    <title>City Veterinary System</title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
@@ -101,6 +101,11 @@
                                     <a class="nav-link" href="/medicine">{{ __('Inventory') }}</a>
                                 </li>
                         @endif
+                        @if (Auth::user() && Auth::user()->role == 1)
+                                <li class="nav-item ml-auto">
+                                    <a class="nav-link" href="/medical-records">{{ __('Medical Records') }}</a>
+                                </li>
+                            @endif
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

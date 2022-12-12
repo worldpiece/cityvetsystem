@@ -10,11 +10,11 @@
                 <strong>{{ $message }}</strong>
             </div>
         @endif
-        {{-- <div class="mb-2 float-right">
+        <div class="mb-2 float-right">
             <button type="button" class="btn btn-success">
-                <a class="nav-link" href="{{ route('pet.create') }}">{{ __('Register') }}</a>
+                <a class="nav-link" href="{{ route('admin.block_date') }}">{{ __('Add Blocked Dates') }}</a>
             </button>
-        </div> --}}
+        </div>
         <div id='appointment-table' style="border: 2px solid #eee">
             <div class="table-responsive">
                 @livewire('appointment-datatables')

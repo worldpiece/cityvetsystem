@@ -14,6 +14,6 @@ class BlockedOutDates extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'id',
-        'blocked_date',
+        'start',
     ];
 }

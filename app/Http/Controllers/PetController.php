@@ -19,9 +19,8 @@ class PetController extends Controller
     public function index()
     {
         return view(
-            'pet.index',
-            ['petOwned' => Pet::all()
-                ->where('owner_id', auth()->id())]
+            'pet.index', ['petOwned' => Pet::all()
+            ->where('owner_id', auth()->id())]
         );
     }
 
@@ -48,27 +47,11 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        // dd($pet);
-
         $birthDate = $request->pet_dob;
         $date = new DateTime();
         $currentDate = $date->format('Y-m-d H:i:s');
         $age = date_diff(date_create($birthDate), date_create($currentDate));
         $age = $age->format("%y");
-
-        //$age = Carbon::parse($request->pet_dob)->diff(Carbon::now())->y;
-
-        // // dd($pet);
-        // $validated = $request->validate(
-        //     [
-        //         'pet_name' => 'required|max:255',
-        //         'gender' => 'required',
-        //         'pet_dob' => 'required',
-        //         'pet_classification' => 'required',
-        //     ]
-        // );
 
         $pet = new Pet();
         $pet->pet_name = $request->pet_name;
@@ -78,11 +61,7 @@ class PetController extends Controller
         $pet->owner_id = $request->owner_id;
         $pet->pet_classification = $request->pet_classification;
         $pet->save();
-        //  return back()->withSuccess('success', 'Image Uploaded successfully.');
         return redirect()->route('pet.index')->with('success', 'Pet added successfully!');
-
-        //return redirect(route('pet.index'))->with('flash_message', 'Pet added!');  
-
     }
 
     /**

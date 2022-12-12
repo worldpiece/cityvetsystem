@@ -35,18 +35,20 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->employee_no)
-        {
-            dd($request->employee_no);
-            $employee_no = $request->employee_no;
+        
+        dd($request->all);
+        // if($request->c)
+        // {
+        //     // dd($request->c);
+        //     $employee_no = $request->c;
 
-            $attendance = new Attendance();
-            $attendance->employee_id = $employee_no;
-            // $attendance->am_in = $employee_no;
-            // $attendance->employee_id = $employee_no;
-            $attendance->save();
-            return redirect()->route('attendance.index')->with('success', 'Successfully Logged In!');
-        }
+        //     $attendance = new Attendance();
+        //     $attendance->employee_id = $employee_no;
+        //     // $attendance->am_in = $employee_no;
+        //     // $attendance->employee_id = $employee_no;
+        //     $attendance->save();
+        //     return redirect()->route('attendance.index')->with('success', 'Successfully Logged In!');
+        // }
     }
 
     /**

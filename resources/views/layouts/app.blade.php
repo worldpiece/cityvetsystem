@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     {{-- data tables --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,7 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
-    {{-- <script src="https://moment.github.io/luxon/es6/luxon.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
     {{-- QR Scanner --}}
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
@@ -94,26 +96,34 @@
                                 </li>
                             @endif
                             @if (Auth::user()->role == 1)
-                                <li class="nav-item ml-auto">
-                                    <a class="nav-link" href="/admin/gallery">{{ __('Admin Gallery') }}</a>
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
+                                        Admin Menu
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a id="navbarDropdown" class="dropdown-item" href="/admin/gallery">
+                                            {{ __('Admin Gallery') }}
+                                        </a>
+                                        <a id="navbarDropdown" class="dropdown-item" href="/admin/list_of_appointment">
+                                            {{ __('Appointments') }}
+                                        </a>
+                                        <a id="navbarDropdown" class="dropdown-item" href="/staff">
+                                            {{ __('Staff Management') }}
+                                        </a>
+                                        <a id="navbarDropdown" class="dropdown-item" href="/medicine">
+                                            {{ __('Inventory') }}
+                                        </a>
+                                        <a id="navbarDropdown" class="dropdown-item" href="/medical-records">
+                                            {{ __('Medical Records') }}
+                                        </a>
+                                    </div>
                                 </li>
                             @endif
-                            @if (Auth::user() && Auth::user()->role == 1)
-                                <li class="nav-item ml-auto">
-                                    <a class="nav-link" href="/admin/list_of_appointment">{{ __('Appointments') }}</a>
-                                </li>
-                            @endif
-                            @if (Auth::user() && Auth::user()->role == 1)
-                                <li class="nav-item ml-auto">
-                                    <a class="nav-link" href="/staff">{{ __('Staff Management') }}</a>
-                                </li>
-                            @endif
-                            @if (Auth::user() && Auth::user()->role == 1)
-                                <li class="nav-item ml-auto">
-                                    <a class="nav-link" href="/medicine">{{ __('Inventory') }}</a>
-                                </li>
-                            @endif
+
                             <!-- end of added list -->
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -127,7 +137,8 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -149,7 +160,16 @@
                 openEffect: "none",
                 closeEffect: "none"
             });
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
         });
+
+
+
 
         $('.alert').delay(500).fadeOut(500);
     </script>

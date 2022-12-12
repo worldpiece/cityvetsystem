@@ -16,6 +16,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
     <!-- Styles -->
 </head>
 
@@ -30,13 +32,13 @@
                             <video width="480" height="480" id="preview" class="form-control p-0"></video>
                         </div>
                         <div class="form-row">
-                            <form class="form-inline" method="post" action="{{ route('attendance.store') }}">
+                            <form class="form-inline">
                                 @csrf
                                 <div class="row">
                                     <div class="col-2">
                                         <label for="employee_no">Employee No.</label>
                                         <input type="text" class="form-control mb-2 mr-sm-2" id="employee_no"
-                                            readonly value="">
+                                            readonly disabled value="">
                                     </div>
                                     <div class="col-10">
                                         <label for="designation">Designation</label>
@@ -95,7 +97,7 @@
     let scanner = new Instascan.Scanner({
         video: document.getElementById('preview')
     });
-    
+
     Instascan.Camera.getCameras().then(function(cameras) {
         if (cameras.length > 0) {
             scanner.start(cameras[0]);
@@ -107,11 +109,25 @@
     });
 
     scanner.addListener('scan', function(c) {
-        document.getElementById('employee_no').value = c;
-        // document.getElementById('designation').value=d;
-        // document.getElementById('first_name').value=f;
-        // document.getElementById('last_name').value=g;
-        document.forms[0].submit();
+        $.ajax({
+            url: "{{ route('attendance.store' ) }}",
+            type: "POST",
+            data: {
+                id: c,
+                _token: '{{csrf_token()}}'
+            },
+            success: function(response) {
+                document.getElementById('employee_no').value = response.employee_no;
+                document.getElementById('designation').value = response.designation;
+                document.getElementById('#pet-name').value = response.first_name;
+                document.getElementById('#pet-name').value = response.last_name;
+                // document.getElementById('#appointment-modal').value = response.last_name;
+                // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
+            },
+            error: function(err) {
+                $('#nameError').text(err.responseJSON.errors);
+            }
+        })
     });
 </script>
 

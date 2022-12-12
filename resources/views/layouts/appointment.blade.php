@@ -2,32 +2,28 @@
 <script>
     var calendar
     document.addEventListener('DOMContentLoaded', function() {
-        // var SITEURL = "{{ url('/') }}";
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
-        const article = document.querySelector("#calendar-date");
-
-        // const disableDate = document.querySelectorAll('.fc-day-top');
-
-        // disabledDates.forEach(function(disabledDate) {
-        //     disabledDate.classList.add('disableddDate');
-        // });
-
+        // if () {
+        //     cal.dataset.data - date;
+        //     $(".fc-daygrid-day").removeData('data-date').addClass('fc-day-disabled');
+        //     $(".fc-daygrid-day-top").remove();
+        // }
         var currentDate = new Date().toISOString();
         var appointments = @json($appointments);
         var blocked_out_dates = @json($blocked_out_dates);
-        
-        // console.log(appointments)
+        const combinedDates = [...appointments, ...blocked_out_dates]
+        console.log('combinedDates: ', combinedDates)
         var calendarEl = document.getElementById('calendar');
         calendar = new FullCalendar.Calendar(calendarEl, {
             themeSystem: 'bootstrap5',
             editable: true,
             selectable: true,
             dayMaxEventRows: true,
+            weekends: false,
             validRange: function(nowDate) {
                 return {
                     start: currentDate
@@ -43,7 +39,7 @@
                     dayMaxEventRows: 6
                 }
             },
-            events: appointments,
+            events: combinedDates,
             eventTimeFormat: {
                 hour: 'numeric',
                 meridiem: 'short'
@@ -51,24 +47,26 @@
             select: function(allDay) {
                 // var start = allDay.startStr;
                 // alert('selected ' + start);
+                let isDisabledDate = false;
                 blocked_out_dates && blocked_out_dates.forEach(el => {
-                    if (allDay.startStr == el.blocked_date) {
-                        alert('You cannot book on this day!')
-                        return;
-                    } else {
-                        $('#appointment-modal').modal('show');
+                    if (allDay.startStr == el.start) {
+                        isDisabledDate = true;
                     }
                 })
-                
+                if (isDisabledDate) {
+                    alert('You cannot book on this day!')
+                    return
+                } else {
+                    $('#appointment-modal').modal('show');
+                }
                 $('#appointment-modal-label').html('Set an appointment');
-
                 var start = allDay.startStr;
-
                 var client_id = $('#client-id').val();
                 var pet_name = $('#pet-name').val();
                 var appointment_type = $('#appointment-type').val();
                 var symptoms = $('#symptoms').val();
-
+                console.log("blocked_out_dates", blocked_out_dates)
+                console.log("allDay.startStr", allDay.startStr);
                 $("#btnSave").click(function() {
                     const simula = start;
                     const client_id = $('#client-id').val();
@@ -76,7 +74,6 @@
                     const appointment_type = $('#appointment-type').val();
                     const symptoms = $('#symptoms').val();
                     // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
-
                     $.ajax({
                         url: "{{ route('appointment.store') }}",
                         type: "POST",
@@ -96,18 +93,16 @@
                             // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
                             /* This will make it show up */
                             location.reload();
-                            
                         },
                         error: function(err) {
                             $('#nameError').text(err.responseJSON.errors);
                         }
                     })
-                    // calendar.refetchEvents();
                 });
             },
         });
         calendar.render();
         calendar.refetchEvents();
     });
-
+    
 </script>

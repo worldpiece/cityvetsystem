@@ -1,8 +1,11 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\MedicalRecords;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MedicalRecordsController extends Controller
@@ -14,7 +17,9 @@ class MedicalRecordsController extends Controller
      */
     public function index()
     {
-        //
+        $medicalRecords = MedicalRecords::all();
+        // return view('medical-records.index');
+        return view('medical-records.index', ['medicalRecords' => $medicalRecords]);    
     }
 
     /**
@@ -24,7 +29,10 @@ class MedicalRecordsController extends Controller
      */
     public function create()
     {
-        //
+        $owners = DB::table('users')
+            ->select('id','first_name', 'last_name')
+            ->get();
+        return view('medical-records.create', ['owners' => $owners]);
     }
 
     /**
@@ -35,7 +43,11 @@ class MedicalRecordsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rec = new MedicalRecords();
+        $rec->name = $request->findings;
+        $rec->quantity = $request->appointment_date;
+        $rec->save();
+        return redirect()->route('medical-records.index')->with('success', 'Medical record added successfully!');
     }
 
     /**

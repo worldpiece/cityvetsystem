@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="container mt-5" style="max-width: 1000px">
-        <h2 class="h2 text-left mb-5 border-bottom pb-3">Register a Medicine</h2>
+        <h2 class="h2 text-left mb-5 border-bottom pb-3">Medicine Stock</h2>
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -47,11 +47,26 @@
                                     @enderror
                                 </div>
                             </div>
+                            {{-- Expiration Date --}}
+                            <div class="row mb-3">
+                                <label for="expiry_date"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Expiration Date') }}</label>
+                                <div class="col-md-6">
+                                    <input id="expiry_date" type="date"
+                                        class="form-control @error('expiry_date') is-invalid @enderror" name="expiry_date"
+                                        value="{{ old('expiry_date') }}" required autocomplete="expiry_date" autofocus>
 
+                                    @error('expiry_date')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                        {{ __('Add Medicine') }}
                                     </button>
                                 </div>
                             </div>

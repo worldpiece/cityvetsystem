@@ -15,10 +15,7 @@ class MedicineInventoryController extends Controller
      */
     public function index()
     {
-        return view(
-            'medicine.index',
-            ['medicineOwned' => MedicineInventory::all()]
-        );
+        return view('medicine.index', ['medicineOwned' => MedicineInventory::all()]);
     }
 
     /**
@@ -39,14 +36,12 @@ class MedicineInventoryController extends Controller
      */
     public function store(Request $request)
     {
-
         $med = new MedicineInventory();
         $med->name = $request->med_name;
         $med->quantity = $request->med_quantity;
+        $med->expiry_date = $request->expiry_date;
         $med->save();
-
         return redirect()->route('medicine.index')->with('success', 'Medicine added successfully!');
-
     }
 
     public function edit($id)
@@ -68,13 +63,11 @@ class MedicineInventoryController extends Controller
     {
         $med = MedicineInventory::find($id);
         $med->delete();
-
         return redirect()->route('medicine.index')->with('success', 'Medicine Deleted Successfully.');
     }
 
     public function edited(Request $request, $id)
     {
-
         $med = MedicineInventory::find($id);
         $med->name = $med->name;
         if($request->stockIn){
@@ -83,7 +76,6 @@ class MedicineInventoryController extends Controller
             $med->quantity = $med->quantity - $request->stockOut;
         }
         $med->save();
-
         return redirect()->route('medicine.index')->with('success', 'Medicine Updated Successfully.');
     }
 
