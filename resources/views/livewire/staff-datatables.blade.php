@@ -24,7 +24,7 @@
                     <td>{{ ucfirst($staff->address) }}</td>
                     <td class="text-center">
                         <div class="btn-group" role="group" aria-label="Action Buttons">
-                            <form method="get" action="{{ route('staff.show', $staff->employee_no) }}">
+                            <form method="post" action="{{ route('staff.show', $staff->employee_no) }}">
                                 <button class="btn btn-success" type="submit">Show</button>
                                 {{ csrf_field() }}
                             </form>
@@ -109,12 +109,12 @@
 </div>
 <!-- End of View Modal -->
 
-<script>
+{{-- <script>
     function fetchModalData(id, action) {
         csrf = $('#csrf').val()
         $.ajax({
             method: 'POST',
-            url: "{{ route('staff.show') }}",
+            url: "{{ route('staff.show', $staffs->employee_no) }}",
             data: {
                 _token: csrf,
                 id: id
@@ -136,4 +136,4 @@
             }
         })
     }
-</script>
+</script> --}}

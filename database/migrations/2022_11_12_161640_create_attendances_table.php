@@ -15,7 +15,7 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->references('employee_no')->on('staff');
+            $table->foreignId('employee_id')->references('employee_no')->on('staff')->onDelete('cascade');
             $table->dateTime('am_in');
             $table->dateTime('am_out');
             $table->dateTime('pm_in');

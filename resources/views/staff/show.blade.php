@@ -11,8 +11,6 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Staff Details') }}</div>
-                    @foreach ($staffs as $staff)
                         <div class="card-body">
                             <div class="row text-center">
                                 <span>
@@ -135,7 +133,6 @@
                                 <a class="btn btn-info" href="/staff">{{ __('Back') }}</a>
                             </div>
                         </div>
-                    @endforeach
                 </div>
             </div>
         </div>

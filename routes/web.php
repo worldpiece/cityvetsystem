@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::delete('pet/{id}', [App\Http\Controllers\PetController::class, 'destroy'])->name('pet.destroy');
 
   Route::get('/staff', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
-  Route::get('/staff/show', [App\Http\Controllers\StaffController::class, 'show'])->name('staff.show');
+  Route::post('/staff/show/{employee_no}', [App\Http\Controllers\StaffController::class, 'show'])->name('staff.show');
   Route::get('/staff/create', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
   Route::post('/staff/store', [App\Http\Controllers\StaffController::class, 'store'])->name('staff.store');
   Route::post('/staff/edit/{employee_no}', [App\Http\Controllers\StaffController::class, 'edit'])->name('staff.edit');

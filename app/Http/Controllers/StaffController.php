@@ -40,14 +40,15 @@ class StaffController extends Controller
         return view('staff.create');
     }
 
-    public function show(Request $request)
+    public function show($employee_no)
     {
 
         // dd($request->employee_no);
-        $staffs = DB::table('staff')->get();
+        //$staffs = DB::table('staff')->get();
+        $staffs = Staff::find($employee_no);
 
             // dd($staffs);
-        return view('staff.show', ['staffs' => $staffs]);
+        return view('staff.show', ['staff' => $staffs]);
     }
 
     public function store(Request $request)
