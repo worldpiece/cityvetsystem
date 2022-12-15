@@ -28,8 +28,14 @@ class BlockedOutDatesController extends Controller
         return redirect()->route('admin.store')->with('success', 'Date blocked successfully!');
     }
 
+    public function edit($id)
+    {
+    }
+
     public function destroy($id)
     {
-
+        $pet = BlockedOutDates::find($id);
+        $pet->delete();
+        return redirect()->route('admin.index')->with('success', 'Pet Deleted Successfully.');
     }
 }

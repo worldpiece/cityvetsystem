@@ -14,6 +14,19 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('medical-records.store') }}">
                             @csrf
+                            {{-- Pet Owner --}}
+                            <div class="row mb-3">
+                                <label for="owner"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Owner') }}</label>
+                                <div class="col-md-6">
+                                    <select class="form-select" id="appointment-type">
+                                        <option value="" disabled selected>Select Pet Owner</option>
+                                        @foreach ($owners as $owner)
+                                            <option value="{{ $owner->id }}">{!! $owner->first_name . ' ' . $owner->last_name !!}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             {{-- Name --}}
                             <div class="row mb-3">
                                 <label for="pet_name"
@@ -68,7 +81,10 @@
                                 <label for="pet_classification"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Pet Classification') }}</label>
                                 <div class="col-md-6">
-                                    <select class="form-control @error('pet_classification') is-invalid @enderror" id="pet_classification" name="pet_classification" value="{{ old('pet_classification') }}" required autocomplete="pet_classification" autofocus>
+                                    <select class="form-control @error('pet_classification') is-invalid @enderror"
+                                        id="pet_classification" name="pet_classification"
+                                        value="{{ old('pet_classification') }}" required autocomplete="pet_classification"
+                                        autofocus>
                                         <option value="" disabled selected>Select Pet Classification</option>
                                         <option value="dog">Dog</option>
                                         <option value="cat">Cat</option>
@@ -86,18 +102,6 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- Pet Owner --}}
-                            <div class="row mb-3">
-                                <label for="owner" class="col-md-4 col-form-label text-md-end">{{ __('Owner') }}</label>
-                                <div class="col-md-6">
-                                    <select class="form-select" id="appointment-type">
-                                        <option value="" disabled selected>Select Pet Owner</option>
-                                        @foreach ($owners as $owner)
-                                        <option value="{{ $owner->id }}">{!! $owner->first_name.' '.$owner->first_name !!}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div> 
                             {{-- Current DateTime --}}
                             <input type="hidden" id="current_date" value=" <?php $current_date = new DateTime(); ?>">
                             {{-- <div class="row mb-3">
@@ -134,4 +138,13 @@
             </div>
         </div>
     </div>
+@endsection
+@yield('scripts')
+document.addEventListener('DOMContentLoaded', function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+})
 @endsection

@@ -36,7 +36,6 @@
             </div>
             <div class="col-md-6">
             <!-- <input type="text" id="selected_date" class="form-control col-md-2" placeholder="Click here to select date." > -->
-
             </div>
         </div>
         </form>
