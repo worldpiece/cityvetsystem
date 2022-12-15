@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="container mt-5" style="max-width: 1000px">
-        <h2 class="h2 text-left mb-5 border-bottom pb-3">Update a Medicine</h2>
+        <h2 class="h2 text-left mb-5 border-bottom pb-3">Update a Medicine stock amount</h2>
     </div>
     <div class="container">
         <div class="row justify-content-center">

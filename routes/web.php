@@ -88,6 +88,8 @@ Route::group(['middleware' => ['auth', 'verified', 'isAdmin']], function () {
   Route::get('admin/block_date', [App\Http\Controllers\BlockedOutDatesController::class, 'block_date'])->name('admin.block_date');
   Route::post('admin/block_date', [App\Http\Controllers\BlockedOutDatesController::class, 'store'])->name('admin.store');
   Route::get('admin/index', [App\Http\Controllers\BlockedOutDatesController::class, 'index'])->name('admin.index');
+  Route::get('admin/add-appointment-type', [App\Http\Controllers\BlockedOutDatesController::class, 'index'])->name('admin.add-appointment-type');
+
 
   Route::get('/medicine', [App\Http\Controllers\MedicineInventoryController::class, 'index'])->name('medicine.index');
   Route::get('/medicine/create', [App\Http\Controllers\MedicineInventoryController::class, 'create'])->name('medicine.create');

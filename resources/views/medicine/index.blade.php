@@ -12,7 +12,7 @@
         @endif
         <div class="mb-2 float-right">
             <button type="button" class="btn btn-success">
-                <a class="nav-link" href="{{ route('medicine.create') }}">{{ __('Register') }}</a>
+                <a class="nav-link" href="{{ route('medicine.create') }}">{{ __('Add Medicine') }}</a>
             </button>
         </div>
         <div id='pet-table' style="border: 2px solid #eee">

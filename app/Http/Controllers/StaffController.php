@@ -22,7 +22,7 @@ class StaffController extends Controller
     public function dashboard(Request $request)
     {
 
-        if (is_null( Staff::find($request->employee_number)))
+        if (is_null(Staff::find($request->employee_number)))
             {
                 $message = 'Invalid Number!';
                // return Redirect::to('staff.signin')->withErrors($validator);
@@ -52,7 +52,7 @@ class StaffController extends Controller
 
     public function store(Request $request)
     {
-        $qr_id = $request->employee_no . '' . $request->first_name . '' . $request->last_name;
+        $qr_id = $request->employee_no;
 
         $staff = new Staff();
         $staff->employee_no = $request->employee_no;
@@ -69,7 +69,7 @@ class StaffController extends Controller
     }
     public function edited(Request $request, $employee_no)
     {
-        $qr_id = $request->employee_no . '' . $request->first_name . '' . $request->last_name;
+        $qr_id = $request->employee_no;
         
         $staff = Staff::find($employee_no);
         $staff->employee_no = $request->employee_no;

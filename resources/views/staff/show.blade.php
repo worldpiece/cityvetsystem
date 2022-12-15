@@ -16,7 +16,7 @@
                         <div class="card-body">
                             <div class="row text-center">
                                 <span>
-                                    <a href="" onclick="window.print()">{!! QrCode::size(200)->generate('Venus Ferrer') !!}</a>
+                                    <a href="" onclick="window.print()">{!! QrCode::size(200)->generate($staff->employee_no) !!}</a>
                                 </span>
                             </div>
                             <br>

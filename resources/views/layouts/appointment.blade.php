@@ -7,28 +7,12 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-<<<<<<< HEAD
-        // if () {
-=======
 
-
-        // if () {
-        //     const cal = $(".fc-daygrid-day");
->>>>>>> 62aadb87f2f8639669f25ea06ff4351ac4c02557
-        //     cal.dataset.data - date;
-        //     $(".fc-daygrid-day").removeData('data-date').addClass('fc-day-disabled');
-        //     $(".fc-daygrid-day-top").remove();
-        // }
         var currentDate = new Date().toISOString();
         var appointments = @json($appointments);
         var blocked_out_dates = @json($blocked_out_dates);
-<<<<<<< HEAD
         const combinedDates = [...appointments, ...blocked_out_dates]
         console.log('combinedDates: ', combinedDates)
-=======
-
-        // console.log(appointments)
->>>>>>> 62aadb87f2f8639669f25ea06ff4351ac4c02557
         var calendarEl = document.getElementById('calendar');
         calendar = new FullCalendar.Calendar(calendarEl, {
             themeSystem: 'bootstrap5',
@@ -61,11 +45,7 @@
                 // alert('selected ' + start);
                 let isDisabledDate = false;
                 blocked_out_dates && blocked_out_dates.forEach(el => {
-<<<<<<< HEAD
                     if (allDay.startStr == el.start) {
-=======
-                    if (allDay.startStr == el.blocked_date) {
->>>>>>> 62aadb87f2f8639669f25ea06ff4351ac4c02557
                         isDisabledDate = true;
                     }
                 })
@@ -75,25 +55,14 @@
                 } else {
                     $('#appointment-modal').modal('show');
                 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 62aadb87f2f8639669f25ea06ff4351ac4c02557
                 $('#appointment-modal-label').html('Set an appointment');
                 var start = allDay.startStr;
                 var client_id = $('#client-id').val();
                 var pet_name = $('#pet-name').val();
                 var appointment_type = $('#appointment-type').val();
                 var symptoms = $('#symptoms').val();
-<<<<<<< HEAD
                 console.log("blocked_out_dates", blocked_out_dates)
                 console.log("allDay.startStr", allDay.startStr);
-=======
-
-                console.log("blocked_out_dates", blocked_out_dates)
-                console.log("allDay.startStr", allDay.startStr);
-
->>>>>>> 62aadb87f2f8639669f25ea06ff4351ac4c02557
                 $("#btnSave").click(function() {
                     const simula = start;
                     const client_id = $('#client-id').val();
@@ -131,9 +100,5 @@
         calendar.render();
         calendar.refetchEvents();
     });
-<<<<<<< HEAD
     
 </script>
-=======
-</script>
->>>>>>> 62aadb87f2f8639669f25ea06ff4351ac4c02557

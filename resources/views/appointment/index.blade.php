@@ -65,7 +65,7 @@
                         </div>
                         <div class="mb-2">
                             <label for="symptoms" class="col-form-label">Symptoms</label>
-                            <textarea class="form-control" id="symptoms"></textarea>
+                            <textarea class="form-control" id="symptoms" placeholder="Enter none if there is no symptoms"></textarea>
                             <span class="text-danger" id="symptomsError"></span>
                         </div>
                     </form>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="mb-2">
                             <label for="symptoms" class="col-form-label">Symptoms</label>
-                            <textarea class="form-control" id="symptoms"></textarea>
+                            <textarea class="form-control" id="symptoms" placeholder="Enter none if there is no symptoms"></textarea>
                             <span class="text-danger" id="symptomsError"></span>
                         </div>
                     </form>
