@@ -45,7 +45,7 @@ Route::get('/attendance', function () {
 // Route::get('/test/store/{id}', [App\Http\Controllers\AttendanceController::class, 'store'])->name('test.store');
 
 Route::post('/attendance/show', [App\Http\Controllers\AttendanceController::class, 'show'])->name('attendance.show');
-Route::post('/attendance/store/{id}', [App\Http\Controllers\AttendanceController::class, 'store'])->name('attendance.store');
+Route::post('/attendance/store', [App\Http\Controllers\AttendanceController::class, 'store'])->name('attendance.store');
 
 Route::get('/staffview', [App\Http\Controllers\StaffController::class, 'signin'])->name('staff.signin');
 Route::post('/staffview', [App\Http\Controllers\StaffController::class, 'dashboard'])->name('staff.dashboard');

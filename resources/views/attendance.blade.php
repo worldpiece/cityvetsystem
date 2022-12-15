@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Attendance</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
@@ -32,7 +35,7 @@
                             <video width="480" height="480" id="preview" class="form-control p-0"></video>
                         </div>
                         <div class="form-row">
-                            <form class="form-inline">
+                            <form id="form-attendance" class="form-inline" method="post" action="{{ url('attendance/store' )}}">
                                 @csrf
                                 <div class="row">
                                     <div class="col-2">
@@ -74,30 +77,72 @@
                                         <label for="pm_out">PM Out</label>
                                         <input type="text" class="form-control mb-2 mr-sm-2" id="pm_out" disabled>
                                     </div>
+                                    <input type="hidden" name="qrId" id="qrId" value="1">
                                 </div>
                             </form>
                         </div>
                     </div>
-                    {{-- <div class="form-row d-flex justify-content-center">
+                    <div class="form-row d-flex justify-content-center">
                         <div class="col-auto my-1">
-                            <button type="submit" class="btn btn-primary" id="time-in">Time-In</button>
+                            <button type="button" class="btn btn-primary" id="time-in">Time-In</button>
                             &nbsp;
                             &nbsp;
                             &nbsp;
                             &nbsp;
-                            <button type="submit" class="btn btn-primary" id="time-out">Time-Out</button>
+                            <button type="button" class="btn btn-primary" id="time-out">Time-Out</button>
                         </div>
-                    </div> --}}
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
 </body>
 <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        // $.ajax({
+        //     url: "{{ route('attendance.store' ) }}",
+        //     type: "POST",
+        //     data: {
+        //         id: 1,
+        //         _token: '{{csrf_token()}}'
+        //     },
+        //     success: function(response) {
+        //         console.log('response: ', response)
+        //         document.getElementById('employee_no').value = response.employee_no;
+        //         document.getElementById('designation').value = response.designation;
+        //         document.getElementById('first_name').value = response.first_name;
+        //         document.getElementById('last_name').value = response.last_name;
+        //         if (response.am_in) {
+        //             document.getElementById('am_in').value = new Date(response.am_in).toLocaleString();
+        //         }
+        //         if (response.am_out) {
+        //             document.getElementById('am_out').value = new Date(response.am_out).toLocaleString();
+        //         }
+        //         if (response.pm_in) {
+        //             document.getElementById('pm_in').value = new Date(response.pm_in).toLocaleString();
+        //         }
+        //         if (response.pm_out) {
+        //             document.getElementById('pm_out').value = new Date(response.pm_out).toLocaleString();
+        //         }
+        //         // document.getElementById('#appointment-modal').value = response.last_name;
+        //         // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
+        //     },
+        //     error: function(err) {
+        //         console.log('err: ', err)
+        //     }
+        // })
+    });
+
+    
     let scanner = new Instascan.Scanner({
         video: document.getElementById('preview')
     });
-
     Instascan.Camera.getCameras().then(function(cameras) {
         if (cameras.length > 0) {
             scanner.start(cameras[0]);
@@ -109,6 +154,9 @@
     });
 
     scanner.addListener('scan', function(c) {
+        document.getElementById('qrId').value = c;
+        // $( "#form-attendance" ).submit();
+        // document.forms[0].submit();
         $.ajax({
             url: "{{ route('attendance.store' ) }}",
             type: "POST",
@@ -117,15 +165,104 @@
                 _token: '{{csrf_token()}}'
             },
             success: function(response) {
+                console.log('response: ', response)
                 document.getElementById('employee_no').value = response.employee_no;
                 document.getElementById('designation').value = response.designation;
-                document.getElementById('#pet-name').value = response.first_name;
-                document.getElementById('#pet-name').value = response.last_name;
+                document.getElementById('first_name').value = response.first_name;
+                document.getElementById('last_name').value = response.last_name;
+                if (response.am_in) {
+                    document.getElementById('am_in').value = new Date(response.am_in).toLocaleString();
+                }
+                if (response.am_out) {
+                    document.getElementById('am_out').value = new Date(response.am_out).toLocaleString();
+                }
+                if (response.pm_in) {
+                    document.getElementById('pm_in').value = new Date(response.pm_in).toLocaleString();
+                }
+                if (response.pm_out) {
+                    document.getElementById('pm_out').value = new Date(response.pm_out).toLocaleString();
+                }
                 // document.getElementById('#appointment-modal').value = response.last_name;
                 // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
             },
             error: function(err) {
-                $('#nameError').text(err.responseJSON.errors);
+                console.log('err: ', err)
+            }
+        })
+    });
+
+    document.getElementById("time-in").addEventListener("click", function() {
+        const qrId = document.getElementById('qrId').value
+        $.ajax({
+            url: "{{ route('attendance.store' ) }}",
+            type: "POST",
+            data: {
+                id: qrId,
+                _token: '{{csrf_token()}}',
+                action: 'timein'
+            },
+            success: function(response) {
+                console.log('response: ', response)
+                document.getElementById('employee_no').value = response.employee_no;
+                document.getElementById('designation').value = response.designation;
+                document.getElementById('first_name').value = response.first_name;
+                document.getElementById('last_name').value = response.last_name;
+                if (response.am_in) {
+                    document.getElementById('am_in').value = new Date(response.am_in).toLocaleString();
+                }
+                if (response.am_out) {
+                    document.getElementById('am_out').value = new Date(response.am_out).toLocaleString();
+                }
+                if (response.pm_in) {
+                    document.getElementById('pm_in').value = new Date(response.pm_in).toLocaleString();
+                }
+                if (response.pm_out) {
+                    document.getElementById('pm_out').value = new Date(response.pm_out).toLocaleString();
+                }
+                alert('Successful time in');
+                // document.getElementById('#appointment-modal').value = response.last_name;
+                // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
+            },
+            error: function(err) {
+                console.log('err: ', err)
+            }
+        })
+        console.log('response: ', document.getElementById('qrId').value)
+    });
+    document.getElementById("time-out").addEventListener("click", function() {
+        const qrId = document.getElementById('qrId').value
+        $.ajax({
+            url: "{{ route('attendance.store' ) }}",
+            type: "POST",
+            data: {
+                id: qrId,
+                _token: '{{csrf_token()}}',
+                action: 'timeout'
+            },
+            success: function(response) {
+                console.log('response: ', response)
+                alert('Successful time out');
+                document.getElementById('employee_no').value = response.employee_no;
+                document.getElementById('designation').value = response.designation;
+                document.getElementById('first_name').value = response.first_name;
+                document.getElementById('last_name').value = response.last_name;
+                if (response.am_in) {
+                    document.getElementById('am_in').value = new Date(response.am_in).toLocaleString();
+                }
+                if (response.am_out) {
+                    document.getElementById('am_out').value = new Date(response.am_out).toLocaleString();
+                }
+                if (response.pm_in) {
+                    document.getElementById('pm_in').value = new Date(response.pm_in).toLocaleString();
+                }
+                if (response.pm_out) {
+                    document.getElementById('pm_out').value = new Date(response.pm_out).toLocaleString();
+                }
+                // document.getElementById('#appointment-modal').value = response.last_name;
+                // alert('selected ' + start + ' and ' + client_id + ' and ' + pet_name + ' and ' + appointment_type + ' and ' + symptoms);
+            },
+            error: function(err) {
+                console.log('err: ', err)
             }
         })
     });

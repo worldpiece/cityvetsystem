@@ -98,4 +98,9 @@ class StaffController extends Controller
 
         return redirect()->route('staff.index')->with('success', 'Staff Deleted Successfully.');
     }
+
+    public function getOneStaff(Request $request) {
+        $staff = Staff::find($request->input('id'));
+        return $staff;
+    }
 }

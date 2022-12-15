@@ -81,4 +81,10 @@ class AppointmentController extends Controller
     {
         //
     }
+
+    public function attendance(Request $request)
+    {
+        dd($request->all);
+        exit;
+    }
 }

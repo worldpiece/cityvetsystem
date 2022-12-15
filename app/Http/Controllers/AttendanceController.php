@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
+use App\Models\Staff;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AttendanceController extends Controller
 {
@@ -35,20 +37,57 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        
-        dd($request->all);
-        // if($request->c)
-        // {
-        //     // dd($request->c);
-        //     $employee_no = $request->c;
+        $action = $request->input('action');
+        $staff = Staff::find($request->input('id'));
+        if($staff)
+        {
+            // check employee attendance history
+            $attendance_history = Attendance::where('employee_id',$request->input('id'))
+                ->whereDate('created_at', Carbon::today())
+                ->first();
+            if (!$attendance_history) {
+                $attendance = new Attendance();
+                $attendance->employee_id = $staff->employee_no;
+                $attendance->am_in = Carbon::now();
+                $attendance->save();
+                $staff->am_in = $attendance->am_in;
+                $staff->am_out = $attendance->am_out;
+                $staff->pm_in = $attendance->pm_in;
+                $staff->pm_out = $attendance->pm_out;
+            } else {
+                // main object
+                $_attendance = Attendance::find($attendance_history->id);
 
-        //     $attendance = new Attendance();
-        //     $attendance->employee_id = $employee_no;
-        //     // $attendance->am_in = $employee_no;
-        //     // $attendance->employee_id = $employee_no;
-        //     $attendance->save();
-        //     return redirect()->route('attendance.index')->with('success', 'Successfully Logged In!');
-        // }
+                // check if action is time in
+                $is_pm_timed_in = $attendance_history->pm_in;
+                $is_am_timed_in = $attendance_history->am_in;
+                $is_pm_timed_out = $attendance_history->pm_out;
+                $is_am_timed_out = $attendance_history->am_out;
+                if ($action == 'timein') {
+                    if ($is_am_timed_in && $is_am_timed_out) {
+                        $_attendance->pm_in = Carbon::now();
+                        $_attendance->save();
+                    } else {
+                        $_attendance->am_in = Carbon::now();
+                        $_attendance->save();
+                    }
+                } else if ($action == 'timeout') {
+                    if ($is_am_timed_out && $is_pm_timed_out) {
+                        $_attendance->pm_out = Carbon::now();
+                        $_attendance->save();
+                    } else {
+                        $_attendance->am_out = Carbon::now();
+                        $_attendance->save();
+                    }
+                }
+               
+               $staff->am_in = $_attendance->am_in;
+               $staff->am_out = $_attendance->am_out;
+               $staff->pm_in = $_attendance->pm_in;
+               $staff->pm_out = $_attendance->pm_out;
+            }
+            return $staff;
+        }
     }
 
     /**
