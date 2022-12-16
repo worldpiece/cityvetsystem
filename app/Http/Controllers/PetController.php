@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Pet;
+use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -135,5 +137,19 @@ class PetController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function fetchOwners(Request $request) {
+        $owner_id = $request->input('id');
+        return Pet::where('owner_id', $owner_id)->get();
+        // return User::with(['pets' => function($query) use ($owner_id) {
+        //     $query->where('owner_id', $owner_id);
+        // }])->get();
+    }
+
+    public function pet_report()
+    {
+        $pdf = Pdf::loadView('admin.report');
+        return $pdf->download('invoice.pdf');
     }
 }

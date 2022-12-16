@@ -15,11 +15,11 @@
                     <td>{{ $blocked_out_date->start }}</td>
                     <td class="text-center">
                         <div class="btn-group" role="group" aria-label="Action Buttons">
-                            <form method="post" action="{{ route('appointment.edit', $blocked_out_date->id) }}">
+                            {{-- <form method="post" action="{{ route('admin.edit', $blocked_out_date->id) }}">
                                 {{ csrf_field() }}
                                 <button class="btn btn-primary" type="submit">Edit</button> 
-                            </form>
-                            <form method="post" action="{{ route('appointment.destroy', $blocked_out_date->id) }}">
+                            </form> --}}
+                            <form method="post" action="{{ route('admin.delete', $blocked_out_date->id) }}">
                                 {{ csrf_field() }}
                                 <button class="btn btn-danger" onclick="return confirm('Are you sure you want to Delete {{ $blocked_out_date->start }}?')"
                                     type="submit">Delete

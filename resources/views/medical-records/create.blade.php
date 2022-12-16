@@ -19,7 +19,7 @@
                                 <label for="owner"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Owner') }}</label>
                                 <div class="col-md-6">
-                                    <select class="form-select" id="appointment-type">
+                                    <select class="form-select" id="owner-list" name="owner">
                                         <option value="" disabled selected>Select Pet Owner</option>
                                         @foreach ($owners as $owner)
                                             <option value="{{ $owner->id }}">{!! $owner->first_name . ' ' . $owner->last_name !!}</option>
@@ -29,19 +29,12 @@
                             </div>
                             {{-- Name --}}
                             <div class="row mb-3">
-                                <label for="pet_name"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Pet Name') }}</label>
-
+                                <label for="pet"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Pet') }}</label>
                                 <div class="col-md-6">
-                                    <input id="pet_name" type="text"
-                                        class="form-control @error('pet_name') is-invalid @enderror" name="pet_name"
-                                        value="{{ old('pet_name') }}" required autocomplete="pet_name" autofocus>
-
-                                    @error('pet_name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <select class="form-select" id="pet-list" name="pet">
+                                        <option value="" disabled selected>Select Pet </option>
+                                    </select>
                                 </div>
                             </div>
                             {{-- Findings --}}
@@ -60,13 +53,13 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- DOB --}}
+                            {{-- DOA --}}
                             <div class="row mb-3">
                                 <label for="pet_dob"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Date of Appointment') }}</label>
                                 <div class="col-md-6">
                                     <input id="pet_dob" type="date"
-                                        class="form-control @error('pet_dob') is-invalid @enderror" name="pet_dob"
+                                        class="form-control @error('pet_dob') is-invalid @enderror" name="appointment_date"
                                         value="{{ old('pet_dob') }}" required autocomplete="pet_dob" autofocus>
 
                                     @error('pet_dob')
@@ -77,14 +70,14 @@
                                 </div>
                             </div>
                             {{-- Classification --}}
-                            <div class="row mb-3">
+                            {{-- <div class="row mb-3">
                                 <label for="pet_classification"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Pet Classification') }}</label>
                                 <div class="col-md-6">
                                     <select class="form-control @error('pet_classification') is-invalid @enderror"
                                         id="pet_classification" name="pet_classification"
                                         value="{{ old('pet_classification') }}" required autocomplete="pet_classification"
-                                        autofocus>
+                                        autofocus> 
                                         <option value="" disabled selected>Select Pet Classification</option>
                                         <option value="dog">Dog</option>
                                         <option value="cat">Cat</option>
@@ -101,7 +94,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
                             {{-- Current DateTime --}}
                             <input type="hidden" id="current_date" value=" <?php $current_date = new DateTime(); ?>">
                             {{-- <div class="row mb-3">
@@ -121,9 +114,9 @@
                                 </div>
                             </div> --}}
                             {{-- owner_id --}}
-                            <div class="row">
-                                <input type="hidden" id="owner_id" name="owner_id" value="{{ Auth::user()->id }}">
-                            </div>
+                            {{-- <div class="row">
+                                <input type="hidden" id="owner_id" name="owner_id" value="{{ $owner->id }}">
+                            </div> --}}
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
@@ -139,12 +132,36 @@
         </div>
     </div>
 @endsection
-@yield('scripts')
+<script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-})
-@endsection
+    document.getElementById("owner-list").addEventListener("change", function() {
+        var selectedItem = $('#owner-list').find(":selected").val();
+        console.log('onChange: ', selectedItem)
+        $.ajax({
+            url: "{{ route('pet.show' ) }}",
+            type: "POST",
+            data: {
+                id: selectedItem,
+            },
+            success: function(response) {
+                console.log('response: ', response)
+                response.forEach(element => {
+                    $('#pet-list').append($('<option>', {
+                        value: element.id,
+                        text: element.pet_name
+                    }))
+                });
+            },
+            error: function(err) {
+                console.log('err: ', err)
+            }
+        })
+    });
+    
+});
+</script>

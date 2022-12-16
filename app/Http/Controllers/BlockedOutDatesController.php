@@ -30,12 +30,16 @@ class BlockedOutDatesController extends Controller
 
     public function edit($id)
     {
+        
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        $pet = BlockedOutDates::find($id);
-        $pet->delete();
-        return redirect()->route('admin.index')->with('success', 'Pet Deleted Successfully.');
+        // dd($id);
+        $b_date = BlockedOutDates::find($id);
+        $b_date->forceDelete();
+
+        return redirect()->route('admin.block_date')->with('success', 'Blocked date deleted successfully.');
     }
+
 }

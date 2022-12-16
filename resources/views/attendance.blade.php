@@ -84,12 +84,12 @@
                     </div>
                     <div class="form-row d-flex justify-content-center">
                         <div class="col-auto my-1">
-                            <button type="button" class="btn btn-primary" id="time-in">Time-In</button>
+                            <button type="button" class="btn btn-primary" id="time-in" disabled>Time-In</button>
                             &nbsp;
                             &nbsp;
                             &nbsp;
                             &nbsp;
-                            <button type="button" class="btn btn-primary" id="time-out">Time-Out</button>
+                            <button type="button" class="btn btn-primary" id="time-out" disabled>Time-Out</button>
                         </div>
                     </div>
                     
@@ -170,6 +170,10 @@
                 document.getElementById('designation').value = response.designation;
                 document.getElementById('first_name').value = response.first_name;
                 document.getElementById('last_name').value = response.last_name;
+
+                $( "#time-in" ).prop( "disabled", false );
+                $( "#time-out" ).prop( "disabled", false );
+
                 if (response.am_in) {
                     document.getElementById('am_in').value = new Date(response.am_in).toLocaleString();
                 }

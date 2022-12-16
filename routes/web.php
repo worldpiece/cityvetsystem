@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::post('/pet/edit/{id}', [App\Http\Controllers\PetController::class, 'edit'])->name('pet.edit');
   Route::post('/pet/edited/{id}', [App\Http\Controllers\PetController::class, 'edited'])->name('pet.edited');
   Route::post('/pet/delete/{id}', [App\Http\Controllers\PetController::class, 'delete'])->name('pet.delete');
+  Route::post('/pet/owner', [App\Http\Controllers\PetController::class, 'fetchOwners'])->name('pet.show');
   Route::delete('pet/{id}', [App\Http\Controllers\PetController::class, 'destroy'])->name('pet.destroy');
 
   Route::get('/staff', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
@@ -87,8 +88,13 @@ Route::group(['middleware' => ['auth', 'verified', 'isAdmin']], function () {
   Route::get('admin/list_of_appointment', [App\Http\Controllers\AppointmentController::class, 'list_of_appointment'])->name('admin.list_of_appointment');
   Route::get('admin/block_date', [App\Http\Controllers\BlockedOutDatesController::class, 'block_date'])->name('admin.block_date');
   Route::post('admin/block_date', [App\Http\Controllers\BlockedOutDatesController::class, 'store'])->name('admin.store');
+  Route::post('/admin/delete/{id}', [App\Http\Controllers\BlockedOutDatesController::class, 'delete'])->name('admin.delete');
   Route::get('admin/index', [App\Http\Controllers\BlockedOutDatesController::class, 'index'])->name('admin.index');
   Route::get('admin/add-appointment-type', [App\Http\Controllers\BlockedOutDatesController::class, 'index'])->name('admin.add-appointment-type');
+  // Route::get('admin/report', [App\Http\Controllers\ReportController::class, 'index'])->name('admin.report');
+  Route::get('admin/report', [App\Http\Controllers\ReportController::class, 'staff'])->name('admin.report');
+  
+  // Route::get('/staff/index', [App\Http\Controllers\ReportController::class, 'staff'])->name('report.staff');
 
 
   Route::get('/medicine', [App\Http\Controllers\MedicineInventoryController::class, 'index'])->name('medicine.index');
@@ -103,6 +109,6 @@ Route::group(['middleware' => ['auth', 'verified', 'isAdmin']], function () {
   Route::get('medical-records/', [App\Http\Controllers\MedicalRecordsController::class, 'index'])->name('medical-records.index');
   Route::get('medical-records/create', [App\Http\Controllers\MedicalRecordsController::class, 'create'])->name('medical-records.create');
   Route::post('medical-records/store', [App\Http\Controllers\MedicalRecordsController::class, 'store'])->name('medical-records.store');
-  Route::post('medical-records/update{id}', [App\Http\Controllers\MedicalRecordsController::class, 'update'])->name('medical-records.update');
-  Route::delete('medical-records/destroy{id}', [App\Http\Controllers\MedicalRecordsController::class, 'destroy'])->name('medical-records.destroy');
+  Route::post('medical-records/update/{id}', [App\Http\Controllers\MedicalRecordsController::class, 'update'])->name('medical-records.update');
+  Route::delete('medical-records/destroy/{id}', [App\Http\Controllers\MedicalRecordsController::class, 'destroy'])->name('medical-records.destroy');
 });

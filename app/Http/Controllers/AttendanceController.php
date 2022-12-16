@@ -48,7 +48,7 @@ class AttendanceController extends Controller
             if (!$attendance_history) {
                 $attendance = new Attendance();
                 $attendance->employee_id = $staff->employee_no;
-                $attendance->am_in = Carbon::now();
+                $attendance->am_in = Carbon::now('GMT+8');
                 $attendance->save();
                 $staff->am_in = $attendance->am_in;
                 $staff->am_out = $attendance->am_out;
@@ -65,18 +65,18 @@ class AttendanceController extends Controller
                 $is_am_timed_out = $attendance_history->am_out;
                 if ($action == 'timein') {
                     if ($is_am_timed_in && $is_am_timed_out) {
-                        $_attendance->pm_in = Carbon::now();
+                        $_attendance->pm_in = Carbon::now('GMT+8');
                         $_attendance->save();
                     } else {
-                        $_attendance->am_in = Carbon::now();
+                        $_attendance->am_in = Carbon::now('GMT+8');
                         $_attendance->save();
                     }
                 } else if ($action == 'timeout') {
-                    if ($is_am_timed_out && $is_pm_timed_out) {
-                        $_attendance->pm_out = Carbon::now();
+                    if ($is_am_timed_out && $is_pm_timed_in) {
+                        $_attendance->pm_out = Carbon::now('GMT+8');
                         $_attendance->save();
                     } else {
-                        $_attendance->am_out = Carbon::now();
+                        $_attendance->am_out = Carbon::now('GMT+8');
                         $_attendance->save();
                     }
                 }

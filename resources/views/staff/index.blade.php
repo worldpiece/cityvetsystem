@@ -17,9 +17,12 @@
                 <strong>{{ $message }}</strong>
             </div>
         @endif
-        <div class="mb-2 float-right">
+        <div class="mb-2 flex" style="display:flex; justify-content:space-between">
             <button type="button" class="btn btn-success">
                 <a class="nav-link" href="{{ route('staff.create') }}">{{ __('Register') }}</a>
+            </button>
+            <button type="button" class="btn btn-primary">
+                <a class="nav-link" href="{{ route('admin.report') }}">{{ __('Export to PDF') }}</a>
             </button>
         </div>
         <div id='pet-table' style="border: 2px solid #eee">

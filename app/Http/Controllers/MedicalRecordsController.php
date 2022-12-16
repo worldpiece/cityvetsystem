@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\MedicalRecords;
 use App\Models\User;
+use App\Models\Pet;
 use Illuminate\Http\Request;
 
 class MedicalRecordsController extends Controller
@@ -17,9 +18,9 @@ class MedicalRecordsController extends Controller
      */
     public function index()
     {
-        $medicalRecords = MedicalRecords::all();
-        // return view('medical-records.index');
-        return view('medical-records.index', ['medicalRecords' => $medicalRecords]);    
+        $medicalRecords = MedicalRecords::with('pets')->get();
+        // print_r($medicalRecords);exit;
+        return view('medical-records.index', ['medicalRecords' => $medicalRecords]);
     }
 
     /**
@@ -30,8 +31,11 @@ class MedicalRecordsController extends Controller
     public function create()
     {
         $owners = DB::table('users')
-            ->select('id','first_name', 'last_name')
+            ->select('id', 'first_name', 'last_name')
+            ->where('role', '!=', 1)
             ->get();
+
+
         return view('medical-records.create', ['owners' => $owners]);
     }
 
@@ -43,9 +47,15 @@ class MedicalRecordsController extends Controller
      */
     public function store(Request $request)
     {
+        // var_dump($request->all());exit;
+
+        $pet = Pet::find($request->input('pet'));
         $rec = new MedicalRecords();
-        $rec->name = $request->findings;
-        $rec->quantity = $request->appointment_date;
+        $rec->name = $pet->pet_name;
+        $rec->owner_id = $request->input('owner');
+        $rec->pet_id = $pet->id;
+        $rec->findings = $request->input('findings');
+        $rec->appointment_date = $request->input('appointment_date');
         $rec->save();
         return redirect()->route('medical-records.index')->with('success', 'Medical record added successfully!');
     }
@@ -81,7 +91,10 @@ class MedicalRecordsController extends Controller
      */
     public function update(Request $request, MedicalRecords $medicalRecords)
     {
-        //
+        // $medicalRecords = MedicalRecords::all();
+        // return view('medical-records.index', ['medicalRecords' => $medicalRecords]);   
+        var_dump($request->all());
+        exit;
     }
 
     /**
@@ -93,5 +106,13 @@ class MedicalRecordsController extends Controller
     public function destroy(MedicalRecords $medicalRecords)
     {
         //
+    }
+
+    public function delete($id)
+    {
+        $records = MedicalRecords::find($id);
+        $records->delete();
+
+        return redirect()->route('medical-records.index')->with('success', 'Medical record deleted successfully.');
     }
 }
